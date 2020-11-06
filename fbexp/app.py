@@ -1,16 +1,4 @@
-# Copyright 2019 Patrick Dreker <patrick@dreker.de>
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#   http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+'''Application main function'''
 
 import logging
 import logging.config
@@ -23,8 +11,13 @@ from prometheus_client.core import REGISTRY
 from .fb_exporter import FritzBoxExporter
 from .metrics_config import METRICS_CFG
 
+FRITZ_HOST_DEFAULT = 'fritz.box'
+FRITZ_EXPORTER_PORT_DEFAULT = '8765'
 
-def main():
+
+def setup_logging():
+    '''Set up the logging output.'''
+
     logging.basicConfig(
         level=logging.DEBUG,
         format='%(asctime)-15s %(levelname)s: %(message)s')
@@ -38,6 +31,12 @@ def main():
         }
     })
 
+
+def main():
+    '''Main method initializing the application and starting the exporter.'''
+
+    setup_logging()
+
     fb_exporter = FritzBoxExporter(
         os.getenv('FRITZ_HOST', 'fritz.box'),
         os.getenv('FRITZ_USER'),
@@ -47,8 +46,10 @@ def main():
     REGISTRY.register(fb_exporter)
 
     # Start up the server to expose the metrics.
-    start_http_server(os.getenv('FRITZ_EXPORTER_PORT', 8765))
-    while(True):
+    port = int(os.getenv('FRITZ_EXPORTER_PORT', FRITZ_EXPORTER_PORT_DEFAULT))
+    start_http_server(port)
+
+    while True:
         time.sleep(10000)
 
 

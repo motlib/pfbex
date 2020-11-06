@@ -1,28 +1,10 @@
-# Copyright 2019 Patrick Dreker <patrick@dreker.de>
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#   http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+'''FritzBox collector implementation'''
 
 import logging
 import logging.config
-import os
-import time
 
 import fritzconnection as fc
-from prometheus_client.core import (
-    GaugeMetricFamily, CounterMetricFamily, REGISTRY)
-from prometheus_client import start_http_server
-
-from .metrics_config import METRICS_CFG
+from prometheus_client.core import GaugeMetricFamily
 
 
 logger = logging.getLogger(__name__)
@@ -31,7 +13,10 @@ logger.setLevel(logging.DEBUG)
 
 MAX_FAILS = 3
 
-class FritzBoxExporter():
+class FritzBoxExporter(): # pylint: disable=too-few-public-methods
+    '''FrizBox exporter implementation retrieving metrics from a FritzBox by
+    TR-064. This is used by the prometheus client implementation to publish the
+    metrics.'''
 
     def __init__(self, host, user, passwd, cfg):
         self.host = host
@@ -57,7 +42,7 @@ class FritzBoxExporter():
 
         try:
             res = self.conn.call_action(service, action)
-        except:
+        except: # pylint: disable=bare-except
             res = None
 
         return res
@@ -114,19 +99,23 @@ class FritzBoxExporter():
 
         res = self._call_action(service, action)
         if not res:
-            logger.warning(f'Failed to retrieve data from service {service}:{action} (repeated {fails}).')
+            logger.warning(
+                f'Failed to retrieve data from service {service}:{action} '
+                f'(repeated {fails}).')
 
             cfg['fails'] = fails + 1
 
             if cfg['fails'] >= MAX_FAILS:
-                logging.warning(f'Disabled further requests to {service}:{action}.')
+                logging.warning(
+                    f'Disabled further requests to {service}:{action}.')
 
             return
 
         for metric in metrics:
             key = metric['key']
             if key not in res:
-                logger.warning(f'Key {key} not in TR-64 result data of {service}:{action}.')
+                logger.warning(
+                    f'Key {key} not in TR-64 result data of {service}:{action}.')
                 continue
 
             met = GaugeMetricFamily(
@@ -144,6 +133,9 @@ class FritzBoxExporter():
 
 
     def collect(self):
+        '''Collect all metrics. This is called by the prometheus client
+        implementation..'''
+
         yield from self._collect_device_info()
 
         for cfg in self._cfg:
