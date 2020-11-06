@@ -15,18 +15,17 @@ FRITZ_HOST_DEFAULT = 'fritz.box'
 FRITZ_EXPORTER_PORT_DEFAULT = '8765'
 
 
-def setup_logging():
+def setup_logging(level):
     '''Set up the logging output.'''
 
     logging.basicConfig(
-        level=logging.DEBUG,
         format='%(asctime)-15s %(levelname)s: %(message)s')
 
     logging.config.dictConfig({
         'version': 1,
         'loggers': {
             'fbexp': {
-                'level': logging.DEBUG
+                'level': level
             }
         }
     })
@@ -35,7 +34,9 @@ def setup_logging():
 def main():
     '''Main method initializing the application and starting the exporter.'''
 
-    setup_logging()
+    level = os.getenv('LOGLEVEL', 'INFO')
+
+    setup_logging(level)
 
     fb_exporter = FritzBoxExporter(
         os.getenv('FRITZ_HOST', 'fritz.box'),
