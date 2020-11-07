@@ -9,7 +9,7 @@ from prometheus_client import start_http_server
 from prometheus_client.core import REGISTRY
 
 from .fb_exporter import FritzBoxExporter
-from .metrics_config import METRICS_CFG
+from .metrics_config import METRICS_CFG2
 
 FRITZ_HOST_DEFAULT = 'fritz.box'
 FRITZ_EXPORTER_PORT_DEFAULT = '8765'
@@ -34,7 +34,7 @@ def setup_logging(level):
 def main():
     '''Main method initializing the application and starting the exporter.'''
 
-    level = os.getenv('LOGLEVEL', 'INFO')
+    level = os.getenv('LOGLEVEL', 'INFO').upper()
 
     setup_logging(level)
 
@@ -42,7 +42,7 @@ def main():
         os.getenv('FRITZ_HOST', 'fritz.box'),
         os.getenv('FRITZ_USER'),
         os.getenv('FRITZ_PASS'),
-        METRICS_CFG)
+        METRICS_CFG2)
 
     REGISTRY.register(fb_exporter)
 

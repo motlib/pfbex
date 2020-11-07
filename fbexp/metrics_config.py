@@ -2,178 +2,300 @@
 mapped to prometheus metrics.'''
 
 
-METRICS_CFG = [
+METRICS_CFG2 = [
     {
-        # TR-64 service name
-        'service': 'UserInterface1',
-        # TR-64 action name
-        'action': 'GetInfo',
-        'metrics': [
+        'metric': 'fritzbox_update_available',
+        'doc': 'Fritzbox software update available',
+        'items': [
             {
-                # prometheus metrics name
-                'metric': 'fritzbox_update_available',
-                # prometheus documentation
-                'doc': 'Fritzbox update available',
-                # TR-64 value identifier
-                'key': 'NewUpgradeAvailable',
-                # conversion function transforming the value from TR-64 to
-                # prometheus
-                'fct': lambda x: 1 if x == '1' else 0,
+                'service': 'UserInterface1',
+                'action': 'GetInfo',
+                'attr': 'NewUpgradeAvailable',
             }
         ]
     },
+
+    # Network enabled
     {
-        'service': 'LANEthernetInterfaceConfig1',
-        'action': 'GetInfo',
-        'metrics': [
+        'metric': 'fritzbox_net_enabled',
+        'doc': 'Network interface enabled',
+        'items': [
             {
-                'metric': 'fritzbox_lan_status_enabled',
-                'doc': 'LAN interface enabled',
-                'key': 'NewEnable',
+                'service': 'LANEthernetInterfaceConfig1',
+                'action': 'GetInfo',
+                'attr': 'NewEnable',
+                'labels': {'if': 'lan'},
             },
             {
-                'metric': 'fritzbox_lan_status',
-                'doc': 'LAN interface status',
-                'key': 'NewStatus',
+                'service': 'WLANConfiguration1',
+                'action': 'GetInfo',
+                'attr': 'NewEnable',
+                'labels': {'if': 'wlan1'},
+            },
+            {
+                'service': 'WLANConfiguration2',
+                'action': 'GetInfo',
+                'attr': 'NewEnable',
+                'labels': {'if': 'wlan2'},
+            },
+            {
+                # not available on 6591 Cable
+                'service': 'WANDSLInterfaceConfig1',
+                'action': 'GetInfo',
+                'attr': 'NewEnable',
+                'labels': {'if': 'dsl'},
+            }
+        ]
+    },
+
+    # Network status
+    {
+        'metric': 'fritzbox_net_status',
+        'doc': 'Network interface status',
+        'items': [
+            {
+                'service': 'LANEthernetInterfaceConfig1',
+                'action': 'GetInfo',
+                'attr': 'NewStatus',
+                'labels': {'if': 'lan'},
                 'fct': lambda x: 1 if x == 'Up' else 0
             },
+            {
+                'service': 'WLANConfiguration1',
+                'action': 'GetInfo',
+                'attr': 'NewStatus',
+                'labels': {'if': 'wlan1'},
+                'fct': lambda x: 1 if x == 'Up' else 0
+            },
+            {
+                'service': 'WLANConfiguration2',
+                'action': 'GetInfo',
+                'attr': 'NewStatus',
+                'labels': {'if': 'wlan1'},
+                'fct': lambda x: 1 if x == 'Up' else 0
+            },
+            {
+                # not available on 6591 Cable
+                'service': 'WANDSLInterfaceConfig1',
+                'action': 'GetInfo',
+                'attr': 'NewStatus',
+                'labels': {'if': 'dsl'},
+                'fct': lambda x: 1 if x == 'Up' else 0
+            }
         ]
     },
+
+    # Network bytes
     {
-        'service': 'LANEthernetInterfaceConfig1',
-        'action': 'GetStatistics',
-        'metrics': [
+        'metric': 'fritzbox_net_data',
+        'doc': 'Network data volume',
+        'items': [
             {
-                'metric': 'fritzbox_lan_received_bytes',
-                'doc': 'LAN bytes received',
-                'key': 'NewBytesReceived',
+                'service': 'LANEthernetInterfaceConfig1',
+                'action': 'GetStatistics',
+                'attr': 'NewBytesReceived',
+                'labels': { 'if': 'lan', 'dir': 'rx' }
             },
             {
-                'metric': 'fritzbox_lan_received_bytes',
-                'doc': 'LAN bytes sent',
-                'key': 'NewBytesSent',
+                'service': 'LANEthernetInterfaceConfig1',
+                'action': 'GetStatistics',
+                'attr': 'NewBytesSent',
+                'labels': { 'if': 'lan', 'dir': 'tx' }
             },
             {
-                'metric': 'fritzbox_lan_received_bytes',
-                'doc': 'LAN packets received',
-                'key': 'NewPacketsReceived',
+                'service': 'WANCommonInterfaceConfig1',
+                'action': 'GetTotalBytesSent',
+                'attr': 'NewTotalBytesSent',
+                'labels': {'if': 'wan', 'dir': 'tx'},
             },
             {
-                'metric': 'fritzbox_lan_received_bytes',
-                'doc': 'LAN packets sent',
-                'key': 'NewPacketsReceived',
+                'service': 'WANCommonInterfaceConfig1',
+                'action': 'GetTotalBytesReceived',
+                'attr': 'NewTotalBytesReceived',
+                'labels': {'if': 'wan', 'dir': 'rx'},
+            }
+
+        ]
+    },
+
+    # Network packets
+    {
+        'metric': 'fritzbox_net_packets',
+        'doc': 'Network data packets',
+        'items': [
+            {
+                'service': 'LANEthernetInterfaceConfig1',
+                'action': 'GetStatistics',
+                'attr': 'NewPacketsReceived',
+                'labels': { 'if': 'lan', 'dir': 'rx' }
+            },
+            {
+                'service': 'LANEthernetInterfaceConfig1',
+                'action': 'GetStatistics',
+                'attr': 'NewPacketsSent',
+                'labels': { 'if': 'lan', 'dir': 'tx' }
+            },
+            {
+                'service': 'WANCommonInterfaceConfig1',
+                'action': 'GetTotalPacketsReceived',
+                'attr': 'NewTotalPacketsReceived',
+                'labels': { 'if': 'wan', 'dir': 'rx' }
+            },
+            {
+                'service': 'WANCommonInterfaceConfig1',
+                'action': 'GetTotalPacketsSent',
+                'attr': 'NewTotalPacketsSent',
+                'labels': { 'if': 'wan', 'dir': 'tx' }
+            },
+            {
+                'service': 'WLANConfiguration1',
+                'action': 'GetStatistics',
+                'attr': 'NewTotalPacketsSent',
+                'labels': { 'if': 'wlan1', 'dir': 'tx' }
+            },
+            {
+                'service': 'WLANConfiguration1',
+                'action': 'GetStatistics',
+                'attr': 'NewTotalPacketsReceived',
+                'labels': { 'if': 'wlan1', 'dir': 'rx' }
+            },
+            {
+                'service': 'WLANConfiguration2',
+                'action': 'GetStatistics',
+                'attr': 'NewTotalPacketsSent',
+                'labels': { 'if': 'wlan2', 'dir': 'tx' }
+            },
+            {
+                'service': 'WLANConfiguration2',
+                'action': 'GetStatistics',
+                'attr': 'NewTotalPacketsReceived',
+                'labels': { 'if': 'wlan2', 'dir': 'rx' }
+            },
+
+
+        ]
+    },
+
+    # PPP Connection Status
+    # not available for FRITZ!Box 6591 Cable (lgi)
+    {
+
+        'metric': 'fritzbox_ppp_connection_uptime',
+        'doc': 'PPP connection uptime',
+        'items': [
+            {
+                'service': 'WANPPPConnection1',
+                'action': 'GetStatusInfo',
+                'attr': 'NewUptime',
             }
         ]
     },
     {
-        'service': 'WANDSLInterfaceConfig1',
-        'action': 'GetInfo',
-        'metrics': [
+        'metric': 'fritzbox_ppp_connection_state',
+        'doc': 'PPP connection state',
+        'items': [
             {
-                'metric': 'fritzbox_dsl_status_enabled',
-                'doc': 'DSL enabled',
-                'key': 'NewEnable',
-            },
-            {
-                'metric': 'fritzbox_dsl_status',
-                'doc': 'DSL Status',
-                'key': 'NewStatus',
-            },
-            {
-                'metric': 'fritzbox_dsl_datarate_kbps_up',
-                'doc': 'DSL Upstream datarate in kpbs',
-                'key': 'NewUpstreamCurrRate',
-            },
-            {
-                'metric': 'fritzbox_dsl_datarate_kbps_down',
-                'doc': 'DSL Downstream datarate in kpbs',
-                'key': 'NewDownstreamCurrRate',
-            },
-            {
-                'metric': 'fritzbox_dsl_noise_margin_dB_up',
-                'doc': 'Noise Margin in dB',
-                'key': 'NewUpstreamNoiseMargin',
-                'fct': lambda x: x / 10.0,
-            },
-            {
-                'metric': 'fritzbox_dsl_noise_margin_dB_down',
-                'doc': 'Noise Margin in dB',
-                'key': 'NewDownstreamNoiseMargin',
-                'fct': lambda x: x / 10.0,
-            },
-            {
-                'metric': 'fritzbox_dsl_attenuation_dB_up',
-                'doc': 'Line attenuation in dB',
-                'key': 'NewUpstreamAttenuation',
-                'fct': lambda x: x / 10.0,
-            },
-            {
-                'metric': 'fritzbox_dsl_attenuation_dB_down',
-                'doc': 'Line attenuation in dB',
-                'key': 'NewDownstreamAttenuation',
-                'fct': lambda x: x / 10.0,
-            }
-        ]
-    },
-    {
-        'service': 'WANPPPConnection:1',
-        'action': 'GetStatusInfo',
-        'metrics': [
-            {
-                'metric': 'fritzbox_ppp_connection_uptime',
-                'doc': 'PPP connection uptime',
-                'key': 'NewUptime',
-            },
-            {
-                'metric': 'fritzbox_ppp_connection_state',
-                'doc': 'PPP connection state',
-                'key': 'NewConnectionStatus',
+                'service': 'WANPPPConnection1',
+                'action': 'GetStatusInfo',
+                'attr': 'NewConnectionStatus',
                 'fct': lambda x: 1.0 if x == 'Connected' else 0.0
+            }
+        ]
+    },
+
+    # Wifi Channel
+    {
+        'metric': 'fritzbox_wifi_channel',
+        'doc': 'Wifi channel number',
+        'items': [
+            {
+                'service': 'WLANConfiguration1',
+                'action': 'GetInfo',
+                'attr': 'NewChannel',
+                'labels': {'if': 'wlan1'},
+            },
+            {
+                'service': 'WLANConfiguration2',
+                'action': 'GetInfo',
+                'attr': 'NewChannel',
+                'labels': {'if': 'wlan2'},
+            }
+        ]
+    },
+
+    # Wifi Connections
+    {
+        'metric': 'fritzbox_wifi_associations',
+        'doc': 'wifi associations',
+        'items': [
+            {
+                'service': 'WLANConfiguration1',
+                'action': 'GetTotalAssociations',
+                'attr': 'NewTotalAssociations',
+                'labels': {'if': 'wlan1'},
+            },
+            {
+                'service': 'WLANConfiguration2',
+                'action': 'GetTotalAssociations',
+                'attr': 'NewTotalAssociations',
+                'labels': {'if': 'wlan2'},
             },
         ]
-    },
-    {
-        'service': 'WANCommonInterfaceConfig1',
-        'action': 'GetTotalBytesSent',
-        'metrics': [
-            {
-                'metric': 'fritzbox_wan_data_bytes_tx',
-                'doc': 'WAN Tx data in bytes',
-                'key': 'NewTotalBytesSent',
-            }
-        ]
-    },
-    {
-        'service': 'WANCommonInterfaceConfig1',
-        'action': 'GetTotalBytesReceived',
-        'metrics': [
-            {
-                'metric': 'fritzbox_wan_data_bytes_rx',
-                'doc': 'WAN Rx data in bytes',
-                'key': 'NewTotalBytesReceived',
-            }
-        ]
-    },
-    {
-        'service': 'WANCommonInterfaceConfig1',
-        'action': 'GetTotalPacketsSent',
-        'metrics': [
-            {
-                'metric': 'fritzbox_wan_data_packets_tx',
-                'doc': 'WAN Tx packets',
-                'key': 'NewTotalPacketsSent',
-            }
-        ]
-    },
-    {
-        'service': 'WANCommonInterfaceConfig1',
-        'action': 'GetTotalPacketsReceived',
-        'metrics': [
-            {
-                'metric': 'fritzbox_wan_data_packets_rx',
-                'doc': 'WAN Rx packets',
-                'key': 'NewTotalPacketsReceived',
-            }
-        ]
-    },
+    }
+
+
+    # DSL Interface Information
+    # not available for FRITZ!Box 6591 Cable (lgi)
+
+#    {
+#        'service': 'WANDSLInterfaceConfig1',
+#        'action': 'GetInfo',
+#        'metrics': [
+#            {
+#                'metric': 'fritzbox_dsl_status_enabled',
+#                'doc': 'DSL enabled',
+#                'key': 'NewEnable',
+#            },
+#            {
+#                'metric': 'fritzbox_dsl_status',
+#                'doc': 'DSL Status',
+#                'key': 'NewStatus',
+#            },
+#            {
+#                'metric': 'fritzbox_dsl_datarate_kbps_up',
+#                'doc': 'DSL Upstream datarate in kpbs',
+#                'key': 'NewUpstreamCurrRate',
+#            },
+#            {
+#                'metric': 'fritzbox_dsl_datarate_kbps_down',
+#                'doc': 'DSL Downstream datarate in kpbs',
+#                'key': 'NewDownstreamCurrRate',
+#            },
+#            {
+#                'metric': 'fritzbox_dsl_noise_margin_dB_up',
+#                'doc': 'Noise Margin in dB',
+#                'key': 'NewUpstreamNoiseMargin',
+#                'fct': lambda x: x / 10.0,
+#            },
+#            {
+#                'metric': 'fritzbox_dsl_noise_margin_dB_down',
+#                'doc': 'Noise Margin in dB',
+#                'key': 'NewDownstreamNoiseMargin',
+#                'fct': lambda x: x / 10.0,
+#            },
+#            {
+#                'metric': 'fritzbox_dsl_attenuation_dB_up',
+#                'doc': 'Line attenuation in dB',
+#                'key': 'NewUpstreamAttenuation',
+#                'fct': lambda x: x / 10.0,
+#            },
+#            {
+#                'metric': 'fritzbox_dsl_attenuation_dB_down',
+#                'doc': 'Line attenuation in dB',
+#                'key': 'NewDownstreamAttenuation',
+#                'fct': lambda x: x / 10.0,
+#            }
+#        ]
+#    }
+
 ]
