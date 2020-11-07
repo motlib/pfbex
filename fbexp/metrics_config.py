@@ -3,6 +3,36 @@ mapped to prometheus metrics.'''
 
 
 METRICS_CFG2 = [
+    # Uptime
+    {
+        'metric': 'fritzbox_uptime',
+        'doc': 'Fritzbox uptime',
+        'items': [
+            {
+                'service': 'DeviceInfo1',
+                'action': 'GetInfo',
+                'attr': 'NewUpTime',
+                'labels': {'type': 'device'},
+            },
+            {
+                'service': 'WANIPConnection1',
+                'action': 'GetStatusInfo',
+                'attr': 'NewUptime',
+                'labels': {'type': 'wan_ip_conn'},
+            },
+
+            # not available on 6591 Cable
+            {
+                'service': 'WANPPPConnection1',
+                'action': 'GetStatusInfo',
+                'attr': 'NewUptime',
+                'labels': {'type': 'wan_ppp_conn'},
+            },
+
+        ]
+    },
+
+    # Software Update Available
     {
         'metric': 'fritzbox_update_available',
         'doc': 'Fritzbox software update available',
