@@ -1,17 +1,11 @@
 '''FritzBox collector implementation'''
 
-import logging
-import logging.config
 
 import fritzconnection as fc
 from prometheus_client import Summary
 from prometheus_client.core import GaugeMetricFamily
 
-from collections import defaultdict
-
-
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+from . import logger
 
 
 MAX_FAILS = 3
@@ -44,10 +38,6 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
             item['fails'] = 0
 
 
-        self._retrieve_serial_no()
-
-
-
     @request_tm.time()
     def _call_action(self, service, action):
         '''Call an TR-64 service action and return the result. If the call fails,
@@ -55,30 +45,28 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
 
         try:
             res = self.conn.call_action(service, action)
-        except: # pylint: disable=bare-except
+        except Exception as ex: # pylint: disable=bare-except
+            logger.debug(
+                f'Failed to call service action {service}:{action}: {ex}')
             res = None
 
         return res
 
 
-    def _retrieve_serial_no(self):
-        '''Retrieve the serial number from the fritzbox.'''
+    def _collect_device_info(self):
+        '''Provide a prometheus metric with the device information model name,
+        software version and serial number.
+
+        '''
 
         res = self._call_action('DeviceInfo1', 'GetInfo')
+
         if not res:
             self._serial = 'n/a'
+            return
         else:
             self._serial = res['NewSerialNumber']
 
-
-    def _collect_device_info(self):
-        '''Manually provide a prometheus metric with the device information model name,
-        software version and serial number.'''
-
-        res = self._call_action('DeviceInfo1', 'GetInfo')
-
-        if not res:
-            return
 
         met = GaugeMetricFamily(
             'fritzbox_info',
@@ -103,7 +91,9 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
         logger.debug('Updating service data from FritzBox')
         self._data = {}
 
+        # Loop over the prometheus metrics
         for metric in cfg:
+            # loop over the metric instances (differing labels)
             for item in metric['items']:
 
                 key = item['service'] + ':' + item['action']
@@ -117,7 +107,7 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
                 try:
                     self._data[key] = self._call_action(item['service'], item['action'])
                 except Exception as ex:
-                    logging.warning(f"Failed to fetch data for '{key}': {ex}")
+                    logger.warning(f"Failed to fetch data for '{key}': {ex}")
                     self._data[key] = None
 
 
@@ -181,7 +171,8 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
         '''Collect all metrics. This is called by the prometheus client
         implementation..'''
 
-        # fetch info about the FritzBox
+        # Fetch device info about the FritzBox. This function has to be called first to
+        # set the FritzBox serial number for the following metrics.
         yield from self._collect_device_info()
 
         # Fetch data from FritzBox and generate metrics
