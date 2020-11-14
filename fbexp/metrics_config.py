@@ -6,6 +6,7 @@ METRICS_CFG2 = [
     # Uptime
     {
         'metric': 'fritzbox_uptime',
+        'type': 'counter',
         'doc': 'Fritzbox uptime',
         'items': [
             {
@@ -118,6 +119,7 @@ METRICS_CFG2 = [
     # Network bytes
     {
         'metric': 'fritzbox_net_data',
+        'type': 'counter',
         'doc': 'Network data volume',
         'items': [
             {
@@ -151,6 +153,7 @@ METRICS_CFG2 = [
     # Network packets
     {
         'metric': 'fritzbox_net_packets',
+        'type': 'counter',
         'doc': 'Network data packets',
         'items': [
             {
@@ -211,6 +214,7 @@ METRICS_CFG2 = [
     {
 
         'metric': 'fritzbox_ppp_connection_uptime',
+        'type': 'counter',
         'doc': 'PPP connection uptime',
         'items': [
             {

@@ -1,11 +1,10 @@
 '''FritzBox collector implementation'''
 
-
 import fritzconnection as fc
 from prometheus_client import Summary
-from prometheus_client.core import GaugeMetricFamily
+from prometheus_client.core import CounterMetricFamily, GaugeMetricFamily
 
-from . import logger
+from .logging import logger
 
 
 MAX_FAILS = 3
@@ -15,9 +14,6 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
     TR-064. This is used by the prometheus client implementation to publish the
     metrics.'''
 
-    collect_tm = Summary(
-        'fb_exporter_collect',
-        'Time and count of data collections from fritzbox')
 
     request_tm = Summary(
         'fb_exporter_request',
@@ -37,25 +33,49 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
         for item in self._cfg:
             item['fails'] = 0
 
+        self._data = {}
+
+
+    def _reset_request_cache(self):
+        '''Clear the request result cache.'''
+        self._data.clear()
+
 
     @request_tm.time()
     def _call_action(self, service, action):
-        '''Call an TR-64 service action and return the result. If the call fails,
-        returns None.'''
+        '''Call an TR-64 service action and return the result.
 
+        If the call fails, returns None. The result (both valid results and
+        errors) are stored in the cache for the current scrape.
+
+        '''
+
+        key = f'{service}:{action}'
+
+        # Return result from cache if available
+        if key in self._data:
+            return self._data[key]
+
+        # Retrieve service information
         try:
             res = self.conn.call_action(service, action)
         except Exception as ex: # pylint: disable=bare-except
+            res = None
+
             logger.debug(
                 f'Failed to call service action {service}:{action}: {ex}')
-            res = None
+
+        self._data[key] = res
 
         return res
 
 
     def _collect_device_info(self):
-        '''Provide a prometheus metric with the device information model name,
-        software version and serial number.
+        '''Provide a Prometheus metric with the device information (model name,
+        software version and serial number).
+
+        At the same time, this function stores the FritzBox serial number for
+        later use in all other metrics.
 
         '''
 
@@ -83,98 +103,128 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
         yield met
 
 
-    @collect_tm.time()
-    def _update_data(self, cfg):
-        '''Collect all service identifiers from the configuration and fetch
-        their data once.'''
+    def _get_metric_label_names(self, metric):
+        '''Calculate label names for a Prometheus metric'''
 
-        logger.debug('Updating service data from FritzBox')
-        self._data = {}
+        m_labels = set()
 
-        # Loop over the prometheus metrics
-        for metric in cfg:
-            # loop over the metric instances (differing labels)
-            for item in metric['items']:
+        for item in metric['items']:
+            labels = item.get('labels', {})
+            m_labels.update(labels.keys())
 
-                key = item['service'] + ':' + item['action']
+        label_names = ['serial']
+        label_names.extend(m_labels)
 
-                if key in self._data:
-                    # data for this service / action has already been fetched
-                    continue
-
-                logger.debug(f"Fetching data for '{key}'.")
-
-                try:
-                    self._data[key] = self._call_action(item['service'], item['action'])
-                except Exception as ex:
-                    logger.warning(f"Failed to fetch data for '{key}': {ex}")
-                    self._data[key] = None
+        return label_names
 
 
-    def _get_metrics(self, cfg):
-        '''Loop over all metrics configurations'''
+    def _collect_metric_item(self, item, label_names):
+        '''Collect metric data for one Prometheus metric instance (i.e. one assignment
+        of label values).'''
 
-        for metric in cfg:
+        labels = item.get('labels', {})
+        labels.update({'serial': self._serial})
 
-            # Calculate label names for this metric
-            m_labels = set()
-            for item in metric['items']:
-                labels = item.get('labels', {})
-                m_labels.update(labels.keys())
+        label_values = [labels[name] for name in label_names]
 
-                label_names = list(m_labels)
+        service = item['service']
+        action = item['action']
+        attr = item['attr']
+
+        service_data = self._call_action(service, action)
+
+        if not service_data:
+            logger.debug(f"No data available for '{service}:{action}'.")
+            return None
+
+        if not attr in service_data:
+            # data has been retrieved, but attribute is missing
+            logger.warning(
+                f"Attribute '{attr}' not found in data of '{service}:{action}'.")
+            logger.debug(f'Available data: {service_data}')
+            return None
+
+        fct = item.get('fct', lambda x: x)
+        value = service_data[attr]
+        try:
+            value = fct(value)
+            value = float(value)
+        except Exception as ex:
+            logger.warning(
+                f"Could not convert value '{attr}={value}' for "
+                f"'{service}:{action}: {ex}")
+
+        return (label_values, value)
+
+
+    def _collect_metric(self, metric):
+        '''Collect data for one Prometheus metric.'''
+
+        label_names = self._get_metric_label_names(metric)
+        metric_type = metric.get('type', 'gauge')
+        metric_name = metric['metric']
+
+        if metric_type == 'counter':
+            met = CounterMetricFamily(
+                metric_name,
+                metric['doc'],
+                labels=label_names)
+        elif metric_type == 'gauge':
+            met = GaugeMetricFamily(
+                metric_name,
+                metric['doc'],
+                labels=label_names)
+        else:
+            logging.error(
+                f"Invalid metric type definition '{metric_type}' for metric "
+                f"'{metric_name}'. Using default type 'gauge'.")
 
             met = GaugeMetricFamily(
-                metric['metric'],
+                metric_name,
                 metric['doc'],
-                labels=['serial'] + label_names)
+                labels=label_names)
 
-            # Calculate the metric labels and values
-            for item in metric['items']:
-                label_values = [self._serial]
-                label_values += [item['labels'][name] for name in label_names]
+        # Calculate the metric labels and values
+        item_count = 0
+        for item in metric['items']:
+            result = self._collect_metric_item(item, label_names)
 
-                service_key = item['service'] + ':' + item['action']
-                attr = item['attr']
+            if result is None:
+                continue
 
-                s_data = self._data.get(service_key, None)
+            item_count += 1
 
-                if not s_data:
-                    # no data has been retrieved
-                    logger.debug(f"No data available for '{service_key}'.")
-                    continue
+            (label_values, value) = result
 
-                if not attr in s_data:
-                    # data has been retrieved, but attribute is missing
-                    logger.warning(
-                        f"Attribute '{attr}' not found in data of "
-                        f"'{service_key}'.")
-                    logger.debug(f'Available data: {s_data}')
-                    continue
+            met.add_metric(label_values, value)
 
-                fct = item.get('fct', lambda x: x)
-                in_val = s_data[attr]
-                try:
-
-                    value = float(fct(s_data[attr]))
-                except Exception as ex:
-                    logger.warning(
-                        f"Could not convert value '{attr}={in_val}' for "
-                        f"'{service_key}: {ex}")
-
-                met.add_metric(label_values, value)
-
+        if item_count > 0:
             yield met
+        else:
+            logger.debug(
+                f"Skipping metric '{metric_name}', because no items were added.")
+
+
+    def _collect_metrics(self):
+        '''Loop over all metrics configurations and collect the data.'''
+
+        for metric in self._cfg:
+            yield from self._collect_metric(metric)
 
 
     def collect(self):
-        '''Collect all metrics. This is called by the prometheus client
-        implementation..'''
+        '''Collect all metrics.
+
+        This function is called by the Prometheus client implementation..
+
+        '''
+
+        # Clear the cache, so that no old data is reported.
+        self._reset_request_cache()
 
         # Fetch device info about the FritzBox. This function has to be called first to
         # set the FritzBox serial number for the following metrics.
         yield from self._collect_device_info()
 
         # Fetch data from FritzBox and generate metrics
-        self._update_data(self._cfg)
-        yield from self._get_metrics(self._cfg)
+        yield from self._collect_metrics()
