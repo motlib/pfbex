@@ -1,9 +1,10 @@
 version: '3.0'
 
 services:
-  fb_exporter:
+  pfbex:
     image: motlib/fb_exporter:latest
+    container_name: pfbex
     ports:
       - 8765:8765
     env_file:
-      - config.env
+      - user.env

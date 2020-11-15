@@ -4,7 +4,7 @@ APP_NAME=fb_exporter
 DOCKER_REPO=motlib
 
 pylint:
-	pylint --rcfile pylintrc fbexp
+	pipenv run pylint --rcfile pylintrc fbexp
 
 
 Pipfile.lock: Pipfile
@@ -14,12 +14,11 @@ requirements.txt: Pipfile.lock
 	pipenv lock -r > $@
 
 .PHONY: docker
-docker: requirements.txt
-	docker build -t $(APP_NAME) .
+docker:
+	docker build -t $(APP_NAME) .;
 
 docker_run: docker
 	docker run --rm --env-file user.env -p 8765:8765 $(APP_NAME):latest
-
 
 .PHONY: docker_publish
 docker_publish: docker

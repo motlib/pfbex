@@ -3,7 +3,7 @@
 For more information about fb_exporter, please refer to the `README.md` file in
 the same directory.
 
-## Work in Progress
+## 0.1.0
 
 * Initial version.
 
