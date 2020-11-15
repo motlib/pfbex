@@ -2,7 +2,7 @@ version: '3.0'
 
 services:
   pfbex:
-    image: motlib/fb_exporter:latest
+    image: motlib/pfbex:latest
     container_name: pfbex
     ports:
       - 8765:8765

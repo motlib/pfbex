@@ -1,5 +1,5 @@
 # First we ignore everything
 *
 # No we let fbexp pass through
-!fbexp
+!pfbex
 !requirements.txt
