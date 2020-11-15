@@ -1,5 +1,5 @@
 
-APP_NAME=fb_exporter
+APP_NAME=pfbex
 
 DOCKER_REPO=motlib
 
