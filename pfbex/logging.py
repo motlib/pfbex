@@ -4,7 +4,7 @@ import logging
 import logging.config
 
 
-logger = logging.getLogger('fbexp')
+logger = logging.getLogger('pfbex')
 
 
 def setup_logging(level):
@@ -16,7 +16,7 @@ def setup_logging(level):
     logging.config.dictConfig({
         'version': 1,
         'loggers': {
-            'fbexp': {
+            'pfbex': {
                 'level': level
             }
         }

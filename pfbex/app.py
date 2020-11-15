@@ -6,8 +6,8 @@ import time
 from prometheus_client import start_http_server
 from prometheus_client.core import REGISTRY
 
-from .fb_exporter import FritzBoxExporter
-from .metrics_config import METRICS_CFG2
+from .exporter import FritzBoxExporter
+from .metrics_config import METRICS_CFG
 from .logging import setup_logging, logger
 from .metadata import APP_NAME, APP_VERSION
 
@@ -39,13 +39,13 @@ def main():
 
         return 1
 
-    fb_exporter = FritzBoxExporter(
+    exporter = FritzBoxExporter(
         host,
         user,
         password,
-        METRICS_CFG2)
+        METRICS_CFG)
 
-    REGISTRY.register(fb_exporter)
+    REGISTRY.register(exporter)
 
     # Start up the server to expose the metrics.
     port = int(os.getenv('FRITZ_EXPORTER_PORT', DEFAULT_PORT))

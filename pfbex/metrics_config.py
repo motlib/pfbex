@@ -2,7 +2,7 @@
 mapped to prometheus metrics.'''
 
 
-METRICS_CFG2 = [
+METRICS_CFG = [
     # Uptime
     {
         'metric': 'fritzbox_uptime',

@@ -1,5 +1,5 @@
 '''Module main'''
 
-from fbexp.app import main
+from pfbex.app import main
 
 main()
