@@ -1,2 +1,5 @@
-.venv
-docs
+# First we ignore everything
+*
+# No we let fbexp pass through
+!fbexp
+!requirements.txt
