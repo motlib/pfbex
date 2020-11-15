@@ -1,4 +1,4 @@
-'''FritzBox collector implementation'''
+'''FritzBox exporter implementation'''
 
 import fritzconnection as fc
 from prometheus_client import Summary
@@ -20,18 +20,17 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
         'Time and count for each request to the FritzBox')
 
     def __init__(self, host, user, passwd, cfg):
-        self.host = host
-        self.user = user
-        self.passwd = passwd
         self.conn = fc.FritzConnection(
-            address=self.host,
-            user=self.user,
-            password=self.passwd)
+            address=host,
+            user=user,
+            password=passwd)
 
         self._cfg = cfg
 
         for item in self._cfg:
             item['fails'] = 0
+
+        self._serial = 'n/a'
 
         self._data = {}
 
@@ -59,7 +58,7 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
         # Retrieve service information
         try:
             res = self.conn.call_action(service, action)
-        except Exception as ex: # pylint: disable=bare-except
+        except Exception as ex: # pylint: disable=broad-except
             res = None
 
             logger.debug(
@@ -84,26 +83,28 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
         if not res:
             self._serial = 'n/a'
             return
-        else:
-            self._serial = res['NewSerialNumber']
 
+        self._serial = res['NewSerialNumber']
+
+        label_names = ['ModelName', 'SoftwareVersion', 'Serial']
 
         met = GaugeMetricFamily(
             'fritzbox_info',
             'FritzBox device information',
-            labels=['ModelName', 'SoftwareVersion', 'Serial'])
-        met.add_metric(
-            [
-                res['NewModelName'],
-                res['NewSoftwareVersion'],
-                res['NewSerialNumber']
-            ],
-            1.0)
+            labels=label_names)
+
+        label_values = [
+            res['NewModelName'],
+            res['NewSoftwareVersion'],
+            res['NewSerialNumber']
+        ]
+
+        met.add_metric(label_values, 1.0)
 
         yield met
 
 
-    def _get_metric_label_names(self, metric):
+    def _get_metric_label_names(self, metric): # pylint: disable=no-self-use
         '''Calculate label names for a Prometheus metric'''
 
         m_labels = set()
@@ -149,7 +150,7 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
         try:
             value = fct(value)
             value = float(value)
-        except Exception as ex:
+        except Exception as ex: # pylint: disable=broad-except
             logger.warning(
                 f"Could not convert value '{attr}={value}' for "
                 f"'{service}:{action}: {ex}")
@@ -175,7 +176,7 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
                 metric['doc'],
                 labels=label_names)
         else:
-            logging.error(
+            logger.error(
                 f"Invalid metric type definition '{metric_type}' for metric "
                 f"'{metric_name}'. Using default type 'gauge'.")
 
