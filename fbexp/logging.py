@@ -21,5 +21,3 @@ def setup_logging(level):
             }
         }
     })
-
-    logger.info(f"Log level is '{level}'.")
