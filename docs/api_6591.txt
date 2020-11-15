@@ -1,0 +1,4398 @@
+
+fritzconnection v1.3.4
+FRITZ!Box 6591 Cable (lgi) at http://169.254.1.1
+FRITZ!OS: 7.13
+
+
+system : 161.07.13
+build  : 75442
+hw-code: 233
+Report date: 2020-11-03 17:15:41
+
+=================================================================
+
+Service:            WANCommonIFC1
+Action:             GetCommonLinkProperties
+Parameters:
+
+    Name                                  direction     data type
+
+    NewWANAccessType                         out ->     string
+    NewLayer1UpstreamMaxBitRate              out ->     ui4
+    NewLayer1DownstreamMaxBitRate            out ->     ui4
+    NewPhysicalLinkStatus                    out ->     string
+
+Service:            WANCommonIFC1
+Action:             GetTotalBytesSent
+Parameters:
+
+    Name                                  direction     data type
+
+    NewTotalBytesSent                        out ->     ui4
+
+Service:            WANCommonIFC1
+Action:             GetTotalBytesReceived
+Parameters:
+
+    Name                                  direction     data type
+
+    NewTotalBytesReceived                    out ->     ui4
+
+Service:            WANCommonIFC1
+Action:             GetTotalPacketsSent
+Parameters:
+
+    Name                                  direction     data type
+
+    NewTotalPacketsSent                      out ->     ui4
+
+Service:            WANCommonIFC1
+Action:             GetTotalPacketsReceived
+Parameters:
+
+    Name                                  direction     data type
+
+    NewTotalPacketsReceived                  out ->     ui4
+
+Service:            WANCommonIFC1
+Action:             GetAddonInfos
+Parameters:
+
+    Name                                  direction     data type
+
+    NewByteSendRate                          out ->     ui4
+    NewByteReceiveRate                       out ->     ui4
+    NewPacketSendRate                        out ->     ui4
+    NewPacketReceiveRate                     out ->     ui4
+    NewTotalBytesSent                        out ->     ui4
+    NewTotalBytesReceived                    out ->     ui4
+    NewAutoDisconnectTime                    out ->     ui4
+    NewIdleDisconnectTime                    out ->     ui4
+    NewDNSServer1                            out ->     string
+    NewDNSServer2                            out ->     string
+    NewVoipDNSServer1                        out ->     string
+    NewVoipDNSServer2                        out ->     string
+    NewUpnpControlEnabled                    out ->     boolean
+    NewRoutedBridgedModeBoth                 out ->     ui1
+    NewX_AVM_DE_TotalBytesSent64             out ->     string
+    NewX_AVM_DE_TotalBytesReceived64         out ->     string
+    NewX_AVM_DE_WANAccessType                out ->     string
+
+Service:            WANCommonIFC1
+Action:             X_AVM_DE_GetDsliteStatus
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM_DE_DsliteStatus                 out ->     boolean
+
+Service:            WANCommonIFC1
+Action:             X_AVM_DE_GetIPTVInfos
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM_DE_IPTV_Enabled                 out ->     boolean
+    NewX_AVM_DE_IPTV_Provider                out ->     string
+    NewX_AVM_DE_IPTV_URL                     out ->     string
+
+=================================================================
+
+Service:            WANDSLLinkC1
+Action:             SetDSLLinkType
+Parameters:
+
+    Name                                  direction     data type
+
+    NewLinkType                           -> in         string
+
+Service:            WANDSLLinkC1
+Action:             GetDSLLinkInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewLinkType                              out ->     string
+    NewLinkStatus                            out ->     string
+
+Service:            WANDSLLinkC1
+Action:             GetAutoConfig
+Parameters:
+
+    Name                                  direction     data type
+
+    NewAutoConfig                            out ->     boolean
+
+Service:            WANDSLLinkC1
+Action:             GetModulationType
+Parameters:
+
+    Name                                  direction     data type
+
+    NewModulationType                        out ->     string
+
+Service:            WANDSLLinkC1
+Action:             SetDestinationAddress
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDestinationAddress                 -> in         string
+
+Service:            WANDSLLinkC1
+Action:             GetDestinationAddress
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDestinationAddress                    out ->     string
+
+Service:            WANDSLLinkC1
+Action:             SetATMEncapsulation
+Parameters:
+
+    Name                                  direction     data type
+
+    NewATMEncapsulation                   -> in         string
+
+Service:            WANDSLLinkC1
+Action:             GetATMEncapsulation
+Parameters:
+
+    Name                                  direction     data type
+
+    NewATMEncapsulation                      out ->     string
+
+Service:            WANDSLLinkC1
+Action:             SetFCSPreserved
+Parameters:
+
+    Name                                  direction     data type
+
+    NewFCSPreserved                       -> in         boolean
+
+Service:            WANDSLLinkC1
+Action:             GetFCSPreserved
+Parameters:
+
+    Name                                  direction     data type
+
+    NewFCSPreserved                          out ->     boolean
+
+=================================================================
+
+Service:            WANIPConn1
+Action:             SetConnectionType
+Parameters:
+
+    Name                                  direction     data type
+
+    NewConnectionType                     -> in         string
+
+Service:            WANIPConn1
+Action:             GetConnectionTypeInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewConnectionType                        out ->     string
+    NewPossibleConnectionTypes               out ->     string
+
+Service:            WANIPConn1
+Action:             GetAutoDisconnectTime
+Parameters:
+
+    Name                                  direction     data type
+
+    NewAutoDisconnectTime                    out ->     ui4
+
+Service:            WANIPConn1
+Action:             GetIdleDisconnectTime
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIdleDisconnectTime                    out ->     ui4
+
+Service:            WANIPConn1
+Action:             RequestConnection
+Parameters:
+
+    Name                                  direction     data type
+
+
+Service:            WANIPConn1
+Action:             RequestTermination
+Parameters:
+
+    Name                                  direction     data type
+
+
+Service:            WANIPConn1
+Action:             ForceTermination
+Parameters:
+
+    Name                                  direction     data type
+
+
+Service:            WANIPConn1
+Action:             GetStatusInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewConnectionStatus                      out ->     string
+    NewLastConnectionError                   out ->     string
+    NewUptime                                out ->     ui4
+
+Service:            WANIPConn1
+Action:             GetNATRSIPStatus
+Parameters:
+
+    Name                                  direction     data type
+
+    NewRSIPAvailable                         out ->     boolean
+    NewNATEnabled                            out ->     boolean
+
+Service:            WANIPConn1
+Action:             GetGenericPortMappingEntry
+Parameters:
+
+    Name                                  direction     data type
+
+    NewPortMappingIndex                   -> in         ui2
+    NewRemoteHost                            out ->     string
+    NewExternalPort                          out ->     ui2
+    NewProtocol                              out ->     string
+    NewInternalPort                          out ->     ui2
+    NewInternalClient                        out ->     string
+    NewEnabled                               out ->     boolean
+    NewPortMappingDescription                out ->     string
+    NewLeaseDuration                         out ->     ui4
+
+Service:            WANIPConn1
+Action:             GetSpecificPortMappingEntry
+Parameters:
+
+    Name                                  direction     data type
+
+    NewRemoteHost                         -> in         string
+    NewExternalPort                       -> in         ui2
+    NewProtocol                           -> in         string
+    NewInternalPort                          out ->     ui2
+    NewInternalClient                        out ->     string
+    NewEnabled                               out ->     boolean
+    NewPortMappingDescription                out ->     string
+    NewLeaseDuration                         out ->     ui4
+
+Service:            WANIPConn1
+Action:             AddPortMapping
+Parameters:
+
+    Name                                  direction     data type
+
+    NewRemoteHost                         -> in         string
+    NewExternalPort                       -> in         ui2
+    NewProtocol                           -> in         string
+    NewInternalPort                       -> in         ui2
+    NewInternalClient                     -> in         string
+    NewEnabled                            -> in         boolean
+    NewPortMappingDescription             -> in         string
+    NewLeaseDuration                      -> in         ui4
+
+Service:            WANIPConn1
+Action:             DeletePortMapping
+Parameters:
+
+    Name                                  direction     data type
+
+    NewRemoteHost                         -> in         string
+    NewExternalPort                       -> in         ui2
+    NewProtocol                           -> in         string
+
+Service:            WANIPConn1
+Action:             GetExternalIPAddress
+Parameters:
+
+    Name                                  direction     data type
+
+    NewExternalIPAddress                     out ->     string
+
+Service:            WANIPConn1
+Action:             X_AVM_DE_GetExternalIPv6Address
+Parameters:
+
+    Name                                  direction     data type
+
+    NewExternalIPv6Address                   out ->     string
+    NewPrefixLength                          out ->     ui1
+    NewValidLifetime                         out ->     ui4
+    NewPreferedLifetime                      out ->     ui4
+
+Service:            WANIPConn1
+Action:             X_AVM_DE_GetIPv6Prefix
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIPv6Prefix                            out ->     string
+    NewPrefixLength                          out ->     ui1
+    NewValidLifetime                         out ->     ui4
+    NewPreferedLifetime                      out ->     ui4
+
+Service:            WANIPConn1
+Action:             X_AVM_DE_GetDNSServer
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIPv4DNSServer1                        out ->     string
+    NewIPv4DNSServer2                        out ->     string
+
+Service:            WANIPConn1
+Action:             X_AVM_DE_GetIPv6DNSServer
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIPv6DNSServer1                        out ->     string
+    NewValidLifetime1                        out ->     ui4
+    NewIPv6DNSServer2                        out ->     string
+    NewValidLifetime                         out ->     ui4
+
+=================================================================
+
+Service:            WANIPv6Firewall1
+Action:             GetFirewallStatus
+Parameters:
+
+    Name                                  direction     data type
+
+    FirewallEnabled                          out ->     boolean
+    InboundPinholeAllowed                    out ->     boolean
+
+Service:            WANIPv6Firewall1
+Action:             GetOutboundPinholeTimeout
+Parameters:
+
+    Name                                  direction     data type
+
+    RemoteHost                            -> in         string
+    RemotePort                            -> in         ui2
+    InternalClient                        -> in         string
+    InternalPort                          -> in         ui2
+    Protocol                              -> in         ui2
+    OutboundPinholeTimeout                   out ->     ui4
+
+Service:            WANIPv6Firewall1
+Action:             AddPinhole
+Parameters:
+
+    Name                                  direction     data type
+
+    RemoteHost                            -> in         string
+    RemotePort                            -> in         ui2
+    InternalClient                        -> in         string
+    InternalPort                          -> in         ui2
+    Protocol                              -> in         ui2
+    LeaseTime                             -> in         ui4
+    UniqueID                                 out ->     ui2
+
+Service:            WANIPv6Firewall1
+Action:             UpdatePinhole
+Parameters:
+
+    Name                                  direction     data type
+
+    UniqueID                              -> in         ui2
+    NewLeaseTime                          -> in         ui4
+
+Service:            WANIPv6Firewall1
+Action:             DeletePinhole
+Parameters:
+
+    Name                                  direction     data type
+
+    UniqueID                              -> in         ui2
+
+Service:            WANIPv6Firewall1
+Action:             GetPinholePackets
+Parameters:
+
+    Name                                  direction     data type
+
+    UniqueID                              -> in         ui2
+    PinholePackets                           out ->     ui4
+
+Service:            WANIPv6Firewall1
+Action:             CheckPinholeWorking
+Parameters:
+
+    Name                                  direction     data type
+
+    UniqueID                              -> in         ui2
+    IsWorking                                out ->     boolean
+
+=================================================================
+
+Service:            DeviceInfo1
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewManufacturerName                      out ->     string
+    NewManufacturerOUI                       out ->     string
+    NewModelName                             out ->     string
+    NewDescription                           out ->     string
+    NewProductClass                          out ->     string
+    NewSerialNumber                          out ->     string
+    NewSoftwareVersion                       out ->     string
+    NewHardwareVersion                       out ->     string
+    NewSpecVersion                           out ->     string
+    NewProvisioningCode                      out ->     string
+    NewUpTime                                out ->     ui4
+    NewDeviceLog                             out ->     string
+
+Service:            DeviceInfo1
+Action:             SetProvisioningCode
+Parameters:
+
+    Name                                  direction     data type
+
+    NewProvisioningCode                   -> in         string
+
+Service:            DeviceInfo1
+Action:             GetDeviceLog
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDeviceLog                             out ->     string
+
+Service:            DeviceInfo1
+Action:             GetSecurityPort
+Parameters:
+
+    Name                                  direction     data type
+
+    NewSecurityPort                          out ->     ui2
+
+=================================================================
+
+Service:            DeviceConfig1
+Action:             GetPersistentData
+Parameters:
+
+    Name                                  direction     data type
+
+    NewPersistentData                        out ->     string
+
+Service:            DeviceConfig1
+Action:             SetPersistentData
+Parameters:
+
+    Name                                  direction     data type
+
+    NewPersistentData                     -> in         string
+
+Service:            DeviceConfig1
+Action:             ConfigurationStarted
+Parameters:
+
+    Name                                  direction     data type
+
+    NewSessionID                          -> in         string
+
+Service:            DeviceConfig1
+Action:             ConfigurationFinished
+Parameters:
+
+    Name                                  direction     data type
+
+    NewStatus                                out ->     string
+
+Service:            DeviceConfig1
+Action:             FactoryReset
+Parameters:
+
+    Name                                  direction     data type
+
+
+Service:            DeviceConfig1
+Action:             Reboot
+Parameters:
+
+    Name                                  direction     data type
+
+
+Service:            DeviceConfig1
+Action:             X_GenerateUUID
+Parameters:
+
+    Name                                  direction     data type
+
+    NewUUID                                  out ->     uuid
+
+Service:            DeviceConfig1
+Action:             X_AVM-DE_GetConfigFile
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_Password                  -> in         string
+    NewX_AVM-DE_ConfigFileUrl                out ->     string
+
+Service:            DeviceConfig1
+Action:             X_AVM-DE_SetConfigFile
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_Password                  -> in         string
+    NewX_AVM-DE_ConfigFileUrl             -> in         string
+
+Service:            DeviceConfig1
+Action:             X_AVM-DE_CreateUrlSID
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_UrlSID                       out ->     string
+
+=================================================================
+
+Service:            Layer3Forwarding1
+Action:             SetDefaultConnectionService
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDefaultConnectionService           -> in         string
+
+Service:            Layer3Forwarding1
+Action:             GetDefaultConnectionService
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDefaultConnectionService              out ->     string
+
+Service:            Layer3Forwarding1
+Action:             GetForwardNumberOfEntries
+Parameters:
+
+    Name                                  direction     data type
+
+    NewForwardNumberOfEntries                out ->     ui2
+
+Service:            Layer3Forwarding1
+Action:             AddForwardingEntry
+Parameters:
+
+    Name                                  direction     data type
+
+    NewType                               -> in         string
+    NewDestIPAddress                      -> in         string
+    NewDestSubnetMask                     -> in         string
+    NewSourceIPAddress                    -> in         string
+    NewSourceSubnetMask                   -> in         string
+    NewGatewayIPAddress                   -> in         string
+    NewInterface                          -> in         string
+    NewForwardingMetric                   -> in         i4
+
+Service:            Layer3Forwarding1
+Action:             DeleteForwardingEntry
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDestIPAddress                      -> in         string
+    NewDestSubnetMask                     -> in         string
+    NewSourceIPAddress                    -> in         string
+    NewSourceSubnetMask                   -> in         string
+
+Service:            Layer3Forwarding1
+Action:             GetSpecificForwardingEntry
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDestIPAddress                      -> in         string
+    NewDestSubnetMask                     -> in         string
+    NewSourceIPAddress                    -> in         string
+    NewSourceSubnetMask                   -> in         string
+    NewGatewayIPAddress                      out ->     string
+    NewEnable                                out ->     boolean
+    NewStatus                                out ->     string
+    NewType                                  out ->     string
+    NewInterface                             out ->     string
+    NewForwardingMetric                      out ->     i4
+
+Service:            Layer3Forwarding1
+Action:             GetGenericForwardingEntry
+Parameters:
+
+    Name                                  direction     data type
+
+    NewForwardingIndex                    -> in         ui2
+    NewEnable                                out ->     boolean
+    NewStatus                                out ->     string
+    NewType                                  out ->     string
+    NewDestIPAddress                         out ->     string
+    NewDestSubnetMask                        out ->     string
+    NewSourceIPAddress                       out ->     string
+    NewSourceSubnetMask                      out ->     string
+    NewGatewayIPAddress                      out ->     string
+    NewInterface                             out ->     string
+    NewForwardingMetric                      out ->     i4
+
+Service:            Layer3Forwarding1
+Action:             SetForwardingEntryEnable
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDestIPAddress                      -> in         string
+    NewDestSubnetMask                     -> in         string
+    NewSourceIPAddress                    -> in         string
+    NewSourceSubnetMask                   -> in         string
+    NewEnable                             -> in         boolean
+
+=================================================================
+
+Service:            LANConfigSecurity1
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewMaxCharsPassword                      out ->     ui2
+    NewMinCharsPassword                      out ->     ui2
+    NewAllowedCharsPassword                  out ->     string
+
+Service:            LANConfigSecurity1
+Action:             X_AVM-DE_GetCurrentUser
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_CurrentUsername              out ->     string
+    NewX_AVM-DE_CurrentUserRights            out ->     string
+
+Service:            LANConfigSecurity1
+Action:             X_AVM-DE_GetAnonymousLogin
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_AnonymousLoginEnabled        out ->     boolean
+    NewX_AVM-DE_ButtonLoginEnabled           out ->     boolean
+
+Service:            LANConfigSecurity1
+Action:             SetConfigPassword
+Parameters:
+
+    Name                                  direction     data type
+
+    NewPassword                           -> in         string
+
+=================================================================
+
+Service:            ManagementServer1
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewURL                                   out ->     string
+    NewUsername                              out ->     string
+    NewPeriodicInformEnable                  out ->     boolean
+    NewPeriodicInformInterval                out ->     ui4
+    NewPeriodicInformTime                    out ->     dateTime
+    NewParameterKey                          out ->     string
+    NewParameterHash                         out ->     string
+    NewConnectionRequestURL                  out ->     string
+    NewConnectionRequestUsername             out ->     string
+    NewUpgradesManaged                       out ->     boolean
+
+Service:            ManagementServer1
+Action:             SetManagementServerURL
+Parameters:
+
+    Name                                  direction     data type
+
+    NewURL                                -> in         string
+
+Service:            ManagementServer1
+Action:             SetManagementServerUsername
+Parameters:
+
+    Name                                  direction     data type
+
+    NewUsername                           -> in         string
+
+Service:            ManagementServer1
+Action:             SetManagementServerPassword
+Parameters:
+
+    Name                                  direction     data type
+
+    NewPassword                           -> in         string
+
+Service:            ManagementServer1
+Action:             SetPeriodicInform
+Parameters:
+
+    Name                                  direction     data type
+
+    NewPeriodicInformEnable               -> in         boolean
+    NewPeriodicInformInterval             -> in         ui4
+    NewPeriodicInformTime                 -> in         dateTime
+
+Service:            ManagementServer1
+Action:             SetConnectionRequestAuthentication
+Parameters:
+
+    Name                                  direction     data type
+
+    NewConnectionRequestUsername          -> in         string
+    NewConnectionRequestPassword          -> in         string
+
+Service:            ManagementServer1
+Action:             SetUpgradeManagement
+Parameters:
+
+    Name                                  direction     data type
+
+    NewUpgradesManaged                    -> in         boolean
+
+Service:            ManagementServer1
+Action:             X_SetTR069Enable
+Parameters:
+
+    Name                                  direction     data type
+
+    NewTR069Enabled                       -> in         boolean
+
+Service:            ManagementServer1
+Action:             X_AVM-DE_GetTR069FirmwareDownloadEnabled
+Parameters:
+
+    Name                                  direction     data type
+
+    NewTR069FirmwareDownloadEnabled          out ->     boolean
+
+Service:            ManagementServer1
+Action:             X_AVM-DE_SetTR069FirmwareDownloadEnabled
+Parameters:
+
+    Name                                  direction     data type
+
+    NewTR069FirmwareDownloadEnabled       -> in         boolean
+
+=================================================================
+
+Service:            Time1
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewNTPServer1                            out ->     string
+    NewNTPServer2                            out ->     string
+    NewCurrentLocalTime                      out ->     dateTime
+    NewLocalTimeZone                         out ->     string
+    NewLocalTimeZoneName                     out ->     string
+    NewDaylightSavingsUsed                   out ->     boolean
+    NewDaylightSavingsStart                  out ->     dateTime
+    NewDaylightSavingsEnd                    out ->     dateTime
+
+Service:            Time1
+Action:             SetNTPServers
+Parameters:
+
+    Name                                  direction     data type
+
+    NewNTPServer1                         -> in         string
+    NewNTPServer2                         -> in         string
+
+=================================================================
+
+Service:            UserInterface1
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewUpgradeAvailable                      out ->     boolean
+    NewPasswordRequired                      out ->     boolean
+    NewPasswordUserSelectable                out ->     boolean
+    NewWarrantyDate                          out ->     dateTime
+    NewX_AVM-DE_Version                      out ->     string
+    NewX_AVM-DE_DownloadURL                  out ->     string
+    NewX_AVM-DE_InfoURL                      out ->     string
+    NewX_AVM-DE_UpdateState                  out ->     string
+    NewX_AVM-DE_LaborVersion                 out ->     string
+
+Service:            UserInterface1
+Action:             X_AVM-DE_CheckUpdate
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_LaborVersion              -> in         string
+
+Service:            UserInterface1
+Action:             X_AVM-DE_DoUpdate
+Parameters:
+
+    Name                                  direction     data type
+
+    NewUpgradeAvailable                      out ->     boolean
+    NewX_AVM-DE_UpdateState                  out ->     string
+
+Service:            UserInterface1
+Action:             X_AVM-DE_DoPrepareCGI
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_CGI                          out ->     string
+    NewX_AVM-DE_SessionID                    out ->     string
+
+Service:            UserInterface1
+Action:             X_AVM-DE_DoManualUpdate
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_AllowDowngrade            -> in         boolean
+    NewX_AVM-DE_DownloadURL               -> in         string
+
+Service:            UserInterface1
+Action:             X_AVM-DE_GetInternationalConfig
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_Language                     out ->     string
+    NewX_AVM-DE_Country                      out ->     string
+    NewX_AVM-DE_Annex                        out ->     string
+    NewX_AVM-DE_LanguageList                 out ->     string
+    NewX_AVM-DE_CountryList                  out ->     string
+    NewX_AVM-DE_AnnexList                    out ->     string
+
+Service:            UserInterface1
+Action:             X_AVM-DE_SetInternationalConfig
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_Language                  -> in         string
+    NewX_AVM-DE_Country                   -> in         string
+    NewX_AVM-DE_Annex                     -> in         string
+
+Service:            UserInterface1
+Action:             X_AVM-DE_GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_AutoUpdateMode               out ->     string
+    NewX_AVM-DE_UpdateTime                   out ->     dateTime
+    NewX_AVM-DE_LastFwVersion                out ->     string
+    NewX_AVM-DE_LastInfoUrl                  out ->     string
+    NewX_AVM-DE_CurrentFwVersion             out ->     string
+    NewX_AVM-DE_UpdateSuccessful             out ->     string
+
+Service:            UserInterface1
+Action:             X_AVM-DE_SetConfig
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_AutoUpdateMode            -> in         string
+
+=================================================================
+
+Service:            X_AVM-DE_Storage1
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewFTPEnable                             out ->     boolean
+    NewFTPStatus                             out ->     string
+    NewSMBEnable                             out ->     boolean
+    NewFTPWANEnable                          out ->     boolean
+    NewFTPWANSSLOnly                         out ->     boolean
+    NewFTPWANPort                            out ->     ui2
+
+Service:            X_AVM-DE_Storage1
+Action:             RequestFTPServerWAN
+Parameters:
+
+    Name                                  direction     data type
+
+    NewFTPWANPort                            out ->     ui2
+    NewFTPWANLifetime                        out ->     ui4
+
+Service:            X_AVM-DE_Storage1
+Action:             SetFTPServer
+Parameters:
+
+    Name                                  direction     data type
+
+    NewFTPEnable                          -> in         boolean
+
+Service:            X_AVM-DE_Storage1
+Action:             SetFTPServerWAN
+Parameters:
+
+    Name                                  direction     data type
+
+    NewFTPWANEnable                       -> in         boolean
+    NewFTPWANSSLOnly                      -> in         boolean
+
+Service:            X_AVM-DE_Storage1
+Action:             SetSMBServer
+Parameters:
+
+    Name                                  direction     data type
+
+    NewSMBEnable                          -> in         boolean
+
+Service:            X_AVM-DE_Storage1
+Action:             GetUserInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                                out ->     boolean
+    NewUsername                              out ->     string
+    NewX_AVM-DE_NetworkAccessReadOnly        out ->     boolean
+
+Service:            X_AVM-DE_Storage1
+Action:             SetUserConfig
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                             -> in         boolean
+    NewPassword                           -> in         string
+    NewX_AVM-DE_NetworkAccessReadOnly     -> in         boolean
+
+=================================================================
+
+Service:            X_AVM-DE_WebDAVClient1
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                                out ->     boolean
+    NewHostURL                               out ->     string
+    NewUsername                              out ->     string
+    NewMountpointName                        out ->     string
+
+Service:            X_AVM-DE_WebDAVClient1
+Action:             SetConfig
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                             -> in         boolean
+    NewHostURL                            -> in         string
+    NewUsername                           -> in         string
+    NewPassword                           -> in         string
+    NewMountpointName                     -> in         string
+
+=================================================================
+
+Service:            X_AVM-DE_UPnP1
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                                out ->     boolean
+    NewUPnPMediaServer                       out ->     boolean
+
+Service:            X_AVM-DE_UPnP1
+Action:             SetConfig
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                             -> in         boolean
+    NewUPnPMediaServer                    -> in         boolean
+
+=================================================================
+
+Service:            X_AVM-DE_Speedtest1
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnableTcp                             out ->     boolean
+    NewEnableUdp                             out ->     boolean
+    NewEnableUdpBidirect                     out ->     boolean
+    NewWANEnableTcp                          out ->     boolean
+    NewWANEnableUdp                          out ->     boolean
+    NewPortTcp                               out ->     ui4
+    NewPortUdp                               out ->     ui4
+    NewPortUdpBidirect                       out ->     ui4
+
+Service:            X_AVM-DE_Speedtest1
+Action:             SetConfig
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnableTcp                          -> in         boolean
+    NewEnableUdp                          -> in         boolean
+    NewEnableUdpBidirect                  -> in         boolean
+    NewWANEnableTcp                       -> in         boolean
+    NewWANEnableUdp                       -> in         boolean
+
+=================================================================
+
+Service:            X_AVM-DE_RemoteAccess1
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnabled                               out ->     boolean
+    NewPort                                  out ->     string
+    NewUsername                              out ->     string
+
+Service:            X_AVM-DE_RemoteAccess1
+Action:             SetConfig
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnabled                            -> in         boolean
+    NewPort                               -> in         string
+    NewUsername                           -> in         string
+    NewPassword                           -> in         string
+
+Service:            X_AVM-DE_RemoteAccess1
+Action:             SetEnable
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnabled                            -> in         boolean
+    NewPort                                  out ->     string
+
+Service:            X_AVM-DE_RemoteAccess1
+Action:             GetDDNSInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnabled                               out ->     boolean
+    NewProviderName                          out ->     string
+    NewUpdateURL                             out ->     string
+    NewDomain                                out ->     string
+    NewStatusIPv4                            out ->     string
+    NewStatusIPv6                            out ->     string
+    NewUsername                              out ->     string
+    NewMode                                  out ->     string
+    NewServerIPv4                            out ->     string
+    NewServerIPv6                            out ->     string
+
+Service:            X_AVM-DE_RemoteAccess1
+Action:             GetDDNSProviders
+Parameters:
+
+    Name                                  direction     data type
+
+    NewProviderList                          out ->     string
+
+Service:            X_AVM-DE_RemoteAccess1
+Action:             SetDDNSConfig
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnabled                            -> in         boolean
+    NewProviderName                       -> in         string
+    NewUpdateURL                          -> in         string
+    NewDomain                             -> in         string
+    NewUsername                           -> in         string
+    NewMode                               -> in         string
+    NewServerIPv4                         -> in         string
+    NewServerIPv6                         -> in         string
+    NewPassword                           -> in         string
+
+=================================================================
+
+Service:            X_AVM-DE_MyFritz1
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnabled                               out ->     boolean
+    NewDeviceRegistered                      out ->     boolean
+    NewDynDNSName                            out ->     string
+    NewPort                                  out ->     ui4
+
+Service:            X_AVM-DE_MyFritz1
+Action:             GetNumberOfServices
+Parameters:
+
+    Name                                  direction     data type
+
+    NewNumberOfServices                      out ->     ui4
+
+Service:            X_AVM-DE_MyFritz1
+Action:             GetServiceByIndex
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIndex                              -> in         ui4
+    NewEnabled                               out ->     boolean
+    NewName                                  out ->     string
+    NewScheme                                out ->     string
+    NewPort                                  out ->     ui4
+    NewURLPath                               out ->     string
+    NewType                                  out ->     string
+    NewIPv4ForwardingWarning                 out ->     ui1
+    NewIPv4Addresses                         out ->     string
+    NewIPv6Addresses                         out ->     string
+    NewIPv6InterfaceIDs                      out ->     string
+    NewMACAddress                            out ->     string
+    NewHostName                              out ->     string
+    NewDynDnsLabel                           out ->     string
+    NewStatus                                out ->     ui4
+
+Service:            X_AVM-DE_MyFritz1
+Action:             SetServiceByIndex
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIndex                              -> in         ui4
+    NewEnabled                            -> in         boolean
+    NewName                               -> in         string
+    NewScheme                             -> in         string
+    NewPort                               -> in         ui4
+    NewURLPath                            -> in         string
+    NewType                               -> in         string
+    NewIPv4Address                        -> in         string
+    NewIPv6Address                        -> in         string
+    NewIPv6InterfaceID                    -> in         string
+    NewMACAddress                         -> in         string
+    NewHostName                           -> in         string
+
+Service:            X_AVM-DE_MyFritz1
+Action:             DeleteServiceByIndex
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIndex                              -> in         ui4
+
+=================================================================
+
+Service:            X_VoIP1
+Action:             GetInfoEx
+Parameters:
+
+    Name                                  direction     data type
+
+    NewVoIPNumberMinChars                    out ->     ui2
+    NewVoIPNumberMaxChars                    out ->     ui2
+    NewVoIPNumberAllowedChars                out ->     string
+    NewVoIPUsernameMinChars                  out ->     ui2
+    NewVoIPUsernameMaxChars                  out ->     ui2
+    NewVoIPUsernameAllowedChars              out ->     string
+    NewVoIPPasswordMinChars                  out ->     ui2
+    NewVoIPPasswordMaxChars                  out ->     ui2
+    NewVoIPPasswordAllowedChars              out ->     string
+    NewVoIPRegistrarMinChars                 out ->     ui2
+    NewVoIPRegistrarMaxChars                 out ->     ui2
+    NewVoIPRegistrarAllowedChars             out ->     string
+    NewVoIPSTUNServerMinChars                out ->     ui2
+    NewVoIPSTUNServerMaxChars                out ->     ui2
+    NewVoIPSTUNServerAllowedChars            out ->     string
+    NewX_AVM-DE_ClientUsernameMinChars       out ->     ui2
+    NewX_AVM-DE_ClientUsernameMaxChars       out ->     ui2
+    NewX_AVM-DE_ClientUsernameAllowedChars   out ->     string
+    NewX_AVM-DE_ClientPasswordMinChars       out ->     ui2
+    NewX_AVM-DE_ClientPasswordMaxChars       out ->     ui2
+    NewX_AVM-DE_ClientPasswordAllowedChars   out ->     string
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_AddVoIPAccount
+Parameters:
+
+    Name                                  direction     data type
+
+    NewVoIPAccountIndex                   -> in         ui2
+    NewVoIPRegistrar                      -> in         string
+    NewVoIPNumber                         -> in         string
+    NewVoIPUsername                       -> in         string
+    NewVoIPPassword                       -> in         string
+    NewVoIPOutboundProxy                  -> in         string
+    NewVoIPSTUNServer                     -> in         string
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_GetVoIPAccount
+Parameters:
+
+    Name                                  direction     data type
+
+    NewVoIPAccountIndex                   -> in         ui2
+    NewVoIPRegistrar                         out ->     string
+    NewVoIPNumber                            out ->     string
+    NewVoIPUsername                          out ->     string
+    NewVoIPPassword                          out ->     string
+    NewVoIPOutboundProxy                     out ->     string
+    NewVoIPSTUNServer                        out ->     string
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_DelVoIPAccount
+Parameters:
+
+    Name                                  direction     data type
+
+    NewVoIPAccountIndex                   -> in         ui2
+
+Service:            X_VoIP1
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewFaxT38Enable                          out ->     boolean
+    NewVoiceCoding                           out ->     string
+
+Service:            X_VoIP1
+Action:             SetConfig
+Parameters:
+
+    Name                                  direction     data type
+
+    NewFaxT38Enable                       -> in         boolean
+    NewVoiceCoding                        -> in         string
+
+Service:            X_VoIP1
+Action:             GetMaxVoIPNumbers
+Parameters:
+
+    Name                                  direction     data type
+
+    NewMaxVoIPNumbers                        out ->     ui2
+
+Service:            X_VoIP1
+Action:             GetExistingVoIPNumbers
+Parameters:
+
+    Name                                  direction     data type
+
+    NewExistingVoIPNumbers                   out ->     ui2
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_GetNumberOfClients
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_NumberOfClients              out ->     ui2
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_GetClient
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_ClientIndex               -> in         ui2
+    NewX_AVM-DE_ClientUsername               out ->     string
+    NewX_AVM-DE_ClientRegistrar              out ->     string
+    NewX_AVM-DE_ClientRegistrarPort          out ->     ui2
+    NewX_AVM-DE_PhoneName                    out ->     string
+    NewX_AVM-DE_OutGoingNumber               out ->     string
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_GetClient2
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_ClientIndex               -> in         ui2
+    NewX_AVM-DE_ClientUsername               out ->     string
+    NewX_AVM-DE_ClientRegistrar              out ->     string
+    NewX_AVM-DE_ClientRegistrarPort          out ->     ui2
+    NewX_AVM-DE_PhoneName                    out ->     string
+    NewX_AVM-DE_ClientId                     out ->     string
+    NewX_AVM-DE_OutGoingNumber               out ->     string
+    NewX_AVM-DE_InternalNumber               out ->     string
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_SetClient
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_ClientIndex               -> in         ui2
+    NewX_AVM-DE_ClientPassword            -> in         string
+    NewX_AVM-DE_PhoneName                 -> in         string
+    NewX_AVM-DE_OutGoingNumber            -> in         string
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_SetClient2
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_ClientIndex               -> in         ui2
+    NewX_AVM-DE_ClientPassword            -> in         string
+    NewX_AVM-DE_ClientId                  -> in         string
+    NewX_AVM-DE_PhoneName                 -> in         string
+    NewX_AVM-DE_OutGoingNumber            -> in         string
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_GetClient3
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_ClientIndex               -> in         ui2
+    NewX_AVM-DE_ClientUsername               out ->     string
+    NewX_AVM-DE_ClientRegistrar              out ->     string
+    NewX_AVM-DE_ClientRegistrarPort          out ->     ui2
+    NewX_AVM-DE_PhoneName                    out ->     string
+    NewX_AVM-DE_ClientId                     out ->     string
+    NewX_AVM-DE_OutGoingNumber               out ->     string
+    NewX_AVM-DE_InComingNumbers              out ->     string
+    NewX_AVM-DE_ExternalRegistration         out ->     boolean
+    NewX_AVM-DE_InternalNumber               out ->     string
+    NewX_AVM-DE_DelayedCallNotification      out ->     boolean
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_GetClientByClientId
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_ClientId                     out ->     string
+    NewX_AVM-DE_ClientIndex                  out ->     ui2
+    NewX_AVM-DE_ClientUsername               out ->     string
+    NewX_AVM-DE_ClientRegistrar              out ->     string
+    NewX_AVM-DE_ClientRegistrarPort          out ->     ui2
+    NewX_AVM-DE_PhoneName                    out ->     string
+    NewX_AVM-DE_OutGoingNumber               out ->     string
+    NewX_AVM-DE_InComingNumbers              out ->     string
+    NewX_AVM-DE_ExternalRegistration         out ->     boolean
+    NewX_AVM-DE_InternalNumber               out ->     string
+    NewX_AVM-DE_DelayedCallNotification      out ->     boolean
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_SetClient3
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_ClientIndex               -> in         ui2
+    NewX_AVM-DE_ClientPassword            -> in         string
+    NewX_AVM-DE_ClientId                  -> in         string
+    NewX_AVM-DE_PhoneName                 -> in         string
+    NewX_AVM-DE_OutGoingNumber            -> in         string
+    NewX_AVM-DE_InComingNumbers           -> in         string
+    NewX_AVM-DE_ExternalRegistration      -> in         boolean
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_SetClient4
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_ClientIndex               -> in         ui2
+    NewX_AVM-DE_ClientPassword            -> in         string
+    NewX_AVM-DE_ClientUsername            -> in         string
+    NewX_AVM-DE_PhoneName                 -> in         string
+    NewX_AVM-DE_ClientId                  -> in         string
+    NewX_AVM-DE_OutGoingNumber            -> in         string
+    NewX_AVM-DE_InComingNumbers           -> in         string
+    NewX_AVM-DE_InternalNumber               out ->     string
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_GetClients
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_ClientList                   out ->     string
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_GetNumberOfNumbers
+Parameters:
+
+    Name                                  direction     data type
+
+    NewNumberOfNumbers                       out ->     ui4
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_GetNumbers
+Parameters:
+
+    Name                                  direction     data type
+
+    NewNumberList                            out ->     string
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_DeleteClient
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_ClientIndex               -> in         ui2
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_DialGetConfig
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_PhoneName                    out ->     string
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_DialSetConfig
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_PhoneName                 -> in         string
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_DialNumber
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_PhoneNumber               -> in         string
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_DialHangup
+Parameters:
+
+    Name                                  direction     data type
+
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_GetPhonePort
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIndex                              -> in         ui2
+    NewX_AVM-DE_PhoneName                    out ->     string
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_SetDelayedCallNotification
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_ClientIndex               -> in         ui2
+    NewX_AVM-DE_DelayedCallNotification   -> in         boolean
+
+Service:            X_VoIP1
+Action:             GetVoIPCommonCountryCode
+Parameters:
+
+    Name                                  direction     data type
+
+    NewVoIPCountryCode                       out ->     string
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_GetVoIPCommonCountryCode
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_LKZ                          out ->     string
+    NewX_AVM-DE_LKZPrefix                    out ->     string
+
+Service:            X_VoIP1
+Action:             SetVoIPCommonCountryCode
+Parameters:
+
+    Name                                  direction     data type
+
+    NewVoIPCountryCode                    -> in         string
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_SetVoIPCommonCountryCode
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_LKZ                       -> in         string
+    NewX_AVM-DE_LKZPrefix                 -> in         string
+
+Service:            X_VoIP1
+Action:             GetVoIPEnableCountryCode
+Parameters:
+
+    Name                                  direction     data type
+
+    NewVoIPAccountIndex                   -> in         ui2
+    NewVoIPEnableCountryCode                 out ->     boolean
+
+Service:            X_VoIP1
+Action:             SetVoIPEnableCountryCode
+Parameters:
+
+    Name                                  direction     data type
+
+    NewVoIPAccountIndex                   -> in         ui2
+    NewVoIPEnableCountryCode              -> in         boolean
+
+Service:            X_VoIP1
+Action:             GetVoIPCommonAreaCode
+Parameters:
+
+    Name                                  direction     data type
+
+    NewVoIPAreaCode                          out ->     string
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_GetVoIPCommonAreaCode
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_OKZ                          out ->     string
+    NewX_AVM-DE_OKZPrefix                    out ->     string
+
+Service:            X_VoIP1
+Action:             SetVoIPCommonAreaCode
+Parameters:
+
+    Name                                  direction     data type
+
+    NewVoIPAreaCode                       -> in         string
+
+Service:            X_VoIP1
+Action:             X_AVM-DE_SetVoIPCommonAreaCode
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_OKZ                       -> in         string
+    NewX_AVM-DE_OKZPrefix                 -> in         string
+
+Service:            X_VoIP1
+Action:             GetVoIPEnableAreaCode
+Parameters:
+
+    Name                                  direction     data type
+
+    NewVoIPAccountIndex                   -> in         ui2
+    NewVoIPEnableAreaCode                    out ->     boolean
+
+Service:            X_VoIP1
+Action:             SetVoIPEnableAreaCode
+Parameters:
+
+    Name                                  direction     data type
+
+    NewVoIPAccountIndex                   -> in         ui2
+    NewVoIPEnableAreaCode                 -> in         boolean
+
+=================================================================
+
+Service:            X_AVM-DE_OnTel1
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                                out ->     boolean
+    NewStatus                                out ->     string
+    NewLastConnect                           out ->     string
+    NewUrl                                   out ->     string
+    NewServiceId                             out ->     string
+    NewUsername                              out ->     string
+    NewName                                  out ->     string
+
+Service:            X_AVM-DE_OnTel1
+Action:             SetEnable
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                             -> in         boolean
+
+Service:            X_AVM-DE_OnTel1
+Action:             SetConfig
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                             -> in         boolean
+    NewUrl                                -> in         string
+    NewServiceId                          -> in         string
+    NewUsername                           -> in         string
+    NewPassword                           -> in         string
+    NewName                               -> in         string
+
+Service:            X_AVM-DE_OnTel1
+Action:             GetInfoByIndex
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIndex                              -> in         ui2
+    NewEnable                                out ->     boolean
+    NewStatus                                out ->     string
+    NewLastConnect                           out ->     string
+    NewUrl                                   out ->     string
+    NewServiceId                             out ->     string
+    NewUsername                              out ->     string
+    NewName                                  out ->     string
+
+Service:            X_AVM-DE_OnTel1
+Action:             SetEnableByIndex
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIndex                              -> in         ui2
+    NewEnable                             -> in         boolean
+
+Service:            X_AVM-DE_OnTel1
+Action:             SetConfigByIndex
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIndex                              -> in         ui2
+    NewEnable                             -> in         boolean
+    NewUrl                                -> in         string
+    NewServiceId                          -> in         string
+    NewUsername                           -> in         string
+    NewPassword                           -> in         string
+    NewName                               -> in         string
+
+Service:            X_AVM-DE_OnTel1
+Action:             DeleteByIndex
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIndex                              -> in         ui2
+
+Service:            X_AVM-DE_OnTel1
+Action:             GetNumberOfEntries
+Parameters:
+
+    Name                                  direction     data type
+
+    NewOnTelNumberOfEntries                  out ->     ui2
+
+Service:            X_AVM-DE_OnTel1
+Action:             GetCallList
+Parameters:
+
+    Name                                  direction     data type
+
+    NewCallListURL                           out ->     string
+
+Service:            X_AVM-DE_OnTel1
+Action:             GetPhonebookList
+Parameters:
+
+    Name                                  direction     data type
+
+    NewPhonebookList                         out ->     string
+
+Service:            X_AVM-DE_OnTel1
+Action:             GetPhonebook
+Parameters:
+
+    Name                                  direction     data type
+
+    NewPhonebookID                        -> in         ui2
+    NewPhonebookName                         out ->     string
+    NewPhonebookExtraID                      out ->     string
+    NewPhonebookURL                          out ->     string
+
+Service:            X_AVM-DE_OnTel1
+Action:             AddPhonebook
+Parameters:
+
+    Name                                  direction     data type
+
+    NewPhonebookExtraID                   -> in         string
+    NewPhonebookName                      -> in         string
+
+Service:            X_AVM-DE_OnTel1
+Action:             DeletePhonebook
+Parameters:
+
+    Name                                  direction     data type
+
+    NewPhonebookID                        -> in         ui2
+    NewPhonebookExtraID                   -> in         string
+
+Service:            X_AVM-DE_OnTel1
+Action:             GetPhonebookEntry
+Parameters:
+
+    Name                                  direction     data type
+
+    NewPhonebookID                        -> in         ui2
+    NewPhonebookEntryID                   -> in         ui4
+    NewPhonebookEntryData                    out ->     string
+
+Service:            X_AVM-DE_OnTel1
+Action:             GetPhonebookEntryUID
+Parameters:
+
+    Name                                  direction     data type
+
+    NewPhonebookID                        -> in         ui2
+    NewPhonebookEntryUniqueID             -> in         ui4
+    NewPhonebookEntryData                    out ->     string
+
+Service:            X_AVM-DE_OnTel1
+Action:             SetPhonebookEntry
+Parameters:
+
+    Name                                  direction     data type
+
+    NewPhonebookID                        -> in         ui2
+    NewPhonebookEntryID                   -> in         ui4
+    NewPhonebookEntryData                 -> in         string
+
+Service:            X_AVM-DE_OnTel1
+Action:             SetPhonebookEntryUID
+Parameters:
+
+    Name                                  direction     data type
+
+    NewPhonebookID                        -> in         ui2
+    NewPhonebookEntryData                 -> in         string
+    NewPhonebookEntryUniqueID                out ->     ui4
+
+Service:            X_AVM-DE_OnTel1
+Action:             DeletePhonebookEntry
+Parameters:
+
+    Name                                  direction     data type
+
+    NewPhonebookID                        -> in         ui2
+    NewPhonebookEntryID                   -> in         ui4
+
+Service:            X_AVM-DE_OnTel1
+Action:             DeletePhonebookEntryUID
+Parameters:
+
+    Name                                  direction     data type
+
+    NewPhonebookID                        -> in         ui2
+    NewPhonebookEntryUniqueID             -> in         ui4
+
+Service:            X_AVM-DE_OnTel1
+Action:             GetDECTHandsetList
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDectIDList                            out ->     string
+
+Service:            X_AVM-DE_OnTel1
+Action:             GetDECTHandsetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDectID                             -> in         ui2
+    NewHandsetName                           out ->     string
+    NewPhonebookID                           out ->     ui2
+
+Service:            X_AVM-DE_OnTel1
+Action:             SetDECTHandsetPhonebook
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDectID                             -> in         ui2
+    NewPhonebookID                        -> in         ui2
+
+Service:            X_AVM-DE_OnTel1
+Action:             GetNumberOfDeflections
+Parameters:
+
+    Name                                  direction     data type
+
+    NewNumberOfDeflections                   out ->     ui2
+
+Service:            X_AVM-DE_OnTel1
+Action:             GetDeflection
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDeflectionId                       -> in         ui2
+    NewEnable                                out ->     boolean
+    NewType                                  out ->     string
+    NewNumber                                out ->     string
+    NewDeflectionToNumber                    out ->     string
+    NewMode                                  out ->     string
+    NewOutgoing                              out ->     string
+    NewPhonebookID                           out ->     ui2
+
+Service:            X_AVM-DE_OnTel1
+Action:             GetDeflections
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDeflectionList                        out ->     string
+
+Service:            X_AVM-DE_OnTel1
+Action:             SetDeflectionEnable
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDeflectionId                       -> in         ui2
+    NewEnable                             -> in         boolean
+
+=================================================================
+
+Service:            X_AVM-DE_Dect1
+Action:             GetNumberOfDectEntries
+Parameters:
+
+    Name                                  direction     data type
+
+    NewNumberOfEntries                       out ->     ui2
+
+Service:            X_AVM-DE_Dect1
+Action:             GetGenericDectEntry
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIndex                              -> in         ui2
+    NewID                                    out ->     string
+    NewActive                                out ->     boolean
+    NewName                                  out ->     string
+    NewModel                                 out ->     string
+    NewUpdateAvailable                       out ->     boolean
+    NewUpdateSuccessful                      out ->     string
+    NewUpdateInfo                            out ->     string
+
+Service:            X_AVM-DE_Dect1
+Action:             GetSpecificDectEntry
+Parameters:
+
+    Name                                  direction     data type
+
+    NewID                                 -> in         string
+    NewActive                                out ->     boolean
+    NewName                                  out ->     string
+    NewModel                                 out ->     string
+    NewUpdateAvailable                       out ->     boolean
+    NewUpdateSuccessful                      out ->     string
+    NewUpdateInfo                            out ->     string
+
+Service:            X_AVM-DE_Dect1
+Action:             DectDoUpdate
+Parameters:
+
+    Name                                  direction     data type
+
+    NewID                                 -> in         string
+
+Service:            X_AVM-DE_Dect1
+Action:             GetDectListPath
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDectListPath                          out ->     string
+
+=================================================================
+
+Service:            X_AVM-DE_TAM1
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIndex                              -> in         ui2
+    NewEnable                                out ->     boolean
+    NewName                                  out ->     string
+    NewTAMRunning                            out ->     boolean
+    NewStick                                 out ->     ui2
+    NewStatus                                out ->     ui2
+    NewCapacity                              out ->     ui4
+
+Service:            X_AVM-DE_TAM1
+Action:             SetEnable
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIndex                              -> in         ui2
+    NewEnable                             -> in         boolean
+
+Service:            X_AVM-DE_TAM1
+Action:             GetMessageList
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIndex                              -> in         ui2
+    NewURL                                   out ->     string
+
+Service:            X_AVM-DE_TAM1
+Action:             MarkMessage
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIndex                              -> in         ui2
+    NewMessageIndex                       -> in         ui2
+    NewMarkedAsRead                       -> in         boolean
+
+Service:            X_AVM-DE_TAM1
+Action:             DeleteMessage
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIndex                              -> in         ui2
+    NewMessageIndex                       -> in         ui2
+
+Service:            X_AVM-DE_TAM1
+Action:             GetList
+Parameters:
+
+    Name                                  direction     data type
+
+    NewTAMList                               out ->     string
+
+=================================================================
+
+Service:            X_AVM-DE_AppSetup1
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewMinCharsAppId                         out ->     ui2
+    NewMaxCharsAppId                         out ->     ui2
+    NewAllowedCharsAppId                     out ->     string
+    NewMinCharsAppDisplayName                out ->     ui2
+    NewMaxCharsAppDisplayName                out ->     ui2
+    NewMinCharsAppUsername                   out ->     ui2
+    NewMaxCharsAppUsername                   out ->     ui2
+    NewAllowedCharsAppUsername               out ->     string
+    NewMinCharsAppPassword                   out ->     ui2
+    NewMaxCharsAppPassword                   out ->     ui2
+    NewAllowedCharsAppPassword               out ->     string
+    NewMinCharsIPSecIdentifier               out ->     ui2
+    NewMaxCharsIPSecIdentifier               out ->     ui2
+    NewAllowedCharsIPSecIdentifier           out ->     string
+    NewAllowedCharsCryptAlgos                out ->     string
+    NewAllowedCharsAppAVMAddress             out ->     string
+    NewMinCharsFilter                        out ->     ui2
+    NewMaxCharsFilter                        out ->     ui2
+    NewAllowedCharsFilter                    out ->     string
+    NewMinCharsIPSecPreSharedKey             out ->     ui2
+    NewMaxCharsIPSecPreSharedKey             out ->     ui2
+    NewAllowedCharsIPSecPreSharedKey         out ->     string
+    NewMinCharsIPSecXauthUsername            out ->     ui2
+    NewMaxCharsIPSecXauthUsername            out ->     ui2
+    NewAllowedCharsIPSecXauthUsername        out ->     string
+    NewMinCharsIPSecXauthPassword            out ->     ui2
+    NewMaxCharsIPSecXauthPassword            out ->     ui2
+    NewAllowedCharsIPSecXauthPassword        out ->     string
+
+Service:            X_AVM-DE_AppSetup1
+Action:             GetConfig
+Parameters:
+
+    Name                                  direction     data type
+
+    NewConfigRight                           out ->     string
+    NewAppRight                              out ->     string
+    NewNasRight                              out ->     string
+    NewPhoneRight                            out ->     string
+    NewDialRight                             out ->     string
+    NewHomeautoRight                         out ->     string
+    NewInternetRights                        out ->     boolean
+    NewAccessFromInternet                    out ->     boolean
+
+Service:            X_AVM-DE_AppSetup1
+Action:             GetAppMessageFilter
+Parameters:
+
+    Name                                  direction     data type
+
+    NewAppId                              -> in         string
+    NewFilterList                            out ->     string
+
+Service:            X_AVM-DE_AppSetup1
+Action:             RegisterApp
+Parameters:
+
+    Name                                  direction     data type
+
+    NewAppId                              -> in         string
+    NewAppDisplayName                     -> in         string
+    NewAppDeviceMAC                       -> in         string
+    NewAppUsername                        -> in         string
+    NewAppPassword                        -> in         string
+    NewAppRight                           -> in         string
+    NewNasRight                           -> in         string
+    NewPhoneRight                         -> in         string
+    NewHomeautoRight                      -> in         string
+    NewAppInternetRights                  -> in         boolean
+
+Service:            X_AVM-DE_AppSetup1
+Action:             SetAppVPN
+Parameters:
+
+    Name                                  direction     data type
+
+    NewAppId                              -> in         string
+    NewIPSecIdentifier                    -> in         string
+    NewIPSecPreSharedKey                  -> in         string
+    NewIPSecXauthUsername                 -> in         string
+    NewIPSecXauthPassword                 -> in         string
+
+Service:            X_AVM-DE_AppSetup1
+Action:             SetAppVPNwithPFS
+Parameters:
+
+    Name                                  direction     data type
+
+    NewAppId                              -> in         string
+    NewIPSecIdentifier                    -> in         string
+    NewIPSecPreSharedKey                  -> in         string
+    NewIPSecXauthUsername                 -> in         string
+    NewIPSecXauthPassword                 -> in         string
+
+Service:            X_AVM-DE_AppSetup1
+Action:             SetAppMessageFilter
+Parameters:
+
+    Name                                  direction     data type
+
+    NewAppId                              -> in         string
+    NewType                               -> in         string
+    NewFilter                             -> in         string
+
+Service:            X_AVM-DE_AppSetup1
+Action:             SetAppMessageReceiver
+Parameters:
+
+    Name                                  direction     data type
+
+    NewAppId                              -> in         string
+    NewCryptAlgos                         -> in         string
+    NewAppAVMAddress                      -> in         string
+    NewAppAVMPasswordHash                 -> in         string
+    EncryptionSecret                         out ->     string
+    BoxSenderId                              out ->     string
+
+Service:            X_AVM-DE_AppSetup1
+Action:             ResetEvent
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEventId                            -> in         ui4
+
+Service:            X_AVM-DE_AppSetup1
+Action:             GetAppRemoteInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewSubnetMask                            out ->     string
+    NewIPAddress                             out ->     string
+    NewExternalIPAddress                     out ->     string
+    NewExternalIPv6Address                   out ->     string
+    NewRemoteAccessDDNSEnabled               out ->     boolean
+    NewRemoteAccessDDNSDomain                out ->     string
+    NewMyFritzEnabled                        out ->     boolean
+    NewMyFritzDynDNSName                     out ->     string
+
+=================================================================
+
+Service:            X_AVM-DE_Homeauto1
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewAllowedCharsAIN                       out ->     string
+
+Service:            X_AVM-DE_Homeauto1
+Action:             GetGenericDeviceInfos
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIndex                              -> in         ui2
+    NewAIN                                   out ->     string
+    NewDeviceId                              out ->     ui2
+    NewFunctionBitMask                       out ->     ui2
+    NewFirmwareVersion                       out ->     string
+    NewManufacturer                          out ->     string
+    NewProductName                           out ->     string
+    NewDeviceName                            out ->     string
+    NewPresent                               out ->     string
+    NewMultimeterIsEnabled                   out ->     string
+    NewMultimeterIsValid                     out ->     string
+    NewMultimeterPower                       out ->     ui4
+    NewMultimeterEnergy                      out ->     ui4
+    NewTemperatureIsEnabled                  out ->     string
+    NewTemperatureIsValid                    out ->     string
+    NewTemperatureCelsius                    out ->     i4
+    NewTemperatureOffset                     out ->     i4
+    NewSwitchIsEnabled                       out ->     string
+    NewSwitchIsValid                         out ->     string
+    NewSwitchState                           out ->     string
+    NewSwitchMode                            out ->     string
+    NewSwitchLock                            out ->     boolean
+    NewHkrIsEnabled                          out ->     string
+    NewHkrIsValid                            out ->     string
+    NewHkrIsTemperature                      out ->     i4
+    NewHkrSetVentilStatus                    out ->     string
+    NewHkrSetTemperature                     out ->     i4
+    NewHkrReduceVentilStatus                 out ->     string
+    NewHkrReduceTemperature                  out ->     i4
+    NewHkrComfortVentilStatus                out ->     string
+    NewHkrComfortTemperature                 out ->     i4
+
+Service:            X_AVM-DE_Homeauto1
+Action:             GetSpecificDeviceInfos
+Parameters:
+
+    Name                                  direction     data type
+
+    NewAIN                                -> in         string
+    NewDeviceId                              out ->     ui2
+    NewFunctionBitMask                       out ->     ui2
+    NewFirmwareVersion                       out ->     string
+    NewManufacturer                          out ->     string
+    NewProductName                           out ->     string
+    NewDeviceName                            out ->     string
+    NewPresent                               out ->     string
+    NewMultimeterIsEnabled                   out ->     string
+    NewMultimeterIsValid                     out ->     string
+    NewMultimeterPower                       out ->     ui4
+    NewMultimeterEnergy                      out ->     ui4
+    NewTemperatureIsEnabled                  out ->     string
+    NewTemperatureIsValid                    out ->     string
+    NewTemperatureCelsius                    out ->     i4
+    NewTemperatureOffset                     out ->     i4
+    NewSwitchIsEnabled                       out ->     string
+    NewSwitchIsValid                         out ->     string
+    NewSwitchState                           out ->     string
+    NewSwitchMode                            out ->     string
+    NewSwitchLock                            out ->     boolean
+    NewHkrIsEnabled                          out ->     string
+    NewHkrIsValid                            out ->     string
+    NewHkrIsTemperature                      out ->     i4
+    NewHkrSetVentilStatus                    out ->     string
+    NewHkrSetTemperature                     out ->     i4
+    NewHkrReduceVentilStatus                 out ->     string
+    NewHkrReduceTemperature                  out ->     i4
+    NewHkrComfortVentilStatus                out ->     string
+    NewHkrComfortTemperature                 out ->     i4
+
+Service:            X_AVM-DE_Homeauto1
+Action:             SetSwitch
+Parameters:
+
+    Name                                  direction     data type
+
+    NewAIN                                -> in         string
+    NewSwitchState                        -> in         string
+
+=================================================================
+
+Service:            X_AVM-DE_Homeplug1
+Action:             GetNumberOfDeviceEntries
+Parameters:
+
+    Name                                  direction     data type
+
+    NewNumberOfEntries                       out ->     ui2
+
+Service:            X_AVM-DE_Homeplug1
+Action:             GetGenericDeviceEntry
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIndex                              -> in         ui2
+    NewMACAddress                            out ->     string
+    NewActive                                out ->     boolean
+    NewName                                  out ->     string
+    NewModel                                 out ->     string
+    NewUpdateAvailable                       out ->     boolean
+    NewUpdateSuccessful                      out ->     string
+
+Service:            X_AVM-DE_Homeplug1
+Action:             GetSpecificDeviceEntry
+Parameters:
+
+    Name                                  direction     data type
+
+    NewMACAddress                         -> in         string
+    NewActive                                out ->     boolean
+    NewName                                  out ->     string
+    NewModel                                 out ->     string
+    NewUpdateAvailable                       out ->     boolean
+    NewUpdateSuccessful                      out ->     string
+
+Service:            X_AVM-DE_Homeplug1
+Action:             DeviceDoUpdate
+Parameters:
+
+    Name                                  direction     data type
+
+    NewMACAddress                         -> in         string
+
+=================================================================
+
+Service:            X_AVM-DE_Filelinks1
+Action:             GetNumberOfFilelinkEntries
+Parameters:
+
+    Name                                  direction     data type
+
+    NewNumberOfEntries                       out ->     ui2
+
+Service:            X_AVM-DE_Filelinks1
+Action:             GetGenericFilelinkEntry
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIndex                              -> in         ui2
+    NewID                                    out ->     string
+    NewValid                                 out ->     boolean
+    NewPath                                  out ->     string
+    NewIsDirectory                           out ->     boolean
+    NewUrl                                   out ->     string
+    NewUsername                              out ->     string
+    NewAccessCountLimit                      out ->     ui2
+    NewAccessCount                           out ->     ui2
+    NewExpire                                out ->     ui2
+    NewExpireDate                            out ->     dateTime
+
+Service:            X_AVM-DE_Filelinks1
+Action:             GetSpecificFilelinkEntry
+Parameters:
+
+    Name                                  direction     data type
+
+    NewID                                 -> in         string
+    NewValid                                 out ->     boolean
+    NewPath                                  out ->     string
+    NewIsDirectory                           out ->     boolean
+    NewUrl                                   out ->     string
+    NewUsername                              out ->     string
+    NewAccessCountLimit                      out ->     ui2
+    NewAccessCount                           out ->     ui2
+    NewExpire                                out ->     ui2
+    NewExpireDate                            out ->     dateTime
+
+Service:            X_AVM-DE_Filelinks1
+Action:             NewFilelinkEntry
+Parameters:
+
+    Name                                  direction     data type
+
+    NewPath                               -> in         string
+    NewAccessCountLimit                   -> in         ui2
+    NewExpire                             -> in         ui2
+    NewID                                    out ->     string
+
+Service:            X_AVM-DE_Filelinks1
+Action:             SetFilelinkEntry
+Parameters:
+
+    Name                                  direction     data type
+
+    NewID                                 -> in         string
+    NewAccessCountLimit                   -> in         ui2
+    NewExpire                             -> in         ui2
+
+Service:            X_AVM-DE_Filelinks1
+Action:             DeleteFilelinkEntry
+Parameters:
+
+    Name                                  direction     data type
+
+    NewID                                 -> in         string
+
+Service:            X_AVM-DE_Filelinks1
+Action:             GetFilelinkListPath
+Parameters:
+
+    Name                                  direction     data type
+
+    NewFilelinkListPath                      out ->     string
+
+=================================================================
+
+Service:            X_AVM-DE_Auth1
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnabled                               out ->     boolean
+
+Service:            X_AVM-DE_Auth1
+Action:             GetState
+Parameters:
+
+    Name                                  direction     data type
+
+    NewState                                 out ->     string
+
+Service:            X_AVM-DE_Auth1
+Action:             SetConfig
+Parameters:
+
+    Name                                  direction     data type
+
+    NewAction                             -> in         string
+    NewState                                 out ->     string
+    NewToken                                 out ->     string
+    NewMethods                               out ->     string
+
+=================================================================
+
+Service:            WLANConfiguration1
+Action:             SetEnable
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                             -> in         boolean
+
+Service:            WLANConfiguration1
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                                out ->     boolean
+    NewStatus                                out ->     string
+    NewMaxBitRate                            out ->     string
+    NewChannel                               out ->     ui1
+    NewSSID                                  out ->     string
+    NewBeaconType                            out ->     string
+    NewMACAddressControlEnabled              out ->     boolean
+    NewStandard                              out ->     string
+    NewBSSID                                 out ->     string
+    NewBasicEncryptionModes                  out ->     string
+    NewBasicAuthenticationMode               out ->     string
+    NewMaxCharsSSID                          out ->     ui1
+    NewMinCharsSSID                          out ->     ui1
+    NewAllowedCharsSSID                      out ->     string
+    NewMinCharsPSK                           out ->     ui1
+    NewMaxCharsPSK                           out ->     ui1
+    NewAllowedCharsPSK                       out ->     string
+
+Service:            WLANConfiguration1
+Action:             SetConfig
+Parameters:
+
+    Name                                  direction     data type
+
+    NewMaxBitRate                         -> in         string
+    NewChannel                            -> in         ui1
+    NewSSID                               -> in         string
+    NewBeaconType                         -> in         string
+    NewMACAddressControlEnabled           -> in         boolean
+    NewBasicEncryptionModes               -> in         string
+    NewBasicAuthenticationMode            -> in         string
+
+Service:            WLANConfiguration1
+Action:             SetSecurityKeys
+Parameters:
+
+    Name                                  direction     data type
+
+    NewWEPKey0                            -> in         string
+    NewWEPKey1                            -> in         string
+    NewWEPKey2                            -> in         string
+    NewWEPKey3                            -> in         string
+    NewPreSharedKey                       -> in         string
+    NewKeyPassphrase                      -> in         string
+
+Service:            WLANConfiguration1
+Action:             GetSecurityKeys
+Parameters:
+
+    Name                                  direction     data type
+
+    NewWEPKey0                               out ->     string
+    NewWEPKey1                               out ->     string
+    NewWEPKey2                               out ->     string
+    NewWEPKey3                               out ->     string
+    NewPreSharedKey                          out ->     string
+    NewKeyPassphrase                         out ->     string
+
+Service:            WLANConfiguration1
+Action:             SetDefaultWEPKeyIndex
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDefaultWEPKeyIndex                 -> in         ui1
+
+Service:            WLANConfiguration1
+Action:             GetDefaultWEPKeyIndex
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDefaultWEPKeyIndex                    out ->     ui1
+
+Service:            WLANConfiguration1
+Action:             SetBasBeaconSecurityProperties
+Parameters:
+
+    Name                                  direction     data type
+
+    NewBasicEncryptionModes               -> in         string
+    NewBasicAuthenticationMode            -> in         string
+
+Service:            WLANConfiguration1
+Action:             GetBasBeaconSecurityProperties
+Parameters:
+
+    Name                                  direction     data type
+
+    NewBasicEncryptionModes                  out ->     string
+    NewBasicAuthenticationMode               out ->     string
+
+Service:            WLANConfiguration1
+Action:             GetStatistics
+Parameters:
+
+    Name                                  direction     data type
+
+    NewTotalPacketsSent                      out ->     ui4
+    NewTotalPacketsReceived                  out ->     ui4
+
+Service:            WLANConfiguration1
+Action:             GetPacketStatistics
+Parameters:
+
+    Name                                  direction     data type
+
+    NewTotalPacketsSent                      out ->     ui4
+    NewTotalPacketsReceived                  out ->     ui4
+
+Service:            WLANConfiguration1
+Action:             GetBSSID
+Parameters:
+
+    Name                                  direction     data type
+
+    NewBSSID                                 out ->     string
+
+Service:            WLANConfiguration1
+Action:             GetSSID
+Parameters:
+
+    Name                                  direction     data type
+
+    NewSSID                                  out ->     string
+
+Service:            WLANConfiguration1
+Action:             SetSSID
+Parameters:
+
+    Name                                  direction     data type
+
+    NewSSID                               -> in         string
+
+Service:            WLANConfiguration1
+Action:             GetBeaconType
+Parameters:
+
+    Name                                  direction     data type
+
+    NewBeaconType                            out ->     string
+
+Service:            WLANConfiguration1
+Action:             SetBeaconType
+Parameters:
+
+    Name                                  direction     data type
+
+    NewBeaconType                         -> in         string
+
+Service:            WLANConfiguration1
+Action:             GetChannelInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewChannel                               out ->     ui1
+    NewPossibleChannels                      out ->     string
+
+Service:            WLANConfiguration1
+Action:             SetChannel
+Parameters:
+
+    Name                                  direction     data type
+
+    NewChannel                            -> in         ui1
+
+Service:            WLANConfiguration1
+Action:             GetBeaconAdvertisement
+Parameters:
+
+    Name                                  direction     data type
+
+    NewBeaconAdvertisementEnabled            out ->     boolean
+
+Service:            WLANConfiguration1
+Action:             SetBeaconAdvertisement
+Parameters:
+
+    Name                                  direction     data type
+
+    NewBeaconAdvertisementEnabled         -> in         boolean
+
+Service:            WLANConfiguration1
+Action:             GetTotalAssociations
+Parameters:
+
+    Name                                  direction     data type
+
+    NewTotalAssociations                     out ->     ui2
+
+Service:            WLANConfiguration1
+Action:             GetGenericAssociatedDeviceInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewAssociatedDeviceIndex              -> in         ui2
+    NewAssociatedDeviceMACAddress            out ->     string
+    NewAssociatedDeviceIPAddress             out ->     string
+    NewAssociatedDeviceAuthState             out ->     boolean
+    NewX_AVM-DE_Speed                        out ->     ui2
+    NewX_AVM-DE_SignalStrength               out ->     ui1
+
+Service:            WLANConfiguration1
+Action:             GetSpecificAssociatedDeviceInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewAssociatedDeviceMACAddress         -> in         string
+    NewAssociatedDeviceIPAddress             out ->     string
+    NewAssociatedDeviceAuthState             out ->     boolean
+    NewX_AVM-DE_Speed                        out ->     ui2
+    NewX_AVM-DE_SignalStrength               out ->     ui1
+
+Service:            WLANConfiguration1
+Action:             X_AVM-DE_GetSpecificAssociatedDeviceInfoByIp
+Parameters:
+
+    Name                                  direction     data type
+
+    NewAssociatedDeviceIPAddress          -> in         string
+    NewAssociatedDeviceMACAddress            out ->     string
+    NewAssociatedDeviceAuthState             out ->     boolean
+    NewX_AVM-DE_Speed                        out ->     ui2
+    NewX_AVM-DE_SignalStrength               out ->     ui1
+
+Service:            WLANConfiguration1
+Action:             X_AVM-DE_GetWLANDeviceListPath
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_WLANDeviceListPath           out ->     string
+
+Service:            WLANConfiguration1
+Action:             X_AVM-DE_SetStickSurfEnable
+Parameters:
+
+    Name                                  direction     data type
+
+    NewStickSurfEnable                    -> in         boolean
+
+Service:            WLANConfiguration1
+Action:             X_AVM-DE_GetIPTVOptimized
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_IPTVoptimize                 out ->     boolean
+
+Service:            WLANConfiguration1
+Action:             X_AVM-DE_SetIPTVOptimized
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_IPTVoptimize              -> in         boolean
+
+Service:            WLANConfiguration1
+Action:             X_AVM-DE_GetNightControl
+Parameters:
+
+    Name                                  direction     data type
+
+    NewNightControl                          out ->     string
+    NewNightTimeControlNoForcedOff           out ->     boolean
+
+Service:            WLANConfiguration1
+Action:             X_AVM-DE_GetWLANHybridMode
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                                out ->     boolean
+    NewBeaconType                            out ->     string
+    NewKeyPassphrase                         out ->     string
+    NewSSID                                  out ->     string
+    NewBSSID                                 out ->     string
+    NewTrafficMode                           out ->     string
+    NewManualSpeed                           out ->     boolean
+    NewMaxSpeedDS                            out ->     ui4
+    NewMaxSpeedUS                            out ->     ui4
+
+Service:            WLANConfiguration1
+Action:             X_AVM-DE_SetWLANHybridMode
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                             -> in         boolean
+    NewBeaconType                         -> in         string
+    NewKeyPassphrase                      -> in         string
+    NewSSID                               -> in         string
+    NewBSSID                              -> in         string
+    NewTrafficMode                        -> in         string
+    NewManualSpeed                        -> in         boolean
+    NewMaxSpeedDS                         -> in         ui4
+    NewMaxSpeedUS                         -> in         ui4
+
+Service:            WLANConfiguration1
+Action:             X_AVM-DE_GetWLANExtInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_APEnabled                    out ->     string
+    NewX_AVM-DE_APType                       out ->     string
+    NewX_AVM-DE_TimeoutActive                out ->     string
+    NewX_AVM-DE_Timeout                      out ->     string
+    NewX_AVM-DE_TimeRemain                   out ->     string
+    NewX_AVM-DE_NoForcedOff                  out ->     string
+    NewX_AVM-DE_UserIsolation                out ->     string
+    NewX_AVM-DE_EncryptionMode               out ->     string
+    NewX_AVM-DE_LastChangedStamp             out ->     ui4
+
+Service:            WLANConfiguration1
+Action:             X_AVM-DE_GetWPSInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_WPSMode                      out ->     string
+    NewX_AVM-DE_WPSStatus                    out ->     string
+
+Service:            WLANConfiguration1
+Action:             X_AVM-DE_SetWPSConfig
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_WPSMode                   -> in         string
+    NewX_AVM-DE_WPSClientPIN              -> in         string
+    NewX_AVM-DE_WPSAPPIN                     out ->     string
+    NewX_AVM-DE_WPSStatus                    out ->     string
+
+Service:            WLANConfiguration1
+Action:             X_AVM-DE_SetWLANGlobalEnable
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_WLANGlobalEnable          -> in         boolean
+
+=================================================================
+
+Service:            WLANConfiguration2
+Action:             SetEnable
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                             -> in         boolean
+
+Service:            WLANConfiguration2
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                                out ->     boolean
+    NewStatus                                out ->     string
+    NewMaxBitRate                            out ->     string
+    NewChannel                               out ->     ui1
+    NewSSID                                  out ->     string
+    NewBeaconType                            out ->     string
+    NewMACAddressControlEnabled              out ->     boolean
+    NewStandard                              out ->     string
+    NewBSSID                                 out ->     string
+    NewBasicEncryptionModes                  out ->     string
+    NewBasicAuthenticationMode               out ->     string
+    NewMaxCharsSSID                          out ->     ui1
+    NewMinCharsSSID                          out ->     ui1
+    NewAllowedCharsSSID                      out ->     string
+    NewMinCharsPSK                           out ->     ui1
+    NewMaxCharsPSK                           out ->     ui1
+    NewAllowedCharsPSK                       out ->     string
+
+Service:            WLANConfiguration2
+Action:             SetConfig
+Parameters:
+
+    Name                                  direction     data type
+
+    NewMaxBitRate                         -> in         string
+    NewChannel                            -> in         ui1
+    NewSSID                               -> in         string
+    NewBeaconType                         -> in         string
+    NewMACAddressControlEnabled           -> in         boolean
+    NewBasicEncryptionModes               -> in         string
+    NewBasicAuthenticationMode            -> in         string
+
+Service:            WLANConfiguration2
+Action:             SetSecurityKeys
+Parameters:
+
+    Name                                  direction     data type
+
+    NewWEPKey0                            -> in         string
+    NewWEPKey1                            -> in         string
+    NewWEPKey2                            -> in         string
+    NewWEPKey3                            -> in         string
+    NewPreSharedKey                       -> in         string
+    NewKeyPassphrase                      -> in         string
+
+Service:            WLANConfiguration2
+Action:             GetSecurityKeys
+Parameters:
+
+    Name                                  direction     data type
+
+    NewWEPKey0                               out ->     string
+    NewWEPKey1                               out ->     string
+    NewWEPKey2                               out ->     string
+    NewWEPKey3                               out ->     string
+    NewPreSharedKey                          out ->     string
+    NewKeyPassphrase                         out ->     string
+
+Service:            WLANConfiguration2
+Action:             SetDefaultWEPKeyIndex
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDefaultWEPKeyIndex                 -> in         ui1
+
+Service:            WLANConfiguration2
+Action:             GetDefaultWEPKeyIndex
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDefaultWEPKeyIndex                    out ->     ui1
+
+Service:            WLANConfiguration2
+Action:             SetBasBeaconSecurityProperties
+Parameters:
+
+    Name                                  direction     data type
+
+    NewBasicEncryptionModes               -> in         string
+    NewBasicAuthenticationMode            -> in         string
+
+Service:            WLANConfiguration2
+Action:             GetBasBeaconSecurityProperties
+Parameters:
+
+    Name                                  direction     data type
+
+    NewBasicEncryptionModes                  out ->     string
+    NewBasicAuthenticationMode               out ->     string
+
+Service:            WLANConfiguration2
+Action:             GetStatistics
+Parameters:
+
+    Name                                  direction     data type
+
+    NewTotalPacketsSent                      out ->     ui4
+    NewTotalPacketsReceived                  out ->     ui4
+
+Service:            WLANConfiguration2
+Action:             GetPacketStatistics
+Parameters:
+
+    Name                                  direction     data type
+
+    NewTotalPacketsSent                      out ->     ui4
+    NewTotalPacketsReceived                  out ->     ui4
+
+Service:            WLANConfiguration2
+Action:             GetBSSID
+Parameters:
+
+    Name                                  direction     data type
+
+    NewBSSID                                 out ->     string
+
+Service:            WLANConfiguration2
+Action:             GetSSID
+Parameters:
+
+    Name                                  direction     data type
+
+    NewSSID                                  out ->     string
+
+Service:            WLANConfiguration2
+Action:             SetSSID
+Parameters:
+
+    Name                                  direction     data type
+
+    NewSSID                               -> in         string
+
+Service:            WLANConfiguration2
+Action:             GetBeaconType
+Parameters:
+
+    Name                                  direction     data type
+
+    NewBeaconType                            out ->     string
+
+Service:            WLANConfiguration2
+Action:             SetBeaconType
+Parameters:
+
+    Name                                  direction     data type
+
+    NewBeaconType                         -> in         string
+
+Service:            WLANConfiguration2
+Action:             GetChannelInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewChannel                               out ->     ui1
+    NewPossibleChannels                      out ->     string
+
+Service:            WLANConfiguration2
+Action:             SetChannel
+Parameters:
+
+    Name                                  direction     data type
+
+    NewChannel                            -> in         ui1
+
+Service:            WLANConfiguration2
+Action:             GetBeaconAdvertisement
+Parameters:
+
+    Name                                  direction     data type
+
+    NewBeaconAdvertisementEnabled            out ->     boolean
+
+Service:            WLANConfiguration2
+Action:             SetBeaconAdvertisement
+Parameters:
+
+    Name                                  direction     data type
+
+    NewBeaconAdvertisementEnabled         -> in         boolean
+
+Service:            WLANConfiguration2
+Action:             GetTotalAssociations
+Parameters:
+
+    Name                                  direction     data type
+
+    NewTotalAssociations                     out ->     ui2
+
+Service:            WLANConfiguration2
+Action:             GetGenericAssociatedDeviceInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewAssociatedDeviceIndex              -> in         ui2
+    NewAssociatedDeviceMACAddress            out ->     string
+    NewAssociatedDeviceIPAddress             out ->     string
+    NewAssociatedDeviceAuthState             out ->     boolean
+    NewX_AVM-DE_Speed                        out ->     ui2
+    NewX_AVM-DE_SignalStrength               out ->     ui1
+
+Service:            WLANConfiguration2
+Action:             GetSpecificAssociatedDeviceInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewAssociatedDeviceMACAddress         -> in         string
+    NewAssociatedDeviceIPAddress             out ->     string
+    NewAssociatedDeviceAuthState             out ->     boolean
+    NewX_AVM-DE_Speed                        out ->     ui2
+    NewX_AVM-DE_SignalStrength               out ->     ui1
+
+Service:            WLANConfiguration2
+Action:             X_AVM-DE_GetSpecificAssociatedDeviceInfoByIp
+Parameters:
+
+    Name                                  direction     data type
+
+    NewAssociatedDeviceIPAddress          -> in         string
+    NewAssociatedDeviceMACAddress            out ->     string
+    NewAssociatedDeviceAuthState             out ->     boolean
+    NewX_AVM-DE_Speed                        out ->     ui2
+    NewX_AVM-DE_SignalStrength               out ->     ui1
+
+Service:            WLANConfiguration2
+Action:             X_AVM-DE_GetWLANDeviceListPath
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_WLANDeviceListPath           out ->     string
+
+Service:            WLANConfiguration2
+Action:             X_AVM-DE_SetStickSurfEnable
+Parameters:
+
+    Name                                  direction     data type
+
+    NewStickSurfEnable                    -> in         boolean
+
+Service:            WLANConfiguration2
+Action:             X_AVM-DE_GetIPTVOptimized
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_IPTVoptimize                 out ->     boolean
+
+Service:            WLANConfiguration2
+Action:             X_AVM-DE_SetIPTVOptimized
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_IPTVoptimize              -> in         boolean
+
+Service:            WLANConfiguration2
+Action:             X_AVM-DE_GetNightControl
+Parameters:
+
+    Name                                  direction     data type
+
+    NewNightControl                          out ->     string
+    NewNightTimeControlNoForcedOff           out ->     boolean
+
+Service:            WLANConfiguration2
+Action:             X_AVM-DE_GetWLANHybridMode
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                                out ->     boolean
+    NewBeaconType                            out ->     string
+    NewKeyPassphrase                         out ->     string
+    NewSSID                                  out ->     string
+    NewBSSID                                 out ->     string
+    NewTrafficMode                           out ->     string
+    NewManualSpeed                           out ->     boolean
+    NewMaxSpeedDS                            out ->     ui4
+    NewMaxSpeedUS                            out ->     ui4
+
+Service:            WLANConfiguration2
+Action:             X_AVM-DE_SetWLANHybridMode
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                             -> in         boolean
+    NewBeaconType                         -> in         string
+    NewKeyPassphrase                      -> in         string
+    NewSSID                               -> in         string
+    NewBSSID                              -> in         string
+    NewTrafficMode                        -> in         string
+    NewManualSpeed                        -> in         boolean
+    NewMaxSpeedDS                         -> in         ui4
+    NewMaxSpeedUS                         -> in         ui4
+
+Service:            WLANConfiguration2
+Action:             X_AVM-DE_GetWLANExtInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_APEnabled                    out ->     string
+    NewX_AVM-DE_APType                       out ->     string
+    NewX_AVM-DE_TimeoutActive                out ->     string
+    NewX_AVM-DE_Timeout                      out ->     string
+    NewX_AVM-DE_TimeRemain                   out ->     string
+    NewX_AVM-DE_NoForcedOff                  out ->     string
+    NewX_AVM-DE_UserIsolation                out ->     string
+    NewX_AVM-DE_EncryptionMode               out ->     string
+    NewX_AVM-DE_LastChangedStamp             out ->     ui4
+
+Service:            WLANConfiguration2
+Action:             X_AVM-DE_GetWPSInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_WPSMode                      out ->     string
+    NewX_AVM-DE_WPSStatus                    out ->     string
+
+Service:            WLANConfiguration2
+Action:             X_AVM-DE_SetWPSConfig
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_WPSMode                   -> in         string
+    NewX_AVM-DE_WPSClientPIN              -> in         string
+    NewX_AVM-DE_WPSAPPIN                     out ->     string
+    NewX_AVM-DE_WPSStatus                    out ->     string
+
+Service:            WLANConfiguration2
+Action:             X_AVM-DE_SetWLANGlobalEnable
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_WLANGlobalEnable          -> in         boolean
+
+=================================================================
+
+Service:            WLANConfiguration3
+Action:             SetEnable
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                             -> in         boolean
+
+Service:            WLANConfiguration3
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                                out ->     boolean
+    NewStatus                                out ->     string
+    NewMaxBitRate                            out ->     string
+    NewChannel                               out ->     ui1
+    NewSSID                                  out ->     string
+    NewBeaconType                            out ->     string
+    NewMACAddressControlEnabled              out ->     boolean
+    NewStandard                              out ->     string
+    NewBSSID                                 out ->     string
+    NewBasicEncryptionModes                  out ->     string
+    NewBasicAuthenticationMode               out ->     string
+    NewMaxCharsSSID                          out ->     ui1
+    NewMinCharsSSID                          out ->     ui1
+    NewAllowedCharsSSID                      out ->     string
+    NewMinCharsPSK                           out ->     ui1
+    NewMaxCharsPSK                           out ->     ui1
+    NewAllowedCharsPSK                       out ->     string
+
+Service:            WLANConfiguration3
+Action:             SetConfig
+Parameters:
+
+    Name                                  direction     data type
+
+    NewMaxBitRate                         -> in         string
+    NewChannel                            -> in         ui1
+    NewSSID                               -> in         string
+    NewBeaconType                         -> in         string
+    NewMACAddressControlEnabled           -> in         boolean
+    NewBasicEncryptionModes               -> in         string
+    NewBasicAuthenticationMode            -> in         string
+
+Service:            WLANConfiguration3
+Action:             SetSecurityKeys
+Parameters:
+
+    Name                                  direction     data type
+
+    NewWEPKey0                            -> in         string
+    NewWEPKey1                            -> in         string
+    NewWEPKey2                            -> in         string
+    NewWEPKey3                            -> in         string
+    NewPreSharedKey                       -> in         string
+    NewKeyPassphrase                      -> in         string
+
+Service:            WLANConfiguration3
+Action:             GetSecurityKeys
+Parameters:
+
+    Name                                  direction     data type
+
+    NewWEPKey0                               out ->     string
+    NewWEPKey1                               out ->     string
+    NewWEPKey2                               out ->     string
+    NewWEPKey3                               out ->     string
+    NewPreSharedKey                          out ->     string
+    NewKeyPassphrase                         out ->     string
+
+Service:            WLANConfiguration3
+Action:             SetDefaultWEPKeyIndex
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDefaultWEPKeyIndex                 -> in         ui1
+
+Service:            WLANConfiguration3
+Action:             GetDefaultWEPKeyIndex
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDefaultWEPKeyIndex                    out ->     ui1
+
+Service:            WLANConfiguration3
+Action:             SetBasBeaconSecurityProperties
+Parameters:
+
+    Name                                  direction     data type
+
+    NewBasicEncryptionModes               -> in         string
+    NewBasicAuthenticationMode            -> in         string
+
+Service:            WLANConfiguration3
+Action:             GetBasBeaconSecurityProperties
+Parameters:
+
+    Name                                  direction     data type
+
+    NewBasicEncryptionModes                  out ->     string
+    NewBasicAuthenticationMode               out ->     string
+
+Service:            WLANConfiguration3
+Action:             GetStatistics
+Parameters:
+
+    Name                                  direction     data type
+
+    NewTotalPacketsSent                      out ->     ui4
+    NewTotalPacketsReceived                  out ->     ui4
+
+Service:            WLANConfiguration3
+Action:             GetPacketStatistics
+Parameters:
+
+    Name                                  direction     data type
+
+    NewTotalPacketsSent                      out ->     ui4
+    NewTotalPacketsReceived                  out ->     ui4
+
+Service:            WLANConfiguration3
+Action:             GetBSSID
+Parameters:
+
+    Name                                  direction     data type
+
+    NewBSSID                                 out ->     string
+
+Service:            WLANConfiguration3
+Action:             GetSSID
+Parameters:
+
+    Name                                  direction     data type
+
+    NewSSID                                  out ->     string
+
+Service:            WLANConfiguration3
+Action:             SetSSID
+Parameters:
+
+    Name                                  direction     data type
+
+    NewSSID                               -> in         string
+
+Service:            WLANConfiguration3
+Action:             GetBeaconType
+Parameters:
+
+    Name                                  direction     data type
+
+    NewBeaconType                            out ->     string
+
+Service:            WLANConfiguration3
+Action:             SetBeaconType
+Parameters:
+
+    Name                                  direction     data type
+
+    NewBeaconType                         -> in         string
+
+Service:            WLANConfiguration3
+Action:             GetChannelInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewChannel                               out ->     ui1
+    NewPossibleChannels                      out ->     string
+
+Service:            WLANConfiguration3
+Action:             SetChannel
+Parameters:
+
+    Name                                  direction     data type
+
+    NewChannel                            -> in         ui1
+
+Service:            WLANConfiguration3
+Action:             GetBeaconAdvertisement
+Parameters:
+
+    Name                                  direction     data type
+
+    NewBeaconAdvertisementEnabled            out ->     boolean
+
+Service:            WLANConfiguration3
+Action:             SetBeaconAdvertisement
+Parameters:
+
+    Name                                  direction     data type
+
+    NewBeaconAdvertisementEnabled         -> in         boolean
+
+Service:            WLANConfiguration3
+Action:             GetTotalAssociations
+Parameters:
+
+    Name                                  direction     data type
+
+    NewTotalAssociations                     out ->     ui2
+
+Service:            WLANConfiguration3
+Action:             GetGenericAssociatedDeviceInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewAssociatedDeviceIndex              -> in         ui2
+    NewAssociatedDeviceMACAddress            out ->     string
+    NewAssociatedDeviceIPAddress             out ->     string
+    NewAssociatedDeviceAuthState             out ->     boolean
+    NewX_AVM-DE_Speed                        out ->     ui2
+    NewX_AVM-DE_SignalStrength               out ->     ui1
+
+Service:            WLANConfiguration3
+Action:             GetSpecificAssociatedDeviceInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewAssociatedDeviceMACAddress         -> in         string
+    NewAssociatedDeviceIPAddress             out ->     string
+    NewAssociatedDeviceAuthState             out ->     boolean
+    NewX_AVM-DE_Speed                        out ->     ui2
+    NewX_AVM-DE_SignalStrength               out ->     ui1
+
+Service:            WLANConfiguration3
+Action:             X_AVM-DE_GetSpecificAssociatedDeviceInfoByIp
+Parameters:
+
+    Name                                  direction     data type
+
+    NewAssociatedDeviceIPAddress          -> in         string
+    NewAssociatedDeviceMACAddress            out ->     string
+    NewAssociatedDeviceAuthState             out ->     boolean
+    NewX_AVM-DE_Speed                        out ->     ui2
+    NewX_AVM-DE_SignalStrength               out ->     ui1
+
+Service:            WLANConfiguration3
+Action:             X_AVM-DE_GetWLANDeviceListPath
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_WLANDeviceListPath           out ->     string
+
+Service:            WLANConfiguration3
+Action:             X_AVM-DE_SetStickSurfEnable
+Parameters:
+
+    Name                                  direction     data type
+
+    NewStickSurfEnable                    -> in         boolean
+
+Service:            WLANConfiguration3
+Action:             X_AVM-DE_GetIPTVOptimized
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_IPTVoptimize                 out ->     boolean
+
+Service:            WLANConfiguration3
+Action:             X_AVM-DE_SetIPTVOptimized
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_IPTVoptimize              -> in         boolean
+
+Service:            WLANConfiguration3
+Action:             X_AVM-DE_GetNightControl
+Parameters:
+
+    Name                                  direction     data type
+
+    NewNightControl                          out ->     string
+    NewNightTimeControlNoForcedOff           out ->     boolean
+
+Service:            WLANConfiguration3
+Action:             X_AVM-DE_GetWLANHybridMode
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                                out ->     boolean
+    NewBeaconType                            out ->     string
+    NewKeyPassphrase                         out ->     string
+    NewSSID                                  out ->     string
+    NewBSSID                                 out ->     string
+    NewTrafficMode                           out ->     string
+    NewManualSpeed                           out ->     boolean
+    NewMaxSpeedDS                            out ->     ui4
+    NewMaxSpeedUS                            out ->     ui4
+
+Service:            WLANConfiguration3
+Action:             X_AVM-DE_SetWLANHybridMode
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                             -> in         boolean
+    NewBeaconType                         -> in         string
+    NewKeyPassphrase                      -> in         string
+    NewSSID                               -> in         string
+    NewBSSID                              -> in         string
+    NewTrafficMode                        -> in         string
+    NewManualSpeed                        -> in         boolean
+    NewMaxSpeedDS                         -> in         ui4
+    NewMaxSpeedUS                         -> in         ui4
+
+Service:            WLANConfiguration3
+Action:             X_AVM-DE_GetWLANExtInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_APEnabled                    out ->     string
+    NewX_AVM-DE_APType                       out ->     string
+    NewX_AVM-DE_TimeoutActive                out ->     string
+    NewX_AVM-DE_Timeout                      out ->     string
+    NewX_AVM-DE_TimeRemain                   out ->     string
+    NewX_AVM-DE_NoForcedOff                  out ->     string
+    NewX_AVM-DE_UserIsolation                out ->     string
+    NewX_AVM-DE_EncryptionMode               out ->     string
+    NewX_AVM-DE_LastChangedStamp             out ->     ui4
+
+Service:            WLANConfiguration3
+Action:             X_AVM-DE_GetWPSInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_WPSMode                      out ->     string
+    NewX_AVM-DE_WPSStatus                    out ->     string
+
+Service:            WLANConfiguration3
+Action:             X_AVM-DE_SetWPSConfig
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_WPSMode                   -> in         string
+    NewX_AVM-DE_WPSClientPIN              -> in         string
+    NewX_AVM-DE_WPSAPPIN                     out ->     string
+    NewX_AVM-DE_WPSStatus                    out ->     string
+
+Service:            WLANConfiguration3
+Action:             X_AVM-DE_SetWLANGlobalEnable
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_WLANGlobalEnable          -> in         boolean
+
+=================================================================
+
+Service:            Hosts1
+Action:             GetHostNumberOfEntries
+Parameters:
+
+    Name                                  direction     data type
+
+    NewHostNumberOfEntries                   out ->     ui2
+
+Service:            Hosts1
+Action:             GetSpecificHostEntry
+Parameters:
+
+    Name                                  direction     data type
+
+    NewMACAddress                         -> in         string
+    NewIPAddress                             out ->     string
+    NewAddressSource                         out ->     string
+    NewLeaseTimeRemaining                    out ->     i4
+    NewInterfaceType                         out ->     string
+    NewActive                                out ->     boolean
+    NewHostName                              out ->     string
+
+Service:            Hosts1
+Action:             GetGenericHostEntry
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIndex                              -> in         ui2
+    NewIPAddress                             out ->     string
+    NewAddressSource                         out ->     string
+    NewLeaseTimeRemaining                    out ->     i4
+    NewMACAddress                            out ->     string
+    NewInterfaceType                         out ->     string
+    NewActive                                out ->     boolean
+    NewHostName                              out ->     string
+
+Service:            Hosts1
+Action:             X_AVM-DE_GetChangeCounter
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_ChangeCounter                out ->     ui4
+
+Service:            Hosts1
+Action:             X_AVM-DE_SetHostNameByMACAddress
+Parameters:
+
+    Name                                  direction     data type
+
+    NewMACAddress                         -> in         string
+    NewHostName                           -> in         string
+
+Service:            Hosts1
+Action:             X_AVM-DE_GetAutoWakeOnLANByMACAddress
+Parameters:
+
+    Name                                  direction     data type
+
+    NewMACAddress                         -> in         string
+    NewAutoWOLEnabled                        out ->     boolean
+
+Service:            Hosts1
+Action:             X_AVM-DE_SetAutoWakeOnLANByMACAddress
+Parameters:
+
+    Name                                  direction     data type
+
+    NewMACAddress                         -> in         string
+    NewAutoWOLEnabled                     -> in         boolean
+
+Service:            Hosts1
+Action:             X_AVM-DE_WakeOnLANByMACAddress
+Parameters:
+
+    Name                                  direction     data type
+
+    NewMACAddress                         -> in         string
+
+Service:            Hosts1
+Action:             X_AVM-DE_GetSpecificHostEntryByIP
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIPAddress                          -> in         string
+    NewMACAddress                            out ->     string
+    NewActive                                out ->     boolean
+    NewHostName                              out ->     string
+    NewInterfaceType                         out ->     string
+    NewX_AVM-DE_Port                         out ->     ui4
+    NewX_AVM-DE_Speed                        out ->     ui4
+    NewX_AVM-DE_UpdateAvailable              out ->     boolean
+    NewX_AVM-DE_UpdateSuccessful             out ->     string
+    NewX_AVM-DE_InfoURL                      out ->     string
+    NewX_AVM-DE_Model                        out ->     string
+    NewX_AVM-DE_URL                          out ->     string
+
+Service:            Hosts1
+Action:             X_AVM-DE_HostsCheckUpdate
+Parameters:
+
+    Name                                  direction     data type
+
+
+Service:            Hosts1
+Action:             X_AVM-DE_HostDoUpdate
+Parameters:
+
+    Name                                  direction     data type
+
+    NewMACAddress                         -> in         string
+
+Service:            Hosts1
+Action:             X_AVM-DE_GetHostListPath
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_HostListPath                 out ->     string
+
+Service:            Hosts1
+Action:             X_AVM-DE_GetMeshListPath
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_MeshListPath                 out ->     string
+
+=================================================================
+
+Service:            LANEthernetInterfaceConfig1
+Action:             SetEnable
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                             -> in         boolean
+
+Service:            LANEthernetInterfaceConfig1
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                                out ->     boolean
+    NewStatus                                out ->     string
+    NewMACAddress                            out ->     string
+    NewMaxBitRate                            out ->     string
+    NewDuplexMode                            out ->     string
+
+Service:            LANEthernetInterfaceConfig1
+Action:             GetStatistics
+Parameters:
+
+    Name                                  direction     data type
+
+    NewBytesSent                             out ->     ui4
+    NewBytesReceived                         out ->     ui4
+    NewPacketsSent                           out ->     ui4
+    NewPacketsReceived                       out ->     ui4
+
+=================================================================
+
+Service:            LANHostConfigManagement1
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDHCPServerConfigurable                out ->     boolean
+    NewDHCPRelay                             out ->     boolean
+    NewMinAddress                            out ->     string
+    NewMaxAddress                            out ->     string
+    NewReservedAddresses                     out ->     string
+    NewDHCPServerEnable                      out ->     boolean
+    NewDNSServers                            out ->     string
+    NewDomainName                            out ->     string
+    NewIPRouters                             out ->     string
+    NewSubnetMask                            out ->     string
+
+Service:            LANHostConfigManagement1
+Action:             SetDHCPServerEnable
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDHCPServerEnable                   -> in         boolean
+
+Service:            LANHostConfigManagement1
+Action:             SetIPInterface
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                             -> in         boolean
+    NewIPAddress                          -> in         string
+    NewSubnetMask                         -> in         string
+    NewIPAddressingType                   -> in         string
+
+Service:            LANHostConfigManagement1
+Action:             GetAddressRange
+Parameters:
+
+    Name                                  direction     data type
+
+    NewMinAddress                            out ->     string
+    NewMaxAddress                            out ->     string
+
+Service:            LANHostConfigManagement1
+Action:             SetAddressRange
+Parameters:
+
+    Name                                  direction     data type
+
+    NewMinAddress                         -> in         string
+    NewMaxAddress                         -> in         string
+
+Service:            LANHostConfigManagement1
+Action:             GetIPRoutersList
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIPRouters                             out ->     string
+
+Service:            LANHostConfigManagement1
+Action:             SetIPRouter
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIPRouters                          -> in         string
+
+Service:            LANHostConfigManagement1
+Action:             GetSubnetMask
+Parameters:
+
+    Name                                  direction     data type
+
+    NewSubnetMask                            out ->     string
+
+Service:            LANHostConfigManagement1
+Action:             SetSubnetMask
+Parameters:
+
+    Name                                  direction     data type
+
+    NewSubnetMask                         -> in         string
+
+Service:            LANHostConfigManagement1
+Action:             GetDNSServers
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDNSServers                            out ->     string
+
+Service:            LANHostConfigManagement1
+Action:             GetIPInterfaceNumberOfEntries
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIPInterfaceNumberOfEntries            out ->     ui2
+
+=================================================================
+
+Service:            WANCommonInterfaceConfig1
+Action:             GetCommonLinkProperties
+Parameters:
+
+    Name                                  direction     data type
+
+    NewWANAccessType                         out ->     string
+    NewLayer1UpstreamMaxBitRate              out ->     ui4
+    NewLayer1DownstreamMaxBitRate            out ->     ui4
+    NewPhysicalLinkStatus                    out ->     string
+
+Service:            WANCommonInterfaceConfig1
+Action:             GetTotalBytesSent
+Parameters:
+
+    Name                                  direction     data type
+
+    NewTotalBytesSent                        out ->     ui4
+
+Service:            WANCommonInterfaceConfig1
+Action:             GetTotalBytesReceived
+Parameters:
+
+    Name                                  direction     data type
+
+    NewTotalBytesReceived                    out ->     ui4
+
+Service:            WANCommonInterfaceConfig1
+Action:             GetTotalPacketsSent
+Parameters:
+
+    Name                                  direction     data type
+
+    NewTotalPacketsSent                      out ->     ui4
+
+Service:            WANCommonInterfaceConfig1
+Action:             GetTotalPacketsReceived
+Parameters:
+
+    Name                                  direction     data type
+
+    NewTotalPacketsReceived                  out ->     ui4
+
+Service:            WANCommonInterfaceConfig1
+Action:             X_AVM-DE_SetWANAccessType
+Parameters:
+
+    Name                                  direction     data type
+
+    NewAccessType                         -> in         string
+
+Service:            WANCommonInterfaceConfig1
+Action:             X_AVM-DE_GetOnlineMonitor
+Parameters:
+
+    Name                                  direction     data type
+
+    NewSyncGroupIndex                     -> in         ui4
+    NewTotalNumberSyncGroups                 out ->     ui4
+    NewSyncGroupName                         out ->     string
+    NewSyncGroupMode                         out ->     string
+    Newmax_ds                                out ->     ui4
+    Newmax_us                                out ->     ui4
+    Newds_current_bps                        out ->     string
+    Newmc_current_bps                        out ->     string
+    Newus_current_bps                        out ->     string
+    Newprio_realtime_bps                     out ->     string
+    Newprio_high_bps                         out ->     string
+    Newprio_default_bps                      out ->     string
+    Newprio_low_bps                          out ->     string
+
+=================================================================
+
+Service:            WANDSLInterfaceConfig1
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                                out ->     boolean
+    NewStatus                                out ->     string
+    NewDataPath                              out ->     string
+    NewUpstreamCurrRate                      out ->     i4
+    NewDownstreamCurrRate                    out ->     ui4
+    NewUpstreamMaxRate                       out ->     ui4
+    NewDownstreamMaxRate                     out ->     ui4
+    NewUpstreamNoiseMargin                   out ->     ui4
+    NewDownstreamNoiseMargin                 out ->     ui4
+    NewUpstreamAttenuation                   out ->     ui4
+    NewDownstreamAttenuation                 out ->     ui4
+    NewATURVendor                            out ->     string
+    NewATURCountry                           out ->     string
+    NewUpstreamPower                         out ->     ui2
+    NewDownstreamPower                       out ->     ui2
+
+Service:            WANDSLInterfaceConfig1
+Action:             GetStatisticsTotal
+Parameters:
+
+    Name                                  direction     data type
+
+    NewReceiveBlocks                         out ->     ui4
+    NewTransmitBlocks                        out ->     ui4
+    NewCellDelin                             out ->     ui4
+    NewLinkRetrain                           out ->     ui4
+    NewInitErrors                            out ->     ui4
+    NewInitTimeouts                          out ->     ui4
+    NewLossOfFraming                         out ->     ui4
+    NewErroredSecs                           out ->     ui4
+    NewSeverelyErroredSecs                   out ->     ui4
+    NewFECErrors                             out ->     ui4
+    NewATUCFECErrors                         out ->     ui4
+    NewHECErrors                             out ->     ui4
+    NewATUCHECErrors                         out ->     ui4
+    NewCRCErrors                             out ->     ui4
+    NewATUCCRCErrors                         out ->     ui4
+
+Service:            WANDSLInterfaceConfig1
+Action:             X_AVM-DE_GetDSLDiagnoseInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_DSLDiagnoseState             out ->     string
+    NewX_AVM-DE_CableNokDistance             out ->     i4
+    NewX_AVM-DE_DSLLastDiagnoseTime          out ->     ui4
+    NewX_AVM-DE_DSLSignalLossTime            out ->     ui4
+    NewX_AVM-DE_DSLActive                    out ->     boolean
+    NewX_AVM-DE_DSLSync                      out ->     boolean
+
+=================================================================
+
+Service:            WANDSLLinkConfig1
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                                out ->     boolean
+    NewLinkStatus                            out ->     string
+    NewLinkType                              out ->     string
+    NewDestinationAddress                    out ->     string
+    NewATMEncapsulation                      out ->     string
+    NewAutoConfig                            out ->     boolean
+    NewATMQoS                                out ->     string
+    NewATMPeakCellRate                       out ->     ui4
+    NewATMSustainableCellRate                out ->     ui4
+
+Service:            WANDSLLinkConfig1
+Action:             SetEnable
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                             -> in         boolean
+
+Service:            WANDSLLinkConfig1
+Action:             GetAutoConfig
+Parameters:
+
+    Name                                  direction     data type
+
+    NewAutoConfig                            out ->     boolean
+
+Service:            WANDSLLinkConfig1
+Action:             SetDSLLinkType
+Parameters:
+
+    Name                                  direction     data type
+
+    NewLinkType                           -> in         string
+
+Service:            WANDSLLinkConfig1
+Action:             GetDSLLinkInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewLinkType                              out ->     string
+    NewLinkStatus                            out ->     string
+
+Service:            WANDSLLinkConfig1
+Action:             SetDestinationAddress
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDestinationAddress                 -> in         string
+
+Service:            WANDSLLinkConfig1
+Action:             GetDestinationAddress
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDestinationAddress                    out ->     string
+
+Service:            WANDSLLinkConfig1
+Action:             SetATMEncapsulation
+Parameters:
+
+    Name                                  direction     data type
+
+    NewATMEncapsulation                   -> in         string
+
+Service:            WANDSLLinkConfig1
+Action:             GetATMEncapsulation
+Parameters:
+
+    Name                                  direction     data type
+
+    NewATMEncapsulation                      out ->     string
+
+Service:            WANDSLLinkConfig1
+Action:             GetStatistics
+Parameters:
+
+    Name                                  direction     data type
+
+    NewATMTransmittedBlocks                  out ->     ui4
+    NewATMReceivedBlocks                     out ->     ui4
+    NewAAL5CRCErrors                         out ->     ui4
+    NewATMCRCErrors                          out ->     ui4
+
+=================================================================
+
+Service:            WANEthernetLinkConfig1
+Action:             GetEthernetLinkStatus
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEthernetLinkStatus                    out ->     string
+
+=================================================================
+
+Service:            WANPPPConnection1
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                                out ->     boolean
+    NewConnectionStatus                      out ->     string
+    NewPossibleConnectionTypes               out ->     string
+    NewConnectionType                        out ->     string
+    NewName                                  out ->     string
+    NewUptime                                out ->     ui4
+    NewUpstreamMaxBitRate                    out ->     ui4
+    NewDownstreamMaxBitRate                  out ->     ui4
+    NewLastConnectionError                   out ->     string
+    NewIdleDisconnectTime                    out ->     ui4
+    NewRSIPAvailable                         out ->     boolean
+    NewUserName                              out ->     string
+    NewNATEnabled                            out ->     boolean
+    NewExternalIPAddress                     out ->     string
+    NewDNSServers                            out ->     string
+    NewMACAddress                            out ->     string
+    NewConnectionTrigger                     out ->     string
+    NewLastAuthErrorInfo                     out ->     string
+    NewMaxCharsUsername                      out ->     ui2
+    NewMinCharsUsername                      out ->     ui2
+    NewAllowedCharsUsername                  out ->     string
+    NewMaxCharsPassword                      out ->     ui2
+    NewMinCharsPassword                      out ->     ui2
+    NewAllowedCharsPassword                  out ->     string
+    NewTransportType                         out ->     string
+    NewRouteProtocolRx                       out ->     string
+    NewPPPoEServiceName                      out ->     string
+    NewRemoteIPAddress                       out ->     string
+    NewPPPoEACName                           out ->     string
+    NewDNSEnabled                            out ->     boolean
+    NewDNSOverrideAllowed                    out ->     boolean
+
+Service:            WANPPPConnection1
+Action:             GetConnectionTypeInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewConnectionType                        out ->     string
+    NewPossibleConnectionTypes               out ->     string
+
+Service:            WANPPPConnection1
+Action:             SetConnectionType
+Parameters:
+
+    Name                                  direction     data type
+
+    NewConnectionType                     -> in         string
+
+Service:            WANPPPConnection1
+Action:             GetStatusInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewConnectionStatus                      out ->     string
+    NewLastConnectionError                   out ->     string
+    NewUptime                                out ->     ui4
+
+Service:            WANPPPConnection1
+Action:             GetUserName
+Parameters:
+
+    Name                                  direction     data type
+
+    NewUserName                              out ->     string
+
+Service:            WANPPPConnection1
+Action:             SetUserName
+Parameters:
+
+    Name                                  direction     data type
+
+    NewUserName                           -> in         string
+
+Service:            WANPPPConnection1
+Action:             SetPassword
+Parameters:
+
+    Name                                  direction     data type
+
+    NewPassword                           -> in         string
+
+Service:            WANPPPConnection1
+Action:             GetNATRSIPStatus
+Parameters:
+
+    Name                                  direction     data type
+
+    NewRSIPAvailable                         out ->     boolean
+    NewNATEnabled                            out ->     boolean
+
+Service:            WANPPPConnection1
+Action:             SetConnectionTrigger
+Parameters:
+
+    Name                                  direction     data type
+
+    NewConnectionTrigger                  -> in         string
+
+Service:            WANPPPConnection1
+Action:             ForceTermination
+Parameters:
+
+    Name                                  direction     data type
+
+
+Service:            WANPPPConnection1
+Action:             RequestConnection
+Parameters:
+
+    Name                                  direction     data type
+
+
+Service:            WANPPPConnection1
+Action:             GetGenericPortMappingEntry
+Parameters:
+
+    Name                                  direction     data type
+
+    NewPortMappingIndex                   -> in         ui2
+    NewRemoteHost                            out ->     string
+    NewExternalPort                          out ->     ui2
+    NewProtocol                              out ->     string
+    NewInternalPort                          out ->     ui2
+    NewInternalClient                        out ->     string
+    NewEnabled                               out ->     boolean
+    NewPortMappingDescription                out ->     string
+    NewLeaseDuration                         out ->     ui4
+
+Service:            WANPPPConnection1
+Action:             GetSpecificPortMappingEntry
+Parameters:
+
+    Name                                  direction     data type
+
+    NewRemoteHost                         -> in         string
+    NewExternalPort                       -> in         ui2
+    NewProtocol                           -> in         string
+    NewInternalPort                          out ->     ui2
+    NewInternalClient                        out ->     string
+    NewEnabled                               out ->     boolean
+    NewPortMappingDescription                out ->     string
+    NewLeaseDuration                         out ->     ui4
+
+Service:            WANPPPConnection1
+Action:             AddPortMapping
+Parameters:
+
+    Name                                  direction     data type
+
+    NewRemoteHost                         -> in         string
+    NewExternalPort                       -> in         ui2
+    NewProtocol                           -> in         string
+    NewInternalPort                       -> in         ui2
+    NewInternalClient                     -> in         string
+    NewEnabled                            -> in         boolean
+    NewPortMappingDescription             -> in         string
+    NewLeaseDuration                      -> in         ui4
+
+Service:            WANPPPConnection1
+Action:             DeletePortMapping
+Parameters:
+
+    Name                                  direction     data type
+
+    NewRemoteHost                         -> in         string
+    NewExternalPort                       -> in         ui2
+    NewProtocol                           -> in         string
+
+Service:            WANPPPConnection1
+Action:             GetExternalIPAddress
+Parameters:
+
+    Name                                  direction     data type
+
+    NewExternalIPAddress                     out ->     string
+
+Service:            WANPPPConnection1
+Action:             X_GetDNSServers
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDNSServers                            out ->     string
+
+Service:            WANPPPConnection1
+Action:             GetLinkLayerMaxBitRates
+Parameters:
+
+    Name                                  direction     data type
+
+    NewUpstreamMaxBitRate                    out ->     ui4
+    NewDownstreamMaxBitRate                  out ->     ui4
+
+Service:            WANPPPConnection1
+Action:             GetPortMappingNumberOfEntries
+Parameters:
+
+    Name                                  direction     data type
+
+    NewPortMappingNumberOfEntries            out ->     ui2
+
+Service:            WANPPPConnection1
+Action:             SetRouteProtocolRx
+Parameters:
+
+    Name                                  direction     data type
+
+    NewRouteProtocolRx                    -> in         string
+
+Service:            WANPPPConnection1
+Action:             SetIdleDisconnectTime
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIdleDisconnectTime                 -> in         ui4
+
+Service:            WANPPPConnection1
+Action:             X_AVM-DE_GetAutoDisconnectTimeSpan
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_DisconnectPreventionEnable   out ->     boolean
+    NewX_AVM-DE_DisconnectPreventionHour     out ->     ui2
+
+Service:            WANPPPConnection1
+Action:             X_AVM-DE_SetAutoDisconnectTimeSpan
+Parameters:
+
+    Name                                  direction     data type
+
+    NewX_AVM-DE_DisconnectPreventionEnable-> in         boolean
+    NewX_AVM-DE_DisconnectPreventionHour  -> in         ui2
+
+=================================================================
+
+Service:            WANIPConnection1
+Action:             GetInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewEnable                                out ->     boolean
+    NewConnectionStatus                      out ->     string
+    NewPossibleConnectionTypes               out ->     string
+    NewConnectionType                        out ->     string
+    NewName                                  out ->     string
+    NewUptime                                out ->     ui4
+    NewLastConnectionError                   out ->     string
+    NewRSIPAvailable                         out ->     boolean
+    NewNATEnabled                            out ->     boolean
+    NewExternalIPAddress                     out ->     string
+    NewDNSServers                            out ->     string
+    NewMACAddress                            out ->     string
+    NewConnectionTrigger                     out ->     string
+    NewRouteProtocolRx                       out ->     string
+    NewDNSEnabled                            out ->     boolean
+    NewDNSOverrideAllowed                    out ->     boolean
+
+Service:            WANIPConnection1
+Action:             GetConnectionTypeInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewConnectionType                        out ->     string
+    NewPossibleConnectionTypes               out ->     string
+
+Service:            WANIPConnection1
+Action:             SetConnectionType
+Parameters:
+
+    Name                                  direction     data type
+
+    NewConnectionType                     -> in         string
+
+Service:            WANIPConnection1
+Action:             GetStatusInfo
+Parameters:
+
+    Name                                  direction     data type
+
+    NewConnectionStatus                      out ->     string
+    NewLastConnectionError                   out ->     string
+    NewUptime                                out ->     ui4
+
+Service:            WANIPConnection1
+Action:             GetNATRSIPStatus
+Parameters:
+
+    Name                                  direction     data type
+
+    NewRSIPAvailable                         out ->     boolean
+    NewNATEnabled                            out ->     boolean
+
+Service:            WANIPConnection1
+Action:             SetConnectionTrigger
+Parameters:
+
+    Name                                  direction     data type
+
+    NewConnectionTrigger                  -> in         string
+
+Service:            WANIPConnection1
+Action:             ForceTermination
+Parameters:
+
+    Name                                  direction     data type
+
+
+Service:            WANIPConnection1
+Action:             RequestConnection
+Parameters:
+
+    Name                                  direction     data type
+
+
+Service:            WANIPConnection1
+Action:             GetGenericPortMappingEntry
+Parameters:
+
+    Name                                  direction     data type
+
+    NewPortMappingIndex                   -> in         ui2
+    NewRemoteHost                            out ->     string
+    NewExternalPort                          out ->     ui2
+    NewProtocol                              out ->     string
+    NewInternalPort                          out ->     ui2
+    NewInternalClient                        out ->     string
+    NewEnabled                               out ->     boolean
+    NewPortMappingDescription                out ->     string
+    NewLeaseDuration                         out ->     ui4
+
+Service:            WANIPConnection1
+Action:             GetSpecificPortMappingEntry
+Parameters:
+
+    Name                                  direction     data type
+
+    NewRemoteHost                         -> in         string
+    NewExternalPort                       -> in         ui2
+    NewProtocol                           -> in         string
+    NewInternalPort                          out ->     ui2
+    NewInternalClient                        out ->     string
+    NewEnabled                               out ->     boolean
+    NewPortMappingDescription                out ->     string
+    NewLeaseDuration                         out ->     ui4
+
+Service:            WANIPConnection1
+Action:             AddPortMapping
+Parameters:
+
+    Name                                  direction     data type
+
+    NewRemoteHost                         -> in         string
+    NewExternalPort                       -> in         ui2
+    NewProtocol                           -> in         string
+    NewInternalPort                       -> in         ui2
+    NewInternalClient                     -> in         string
+    NewEnabled                            -> in         boolean
+    NewPortMappingDescription             -> in         string
+    NewLeaseDuration                      -> in         ui4
+
+Service:            WANIPConnection1
+Action:             DeletePortMapping
+Parameters:
+
+    Name                                  direction     data type
+
+    NewRemoteHost                         -> in         string
+    NewExternalPort                       -> in         ui2
+    NewProtocol                           -> in         string
+
+Service:            WANIPConnection1
+Action:             GetExternalIPAddress
+Parameters:
+
+    Name                                  direction     data type
+
+    NewExternalIPAddress                     out ->     string
+
+Service:            WANIPConnection1
+Action:             X_GetDNSServers
+Parameters:
+
+    Name                                  direction     data type
+
+    NewDNSServers                            out ->     string
+
+Service:            WANIPConnection1
+Action:             GetPortMappingNumberOfEntries
+Parameters:
+
+    Name                                  direction     data type
+
+    NewPortMappingNumberOfEntries            out ->     ui2
+
+Service:            WANIPConnection1
+Action:             SetRouteProtocolRx
+Parameters:
+
+    Name                                  direction     data type
+
+    NewRouteProtocolRx                    -> in         string
+
+Service:            WANIPConnection1
+Action:             SetIdleDisconnectTime
+Parameters:
+
+    Name                                  direction     data type
+
+    NewIdleDisconnectTime                 -> in         ui4
+
