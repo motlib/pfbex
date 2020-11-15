@@ -23,7 +23,7 @@ docker_run: docker
 .PHONY: docker_publish
 docker_publish: docker
 	TAG=$$(git tag --points-at HEAD); \
-	if [ ! -z "${TAG}" ]; \
+	if [ ! -z "$${TAG}" ]; \
 	then \
 	  echo "Tagging docker image with '$${TAG}'."; \
 	  docker tag $(APP_NAME) $(DOCKER_REPO)/$(APP_NAME):$${TAG}; \
