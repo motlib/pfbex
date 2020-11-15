@@ -9,4 +9,4 @@ RUN  python3 -m pip --no-cache-dir install -r requirements.txt
 
 ADD . /app
 
-CMD ["python3", "-m", "fbexp"]
+CMD ["python3", "-m", "pfbex"]
