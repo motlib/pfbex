@@ -14,7 +14,7 @@ requirements.txt: Pipfile.lock
 	pipenv lock -r > $@
 
 .PHONY: docker
-docker:
+docker: requirements.txt
 	docker build -t $(APP_NAME) .;
 
 docker_run: docker
