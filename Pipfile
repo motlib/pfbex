@@ -10,6 +10,7 @@ pytest = "*"
 [packages]
 prometheus-client = "*"
 fritzconnection = "*"
+tabulate = "*"
 
 [requires]
 python_version = "3.8"
