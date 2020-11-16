@@ -4,7 +4,7 @@ APP_NAME=pfbex
 DOCKER_REPO=motlib
 
 pylint:
-	pipenv run pylint --rcfile pylintrc fbexp
+	pipenv run pylint --rcfile pylintrc pfbex
 
 
 Pipfile.lock: Pipfile
