@@ -54,7 +54,7 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
         self._settings = settings
         self._cfg = metrics
 
-        for item in self._cfg:
+        for item in self._cfg.values():
             item['fails'] = 0
 
         self._serial = 'n/a'
@@ -192,12 +192,11 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
         return (label_values, value)
 
 
-    def _collect_metric(self, metric):
+    def _collect_metric(self, metric_name, metric):
         '''Collect data for one Prometheus metric.'''
 
         label_names = self._get_metric_label_names(metric)
         metric_type = metric.get('type', 'gauge')
-        metric_name = metric['metric']
 
         if metric_type == 'counter':
             met = CounterMetricFamily(
@@ -243,8 +242,8 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
     def _collect_metrics(self):
         '''Loop over all metrics configurations and collect the data.'''
 
-        for metric in self._cfg:
-            yield from self._collect_metric(metric)
+        for name, metric in self._cfg.items():
+            yield from self._collect_metric(name, metric)
 
 
     def collect(self):

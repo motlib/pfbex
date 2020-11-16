@@ -3,3 +3,4 @@
 # No we let fbexp pass through
 !pfbex
 !requirements.txt
+!conf

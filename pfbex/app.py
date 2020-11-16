@@ -6,7 +6,7 @@ from prometheus_client import start_http_server
 from prometheus_client.core import REGISTRY
 
 from .exporter import FritzBoxExporter
-from .metrics_config import METRICS_CFG
+from .metrics_config import load_all_metrics_configs
 from .logging import setup_logging, logger
 from .metadata import APP_NAME, APP_VERSION
 from .settings import EnvSettingsResolver
@@ -21,6 +21,10 @@ APP_SETTINGS_DESC = {
         'default': 'info',
         'help': "Log level, one of 'debug', 'info', 'warning' or 'error'"
     },
+    'METRICS_PATH': {
+        'default': './conf',
+        'help': 'Path to the metrics configuration files.'
+    }
 }
 
 
@@ -41,7 +45,8 @@ def main():
         'Dumping effective application settings\n' + settings.to_table())
 
     # Create exporter instance and register it with the prometheus client lib
-    exporter = FritzBoxExporter(settings, METRICS_CFG)
+    cfg = load_all_metrics_configs(settings.METRICS_PATH)
+    exporter = FritzBoxExporter(settings, cfg)
     REGISTRY.register(exporter)
 
     # Start up the server to expose the metrics.

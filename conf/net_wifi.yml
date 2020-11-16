@@ -1,0 +1,29 @@
+# Wifi Channel
+fritzbox_wifi_channel:
+  doc: Wifi channel number
+  items:
+    - service: WLANConfiguration1
+      action: GetInfo
+      attr: NewChannel
+      labels: {if: wlan1}
+
+    - service: WLANConfiguration2
+      action: GetInfo
+      attr: NewChannel
+      labels: {if: wlan2}
+
+
+# Wifi Associations
+fritzbox_wifi_associations:
+  doc: Wifi client associations
+  items:
+
+    - service: WLANConfiguration1
+      action: GetTotalAssociations
+      attr: NewTotalAssociations
+      labels: {if: wlan1}
+
+    - service: WLANConfiguration2
+      action: GetTotalAssociations
+      attr: NewTotalAssociations
+      labels: {if: wlan2}

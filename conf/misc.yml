@@ -1,0 +1,10 @@
+# Misc metrics
+
+fritzbox_ppp_connection_state:
+  doc: PPP connection state
+  items:
+
+    - service: WANPPPConnection1
+      action: GetStatusInfo
+      attr: NewConnectionStatus
+      fct: "lambda x: 1.0 if x == 'Connected' else 0.0"

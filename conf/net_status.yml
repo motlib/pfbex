@@ -1,0 +1,53 @@
+# Network enabled
+fritzbox_net_enabled:
+  doc: Network interface enabled
+  items:
+    - service: LANEthernetInterfaceConfig1
+      action: GetInfo
+      attr: NewEnable
+      labels: {if: lan}
+
+    - service: WLANConfiguration1
+      action: GetInfo
+      attr: NewEnable
+      labels: {if: wlan1}
+
+    - service: WLANConfiguration2
+      action: GetInfo
+      attr: NewEnable
+      labels: {if: wlan2}
+
+    # not available on 6591 Cable
+    - service: WANDSLInterfaceConfig1
+      action: GetInfo
+      attr: NewEnable
+      labels: {if: dsl}
+
+# Network status
+fritzbox_net_status:
+  doc: Network interface status
+  items:
+    - service: LANEthernetInterfaceConfig1
+      action: GetInfo
+      attr: NewStatus
+      labels: {if: lan}
+      fct: "lambda x: 1 if x == 'Up' else 0"
+
+    - service: WLANConfiguration1
+      action: GetInfo
+      attr: NewStatus
+      labels: {if: wlan1}
+      fct: "lambda x: 1 if x == 'Up' else 0"
+
+    - service: WLANConfiguration2
+      action: GetInfo
+      attr: NewStatus
+      labels: {if: wlan1}
+      fct: "lambda x: 1 if x == 'Up' else 0"
+
+    # not available on 6591 Cable
+    - service: WANDSLInterfaceConfig1
+      action: GetInfo
+      attr: NewStatus
+      labels: {if: dsl}
+      fct: "lambda x: 1 if x == 'Up' else 0"

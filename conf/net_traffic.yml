@@ -1,0 +1,73 @@
+# Network bytes
+
+fritzbox_net_data:
+  type: counter
+  doc: Network data volume
+  items:
+    - service: LANEthernetInterfaceConfig1
+      action: GetStatistics
+      attr: NewBytesReceived
+      labels:  {if: lan, dir: rx}
+
+
+    - service: LANEthernetInterfaceConfig1
+      action: GetStatistics
+      attr: NewBytesSent
+      labels:  {if: lan, dir: tx}
+
+
+    - service: WANCommonInterfaceConfig1
+      action: GetTotalBytesSent
+      attr: NewTotalBytesSent
+      labels: {if: wan, dir: tx}
+
+
+    - service: WANCommonInterfaceConfig1
+      action: GetTotalBytesReceived
+      attr: NewTotalBytesReceived
+      labels: {if: wan, dir: rx}
+
+# Network packets
+fritzbox_net_packets:
+  type: counter
+  doc: Network data packets
+  items:
+    - service: LANEthernetInterfaceConfig1
+      action: GetStatistics
+      attr: NewPacketsReceived
+      labels:  {if: lan, dir: rx}
+
+    - service: LANEthernetInterfaceConfig1
+      action: GetStatistics
+      attr: NewPacketsSent
+      labels:  {if: lan, dir: tx}
+
+    - service: WANCommonInterfaceConfig1
+      action: GetTotalPacketsReceived
+      attr: NewTotalPacketsReceived
+      labels:  {if: wan, dir: rx}
+
+    - service: WANCommonInterfaceConfig1
+      action: GetTotalPacketsSent
+      attr: NewTotalPacketsSent
+      labels:  {if: wan, dir: tx}
+
+    - service: WLANConfiguration1
+      action: GetStatistics
+      attr: NewTotalPacketsSent
+      labels:  {if: wlan1, dir: tx}
+
+    - service: WLANConfiguration1
+      action: GetStatistics
+      attr: NewTotalPacketsReceived
+      labels:  {if: wlan1, dir: rx}
+
+    - service: WLANConfiguration2
+      action: GetStatistics
+      attr: NewTotalPacketsSent
+      labels:  {if: wlan2, dir: tx}
+
+    - service: WLANConfiguration2
+      action: GetStatistics
+      attr: NewTotalPacketsReceived
+      labels:  {if: wlan2, dir: rx}
