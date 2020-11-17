@@ -41,11 +41,12 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
         },
     }
 
-    request_tm = Summary(
-        'fb_exporter_request',
-        'Time and count for each request to the FritzBox')
 
     def __init__(self, settings, metrics):
+        self.request_tm = Summary(
+            'pfbex_tr64_requests',
+            'Time and count for each TR-64 request to the FritzBox')
+
         self.conn = fc.FritzConnection(
             address=settings.FRITZ_HOST,
             user=settings.FRITZ_USER,
@@ -74,7 +75,6 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
             self._last_clear_time = now
 
 
-    @request_tm.time()
     def _call_action(self, service, action):
         '''Call an TR-64 service action and return the result.
 
@@ -91,7 +91,8 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
 
         # Retrieve service information
         try:
-            res = self.conn.call_action(service, action)
+            with self.request_tm.time():
+                res = self.conn.call_action(service, action)
         except Exception as ex: # pylint: disable=broad-except
             res = None
 
