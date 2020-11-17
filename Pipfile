@@ -11,6 +11,7 @@ pytest = "*"
 prometheus-client = "*"
 fritzconnection = "*"
 tabulate = "*"
+pyyaml = "*"
 
 [requires]
 python_version = "3.8"

@@ -1,0 +1,46 @@
+# DSL related interface metrics
+
+fritzbox_dsl_datarate:
+  doc: DSL datarate in kbps
+  items:
+    - service: WANDSLInterfaceConfig1
+      action: GetInfo
+      attr: NewUpstreamCurrRate
+      labels: {dir: tx}
+
+    - service: WANDSLInterfaceConfig1
+      action: GetInfo
+      attr: NewDownstreamCurrRate
+      labels: {dir: rx}
+
+
+fritzbox_dsl_attenuation:
+  doc: DSL attenuation in dB
+  items:
+    - service: WANDSLInterfaceConfig1
+      action: GetInfo
+      attr: NewUpstreamAttenuation
+      labels: {dir: tx}
+      fct: "lambda x: x / 10.0"
+
+    - service: WANDSLInterfaceConfig1
+      action: GetInfo
+      attr: NewUpstreamAttenuation
+      labels: {dir: rx}
+      fct: "lambda x: x / 10.0"
+
+
+fritxbox_dsl_noise_margin:
+  doc: DSL noise margin in dB
+  items:
+    - service: WANDSLInterfaceConfig1
+      action: GetInfo
+      attr: NewUpstreamNoiseMargin
+      labels: {dir: tx}
+      fct: "lambda x: x / 10.0"
+
+    - service: WANDSLInterfaceConfig1
+      action: GetInfo
+      attr: NewDownstreamNoiseMargin
+      labels: {dir: rx}
+      fct: "lambda x: x / 10.0"
