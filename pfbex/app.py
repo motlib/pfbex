@@ -1,57 +1,58 @@
 '''Application main function'''
 
-import os
 import time
 
 from prometheus_client import start_http_server
 from prometheus_client.core import REGISTRY
 
 from .exporter import FritzBoxExporter
-from .metrics_config import METRICS_CFG
+from .metrics_config import load_all_metrics_configs
 from .logging import setup_logging, logger
 from .metadata import APP_NAME, APP_VERSION
+from .settings import EnvSettingsResolver
 
 
-DEFAULT_HOST = 'fritz.box'
-DEFAULT_PORT = '8765'
-DEFAULT_LOGLEVEL = 'info'
+APP_SETTINGS_DESC = {
+    'HTTP_PORT': {
+        'default': 8765,
+        'help': 'Port for the integrated http web server'
+    },
+    'LOGLEVEL': {
+        'default': 'info',
+        'help': "Log level, one of 'debug', 'info', 'warning' or 'error'"
+    },
+    'METRICS_PATH': {
+        'default': './conf',
+        'help': 'Path to the metrics configuration files.'
+    }
+}
 
 
 def main():
     '''Main method initializing the application and starting the exporter.'''
 
-    level = os.getenv('LOGLEVEL', DEFAULT_LOGLEVEL).upper()
+    settings = EnvSettingsResolver(
+        FritzBoxExporter.config_desc,
+        APP_SETTINGS_DESC)
 
+    level = settings.LOGLEVEL
     setup_logging(level)
 
     logger.info(f'Starting {APP_NAME} version {APP_VERSION}.')
     logger.info(f"Log level is set to '{level}'.")
 
-    host = os.getenv('FRITZ_HOST', DEFAULT_HOST)
-    user = os.getenv('FRITZ_USER', None)
-    password = os.getenv('FRITZ_PASS', None)
+    logger.debug(
+        'Dumping effective application settings\n' + settings.to_table())
 
-    if (user is None) or (password is None):
-        logger.error(
-            'User and/or password to log in to FritzBox are not available. '
-            'Please make sure to set FRITZ_USER and FRITZ_PASS environment '
-            'variables correctly.')
-
-        return 1
-
-    exporter = FritzBoxExporter(
-        host,
-        user,
-        password,
-        METRICS_CFG)
-
+    # Create exporter instance and register it with the prometheus client lib
+    cfg = load_all_metrics_configs(settings.METRICS_PATH)
+    exporter = FritzBoxExporter(settings, cfg)
     REGISTRY.register(exporter)
 
     # Start up the server to expose the metrics.
-    port = int(os.getenv('FRITZ_EXPORTER_PORT', DEFAULT_PORT))
-    logger.info(f'Web server is listening on port {port}.')
+    logger.info(f'Web server is listening on port {settings.HTTP_PORT}.')
+    start_http_server(settings.HTTP_PORT)
 
-    start_http_server(port)
-
+    # Now we wait for incoming HTTP requests
     while True:
         time.sleep(10000)

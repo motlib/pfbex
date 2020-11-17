@@ -1,5 +1,7 @@
 '''FritzBox exporter implementation'''
 
+from datetime import datetime
+
 import fritzconnection as fc
 from prometheus_client import Summary
 from prometheus_client.core import CounterMetricFamily, GaugeMetricFamily
@@ -9,38 +11,70 @@ from .logging import logger
 
 MAX_FAILS = 3
 
+# Minimum time before the cache is updated again with new data from the FritzBox
+MIN_UPDATE_TIME = 30
+
+
 class FritzBoxExporter(): # pylint: disable=too-few-public-methods
     '''FrizBox exporter implementation retrieving metrics from a FritzBox by
     TR-064. This is used by the prometheus client implementation to publish the
     metrics.'''
 
+    config_desc = {
+        'FRITZ_HOST': {
+            'default': 'fritz.box',
+            'help': 'Hostname of the FritzBox to query.'
+        },
+        'FRITZ_USER': {
+            'required': True,
+            'help': 'Username to log in to the FritzBox to retrieve metrics'
+        },
+        'FRITZ_PASS': {
+            'required': True,
+            'help': 'Password to log in to the FritzBox to retrieve metrics'
+        },
+        'CACHE_TIME': {
+            'default': 30,
+            'help': (
+                'Time to keep results in an internal cache before querying the '
+                'FritzBox again')
+        },
+    }
 
-    request_tm = Summary(
-        'fb_exporter_request',
-        'Time and count for each request to the FritzBox')
 
-    def __init__(self, host, user, passwd, cfg):
+    def __init__(self, settings, metrics):
+        self.request_tm = Summary(
+            'pfbex_tr64_requests',
+            'Time and count for each TR-64 request to the FritzBox')
+
         self.conn = fc.FritzConnection(
-            address=host,
-            user=user,
-            password=passwd)
+            address=settings.FRITZ_HOST,
+            user=settings.FRITZ_USER,
+            password=settings.FRITZ_PASS)
 
-        self._cfg = cfg
+        self._settings = settings
+        self._cfg = metrics
 
-        for item in self._cfg:
+        for item in self._cfg.values():
             item['fails'] = 0
 
         self._serial = 'n/a'
 
         self._data = {}
+        self._last_clear_time = datetime.now()
 
 
     def _reset_request_cache(self):
         '''Clear the request result cache.'''
-        self._data.clear()
+
+        now = datetime.now()
+        if (now - self._last_clear_time).seconds > MIN_UPDATE_TIME:
+            logger.debug('Clearing request cache.')
+            self._data.clear()
+
+            self._last_clear_time = now
 
 
-    @request_tm.time()
     def _call_action(self, service, action):
         '''Call an TR-64 service action and return the result.
 
@@ -57,7 +91,8 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
 
         # Retrieve service information
         try:
-            res = self.conn.call_action(service, action)
+            with self.request_tm.time():
+                res = self.conn.call_action(service, action)
         except Exception as ex: # pylint: disable=broad-except
             res = None
 
@@ -158,12 +193,11 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
         return (label_values, value)
 
 
-    def _collect_metric(self, metric):
+    def _collect_metric(self, metric_name, metric):
         '''Collect data for one Prometheus metric.'''
 
         label_names = self._get_metric_label_names(metric)
         metric_type = metric.get('type', 'gauge')
-        metric_name = metric['metric']
 
         if metric_type == 'counter':
             met = CounterMetricFamily(
@@ -203,14 +237,14 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
             yield met
         else:
             logger.debug(
-                f"Skipping metric '{metric_name}', because no items were added.")
+                f"Dropping metric '{metric_name}', because no data was added.")
 
 
     def _collect_metrics(self):
         '''Loop over all metrics configurations and collect the data.'''
 
-        for metric in self._cfg:
-            yield from self._collect_metric(metric)
+        for name, metric in self._cfg.items():
+            yield from self._collect_metric(name, metric)
 
 
     def collect(self):

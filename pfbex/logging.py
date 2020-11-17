@@ -17,7 +17,7 @@ def setup_logging(level):
         'version': 1,
         'loggers': {
             'pfbex': {
-                'level': level
+                'level': level.upper()
             }
         }
     })

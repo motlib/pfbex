@@ -1,0 +1,42 @@
+# WAN related interface metrics
+
+fritzbox_wan_max_datarate:
+  doc: WAN maximum datarate in bits per second
+  items:
+    - service: WANCommonIFC1
+      action: GetCommonLinkProperties
+      attr: NewLayer1UpstreamMaxBitRate
+      labels: {dir: tx}
+
+    - service: WANCommonIFC1
+      action: GetCommonLinkProperties
+      attr: NewLayer1DownstreamMaxBitRate
+      labels: {dir: rx}
+
+
+fritzbox_wan_datarate:
+  doc: WAN datarate in bytes per second
+  items:
+    - service: WANCommonIFC1
+      action: GetAddonInfos
+      attr: NewByteReceiveRate
+      labels: {dir: up}
+
+    - service: WANCommonIFC1
+      action: GetAddonInfos
+      attr: NewByteSendRate
+      labels: {dir: down}
+
+
+fritzbox_wan_packetrate:
+  doc: WAN packet rate in packets per second
+  items:
+    - service: WANCommonIFC1
+      action: GetAddonInfos
+      attr: NewPacketReceiveRate
+      labels: {dir: rx}
+
+    - service: WANCommonIFC1
+      action: GetAddonInfos
+      attr: NewPacketSendRate
+      labels: {dir: tx}
