@@ -12,18 +12,30 @@ fritzbox_wifi_channel:
       attr: NewChannel
       labels: {if: wlan2}
 
+    - service: WLANConfiguration3
+      action: GetInfo
+      attr: NewChannel
+      labels: {if: wlan3}
 
 # Wifi Associations
 fritzbox_wifi_associations:
   doc: Wifi client associations
   items:
 
+    # 2.4GHz network on 6591
     - service: WLANConfiguration1
       action: GetTotalAssociations
       attr: NewTotalAssociations
       labels: {if: wlan1}
 
+    # 5GHz network on 6591
     - service: WLANConfiguration2
       action: GetTotalAssociations
       attr: NewTotalAssociations
       labels: {if: wlan2}
+
+    # Guest network on 6591
+    - service: WLANConfiguration3
+      action: GetTotalAssociations
+      attr: NewTotalAssociations
+      labels: {if: wlan3}

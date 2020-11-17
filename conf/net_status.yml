@@ -17,11 +17,22 @@ fritzbox_net_enabled:
       attr: NewEnable
       labels: {if: wlan2}
 
+    - service: WLANConfiguration3
+      action: GetInfo
+      attr: NewEnable
+      labels: {if: wlan3}
+
     # not available on 6591 Cable
     - service: WANDSLInterfaceConfig1
       action: GetInfo
       attr: NewEnable
       labels: {if: dsl}
+
+    - service: WANIPConnection1
+      action: GetInfo
+      attr: NewEnable
+      labels: {if: wan_ip}
+
 
 # Network status
 fritzbox_net_status:
@@ -45,9 +56,27 @@ fritzbox_net_status:
       labels: {if: wlan1}
       fct: "lambda x: 1 if x == 'Up' else 0"
 
+    - service: WLANConfiguration3
+      action: GetInfo
+      attr: NewStatus
+      labels: {if: wlan3}
+      fct: "lambda x: 1 if x == 'Up' else 0"
+
     # not available on 6591 Cable
     - service: WANDSLInterfaceConfig1
       action: GetInfo
       attr: NewStatus
       labels: {if: dsl}
       fct: "lambda x: 1 if x == 'Up' else 0"
+
+    - service: WANCommonIFC1
+      action: GetCommonLinkProperties
+      attr: NewPhysicalLinkStatus
+      labels: {if: wan}
+      fct: "lambda x: 1 if x == 'Up' else 0"
+
+    - service: WANIPConn1
+      action: GetStatusInfo
+      attr: NewConnectionStatus
+      labels: {if: wan_ip}
+      fct: "lambda x: 1 if x == 'Connected' else 0"

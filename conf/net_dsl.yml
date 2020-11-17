@@ -6,12 +6,12 @@ fritzbox_dsl_datarate:
     - service: WANDSLInterfaceConfig1
       action: GetInfo
       attr: NewUpstreamCurrRate
-      labels: {dir: up}
+      labels: {dir: tx}
 
     - service: WANDSLInterfaceConfig1
       action: GetInfo
-      attr: NewUpstreamCurrRate
-      labels: {dir: down}
+      attr: NewDownstreamCurrRate
+      labels: {dir: rx}
 
 
 fritzbox_dsl_attenuation:
@@ -20,13 +20,13 @@ fritzbox_dsl_attenuation:
     - service: WANDSLInterfaceConfig1
       action: GetInfo
       attr: NewUpstreamAttenuation
-      labels: {dir: up}
+      labels: {dir: tx}
       fct: "lambda x: x / 10.0"
 
     - service: WANDSLInterfaceConfig1
       action: GetInfo
       attr: NewUpstreamAttenuation
-      labels: {dir: down}
+      labels: {dir: rx}
       fct: "lambda x: x / 10.0"
 
 
@@ -36,11 +36,11 @@ fritxbox_dsl_noise_margin:
     - service: WANDSLInterfaceConfig1
       action: GetInfo
       attr: NewUpstreamNoiseMargin
-      labels: {dir: up}
+      labels: {dir: tx}
       fct: "lambda x: x / 10.0"
 
     - service: WANDSLInterfaceConfig1
       action: GetInfo
-      attr: NewUpstreamNoiseMargin
-      labels: {dir: down}
+      attr: NewDownstreamNoiseMargin
+      labels: {dir: rx}
       fct: "lambda x: x / 10.0"

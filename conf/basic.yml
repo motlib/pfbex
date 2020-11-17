@@ -1,4 +1,4 @@
-# Uptime
+
 fritzbox_uptime:
   type: counter
   doc: Fritzbox uptime
@@ -19,10 +19,18 @@ fritzbox_uptime:
       attr: NewUptime
       labels: {type: wan_ppp_conn}
 
-# Software Update Available
+
 fritzbox_update_available:
   doc: Fritzbox software update available
   items:
     - service: UserInterface1
       action: GetInfo
       attr: NewUpgradeAvailable
+
+
+fritzbox_new_password_required:
+  doc: Fritzbox new password required
+  items:
+    - service: UserInterface1
+      action: GetInfo
+      attr: NewPasswordRequired

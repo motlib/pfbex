@@ -9,23 +9,21 @@ fritzbox_net_data:
       attr: NewBytesReceived
       labels:  {if: lan, dir: rx}
 
-
     - service: LANEthernetInterfaceConfig1
       action: GetStatistics
       attr: NewBytesSent
       labels:  {if: lan, dir: tx}
 
-
-    - service: WANCommonInterfaceConfig1
-      action: GetTotalBytesSent
+    - service: WANCommonIFC1
+      action: GetAddonInfos
       attr: NewTotalBytesSent
       labels: {if: wan, dir: tx}
 
-
-    - service: WANCommonInterfaceConfig1
-      action: GetTotalBytesReceived
+    - service: WANCommonIFC1
+      action: GetAddonInfos
       attr: NewTotalBytesReceived
-      labels: {if: wan, dir: rx}
+      labels: {if: wani, dir: rx}
+
 
 # Network packets
 fritzbox_net_packets:
@@ -42,32 +40,74 @@ fritzbox_net_packets:
       attr: NewPacketsSent
       labels:  {if: lan, dir: tx}
 
-    - service: WANCommonInterfaceConfig1
+    - service: WANCommonIFC1
       action: GetTotalPacketsReceived
       attr: NewTotalPacketsReceived
       labels:  {if: wan, dir: rx}
 
-    - service: WANCommonInterfaceConfig1
+    - service: WANCommonIFC1
       action: GetTotalPacketsSent
       attr: NewTotalPacketsSent
       labels:  {if: wan, dir: tx}
+
+    # 2.4GHz network on 6591
+    - service: WLANConfiguration1
+      action: GetStatistics
+      attr: NewTotalPacketsReceived
+      labels:  {if: wlan1, dir: rx}
 
     - service: WLANConfiguration1
       action: GetStatistics
       attr: NewTotalPacketsSent
       labels:  {if: wlan1, dir: tx}
 
-    - service: WLANConfiguration1
+    # 5GHz network on 6591
+    - service: WLANConfiguration2
       action: GetStatistics
       attr: NewTotalPacketsReceived
-      labels:  {if: wlan1, dir: rx}
+      labels:  {if: wlan2, dir: rx}
 
     - service: WLANConfiguration2
       action: GetStatistics
       attr: NewTotalPacketsSent
       labels:  {if: wlan2, dir: tx}
 
-    - service: WLANConfiguration2
+    # Guest network on 6591
+    - service: WLANConfiguration3
       action: GetStatistics
       attr: NewTotalPacketsReceived
-      labels:  {if: wlan2, dir: rx}
+      labels:  {if: wlan3, dir: rx}
+
+    - service: WLANConfiguration3
+      action: GetStatistics
+      attr: NewTotalPacketsSent
+      labels:  {if: wlan3, dir: tx}
+
+
+fritzbox_net_datarate:
+  type: gauge
+  doc: Datarate
+  items:
+    - service: WANCommonIFC1
+      action: GetAddonInfos
+      attr: NewByteReceiveRate
+      labels: {if: wan, dir: rx}
+
+    - service: WANCommonIFC1
+      action: GetAddonInfos
+      attr: NewByteSendRate
+      labels: {if: wan, dir: tx}
+
+fritzbox_net_packetrate:
+  type: gauge
+  doc: Packet rate
+  items:
+    - service: WANCommonIFC1
+      action: GetAddonInfos
+      attr: NewPacketReceiveRate
+      labels: {if: wanifc1, dir: rx}
+
+    - service: WANCommonIFC1
+      action: GetAddonInfos
+      attr: NewPacketSendRate
+      labels: {if: wanifc1, dir: tx}
