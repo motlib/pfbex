@@ -33,11 +33,11 @@ def process_action(conn, service, action):
     outargs = sum(1 for arg in args if arg.direction == 'out')
 
     if inargs:
-        print(f'Skipping {service.name}:{action.name} because of in args.')
+        print(f'Skipping {service.name}:{action.name} because it has input args.')
         return
 
     if not outargs:
-        print(f'Skipping {service.name}:{action.name} because of no out args.')
+        print(f'Skipping {service.name}:{action.name} because it has no output args.')
         return
 
     print(f'Retrieving {service.name}:{action.name}.')
@@ -63,6 +63,7 @@ def process_service(conn, service):
 
 def process_all(conn):
     '''Handle all services'''
+
     for service_name, service in conn.services.items():
         yield from process_service(conn, service)
 
@@ -79,15 +80,20 @@ def main():
         user=settings.FRITZ_USER,
         password=settings.FRITZ_PASS)
 
+
+    results = []
+    results.extend(process_all(conn))
+    results.sort(key=lambda e: (e[0], e[1],))
+
     with open(filename, 'w', newline='') as fhdl:
         writer = csv.writer(fhdl)
 
         writer.writerow(['Service', 'Action', 'Attribute', 'Value'])
 
-        for row in process_all(conn):
+        for row in results:
             writer.writerow(row)
 
-    print(f'Results written to {filename}.')
+    print(f'Wrote {len(results)} services / actions to {filename}.')
 
 if __name__ == '__main__':
     main()
