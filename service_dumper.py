@@ -87,7 +87,7 @@ def main():
         for row in process_all(conn):
             writer.writerow(row)
 
-    print(f'Results written to {filename}.'
+    print(f'Results written to {filename}.')
 
 if __name__ == '__main__':
     main()
