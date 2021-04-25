@@ -1,6 +1,10 @@
+# -*- mode:conf -*-
+
 # First we ignore everything
 *
+
 # No we let fbexp pass through
 !pfbex
-!requirements.txt
 !conf
+!Pipfile
+!Pipfile.lock
