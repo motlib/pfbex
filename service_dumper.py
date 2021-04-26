@@ -1,7 +1,9 @@
 '''Utility to dump all TR-064 service actions of a FritzBox including their
 values.'''
 
+from argparse import ArgumentParser
 import csv
+import logging
 
 import fritzconnection as fc
 
@@ -33,21 +35,29 @@ def process_action(conn, service, action):
     outargs = sum(1 for arg in args if arg.direction == 'out')
 
     if inargs:
-        print(f'Skipping {service.name}:{action.name} because of in args.')
+        logging.info(
+            f'Skipping {service.name}:{action.name} because it has input args.')
         return
 
     if not outargs:
-        print(f'Skipping {service.name}:{action.name} because of no out args.')
+        logging.info(
+            f'Skipping {service.name}:{action.name} because it has no output '
+            'args.')
         return
 
-    print(f'Retrieving {service.name}:{action.name}.')
+    logging.debug(f'Retrieving {service.name}:{action.name}.')
 
     try:
         res = conn.call_action(service.name, action.name)
 
         if not res:
+            logging.warning(
+                'No response returned when accessing '
+                f'{service.name}:{action.name}')
             return
-    except:
+    except Exception as ex: # pylint: disable=broad-except
+        logging.exception(
+            f'Failed to access {service.name}:{action.name}: {ex}')
         return
 
     for attr, val in res.items():
@@ -63,14 +73,45 @@ def process_service(conn, service):
 
 def process_all(conn):
     '''Handle all services'''
-    for service_name, service in conn.services.items():
+
+    for service in conn.services.values():
         yield from process_service(conn, service)
+
+
+def parse_args():
+    '''Parse command-line arguments and return the result.'''
+
+    parser = ArgumentParser()
+
+    parser.add_argument(
+        'csvfile',
+        type=str,
+        help='Write the query results to this file.')
+
+    parser.add_argument(
+        '-d', '--data',
+        action='store_true',
+        help=(
+            'Do dump service response data. By default the data is not included '
+            'in the dump to protect sensitive information'))
+
+    parser.add_argument(
+        '-v', '--verbose',
+        action='store_true',
+        help=('Log verbose information'))
+
+
+    return parser.parse_args()
 
 
 def main():
     '''Application entry point.'''
 
-    filename = 'dump.csv'
+    args = parse_args()
+
+    logging.basicConfig(
+        format='%(asctime)-15s %(levelname)s: %(message)s',
+        level=(logging.DEBUG if args.verbose else logging.INFO))
 
     settings = EnvSettingsResolver(SETTINGS_DESC)
 
@@ -79,15 +120,24 @@ def main():
         user=settings.FRITZ_USER,
         password=settings.FRITZ_PASS)
 
-    with open(filename, 'w', newline='') as fhdl:
+
+    results = []
+    results.extend(process_all(conn))
+    results.sort(key=lambda e: (e[0], e[1], e[2]))
+
+    with open(args.csvfile, 'w', newline='') as fhdl:
         writer = csv.writer(fhdl)
 
         writer.writerow(['Service', 'Action', 'Attribute', 'Value'])
 
-        for row in process_all(conn):
-            writer.writerow(row)
+        for row in results:
 
-    print(f'Results written to {filename}.'
+            if args.data:
+                writer.writerow(row)
+            else:
+                writer.writerow(row[0:3])
+
+    logging.info(f'Wrote {len(results)} services / actions to {args.csvfile}.')
 
 if __name__ == '__main__':
     main()
