@@ -2,6 +2,7 @@
 values.'''
 
 import csv
+import logging
 
 import fritzconnection as fc
 
@@ -33,21 +34,29 @@ def process_action(conn, service, action):
     outargs = sum(1 for arg in args if arg.direction == 'out')
 
     if inargs:
-        print(f'Skipping {service.name}:{action.name} because it has input args.')
+        logging.info(
+            f'Skipping {service.name}:{action.name} because it has input args.')
         return
 
     if not outargs:
-        print(f'Skipping {service.name}:{action.name} because it has no output args.')
+        logging.info(
+            f'Skipping {service.name}:{action.name} because it has no output '
+            'args.')
         return
 
-    print(f'Retrieving {service.name}:{action.name}.')
+    logging.debug(f'Retrieving {service.name}:{action.name}.')
 
     try:
         res = conn.call_action(service.name, action.name)
 
         if not res:
+            logging.warning(
+                f'No response returned when accessing '
+                '{service.name}:{action.name}')
             return
-    except:
+    except Exception as ex:
+        logging.exception(
+            f'Failed to access {service.name}:{action.name}: {ex}')
         return
 
     for attr, val in res.items():
@@ -71,6 +80,10 @@ def process_all(conn):
 def main():
     '''Application entry point.'''
 
+    logging.basicConfig(
+        format='%(asctime)-15s %(levelname)s: %(message)s',
+        level=logging.INFO)
+
     filename = 'dump.csv'
 
     settings = EnvSettingsResolver(SETTINGS_DESC)
@@ -93,7 +106,7 @@ def main():
         for row in results:
             writer.writerow(row)
 
-    print(f'Wrote {len(results)} services / actions to {filename}.')
+    logging.info(f'Wrote {len(results)} services / actions to {filename}.')
 
 if __name__ == '__main__':
     main()
