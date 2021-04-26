@@ -1,6 +1,7 @@
 '''Utility to dump all TR-064 service actions of a FritzBox including their
 values.'''
 
+from argparse import ArgumentParser
 import csv
 import logging
 
@@ -77,14 +78,38 @@ def process_all(conn):
         yield from process_service(conn, service)
 
 
+def parse_args():
+    parser = ArgumentParser()
+
+    parser.add_argument(
+        'csvfile',
+        type=str,
+        help='Write the query results to this file.')
+
+    parser.add_argument(
+        '-d', '--data',
+        action='store_true',
+        help=(
+            'Do dump service response data. By default the data is not included '
+            'in the dump to protect sensitive information'))
+
+    parser.add_argument(
+        '-v', '--verbose',
+        action='store_true',
+        help=('Log verbose information'))
+
+
+    return parser.parse_args()
+
+
 def main():
     '''Application entry point.'''
 
+    args = parse_args()
+
     logging.basicConfig(
         format='%(asctime)-15s %(levelname)s: %(message)s',
-        level=logging.INFO)
-
-    filename = 'dump.csv'
+        level=(logging.DEBUG if args.verbose else logging.INFO))
 
     settings = EnvSettingsResolver(SETTINGS_DESC)
 
@@ -96,17 +121,21 @@ def main():
 
     results = []
     results.extend(process_all(conn))
-    results.sort(key=lambda e: (e[0], e[1],))
+    results.sort(key=lambda e: (e[0], e[1], e[2]))
 
-    with open(filename, 'w', newline='') as fhdl:
+    with open(args.csvfile, 'w', newline='') as fhdl:
         writer = csv.writer(fhdl)
 
         writer.writerow(['Service', 'Action', 'Attribute', 'Value'])
 
         for row in results:
-            writer.writerow(row)
 
-    logging.info(f'Wrote {len(results)} services / actions to {filename}.')
+            if args.data:
+                writer.writerow(row)
+            else:
+                writer.writerow(row[0:3])
+
+    logging.info(f'Wrote {len(results)} services / actions to {args.csvfile}.')
 
 if __name__ == '__main__':
     main()
