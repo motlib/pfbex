@@ -52,10 +52,10 @@ def process_action(conn, service, action):
 
         if not res:
             logging.warning(
-                f'No response returned when accessing '
-                '{service.name}:{action.name}')
+                'No response returned when accessing '
+                f'{service.name}:{action.name}')
             return
-    except Exception as ex:
+    except Exception as ex: # pylint: disable=broad-except
         logging.exception(
             f'Failed to access {service.name}:{action.name}: {ex}')
         return
@@ -74,11 +74,13 @@ def process_service(conn, service):
 def process_all(conn):
     '''Handle all services'''
 
-    for service_name, service in conn.services.items():
+    for service in conn.services.values():
         yield from process_service(conn, service)
 
 
 def parse_args():
+    '''Parse command-line arguments and return the result.'''
+
     parser = ArgumentParser()
 
     parser.add_argument(
