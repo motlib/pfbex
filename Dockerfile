@@ -1,4 +1,4 @@
-FROM python:3.8-alpine as base
+FROM python:3.9-alpine as base
 
 # Temporary container to install python dependencies with pipenv
 FROM base AS python-deps
