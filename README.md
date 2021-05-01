@@ -4,6 +4,9 @@
 and provides metrics in a format to be processed by [Prometheus]. This exporter
 is initially based on the exporter developed by Patrick Dreker.
 
+You can refer to the [changelog](./CHANGELOG.md) for information about the
+changes in each version of pfbex.
+
 ## Getting Started
 
 The preferred way is to run `pfbex` as a Docker container.
@@ -23,7 +26,7 @@ down on this page to `Fritz!Box Benutzer` and click `Bearbeiten`:
 
 ![Section for editing and adding users](docs/fritzbox_users.png)
 
-You can start the container with `docker-compose up --build`. To run it in
+Now you can start the container with `docker-compose up --build`. To run it in
 background, use `docker-compose up --build -d`.
 
 To check if the container is up and running correctly, you can use a web browser
