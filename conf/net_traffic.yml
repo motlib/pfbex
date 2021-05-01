@@ -2,7 +2,7 @@
 
 fritzbox_net_data:
   type: counter
-  doc: Network data volume
+  doc: Network data volume in bytes
   items:
     - service: LANEthernetInterfaceConfig1
       action: GetStatistics
@@ -22,7 +22,7 @@ fritzbox_net_data:
     - service: WANCommonIFC1
       action: GetAddonInfos
       attr: NewTotalBytesReceived
-      labels: {if: wani, dir: rx}
+      labels: {if: wan, dir: rx}
 
 
 # Network packets
