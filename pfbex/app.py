@@ -1,5 +1,7 @@
 '''Application main function'''
 
+import signal
+import sys
 import time
 
 from prometheus_client import start_http_server
@@ -28,8 +30,23 @@ APP_SETTINGS_DESC = {
 }
 
 
+def sig_term(signum, frame):
+    '''Handler function for SIGTERM to shut down this process in a docker
+    container.'''
+
+    del signum
+    del frame
+
+    logger.info('Terminating on SIGTERM. Bye!')
+
+    # We do not need to tidy up anything. So just exit.
+    sys.exit(0)
+
+
 def main():
     '''Main method initializing the application and starting the exporter.'''
+
+    signal.signal(signal.SIGTERM, sig_term)
 
     settings = EnvSettingsResolver(
         FritzBoxExporter.config_desc,

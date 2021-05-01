@@ -1,7 +1,7 @@
 # WAN related interface metrics
 
 fritzbox_wan_max_datarate:
-  doc: WAN maximum datarate in bits per second
+  doc: WAN layer 1 maximum datarate in bits per second
   items:
     - service: WANCommonIFC1
       action: GetCommonLinkProperties
@@ -15,17 +15,18 @@ fritzbox_wan_max_datarate:
 
 
 fritzbox_wan_datarate:
+  # Provides the same values as fritzbox_net_datarate{if="wan"}
   doc: WAN datarate in bytes per second
   items:
     - service: WANCommonIFC1
       action: GetAddonInfos
       attr: NewByteReceiveRate
-      labels: {dir: up}
+      labels: {dir: rx}
 
     - service: WANCommonIFC1
       action: GetAddonInfos
       attr: NewByteSendRate
-      labels: {dir: down}
+      labels: {dir: tx}
 
 
 fritzbox_wan_packetrate:
