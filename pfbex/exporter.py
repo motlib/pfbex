@@ -36,8 +36,8 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
         'CACHE_TIME': {
             'default': 30,
             'help': (
-                'Time to keep results in an internal cache before querying the '
-                'FritzBox again')
+                'Time in seconds to keep results in the internal cache before '
+                'querying the FritzBox again')
         },
     }
 
