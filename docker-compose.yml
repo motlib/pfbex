@@ -1,10 +1,22 @@
+# You can use this docker-compose file to build the container image from source
+# and start it.
+#
+# Example to build and start container in background:
+# docker-compose up -d --build
+#
+
 version: '3.0'
 
 services:
   pfbex:
-    image: motlib/pfbex:latest
+    build: .
+
     container_name: pfbex
+
     ports:
       - 8765:8765
+
     env_file:
       - user.env
+
+    restart: always
