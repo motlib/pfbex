@@ -1,6 +1,6 @@
 # This makefile automates building of the docker image (make docker), running a
 # docker container for development (make docker_run) and deploying the container
-# image to docker hub (make deploy). 
+# image to docker hub (make deploy).
 
 # Application name
 APP_NAME=pfbex
@@ -37,7 +37,7 @@ pylint:
 
 # Build docker image
 .PHONY: docker
-docker: 
+docker:
 	@echo "$(INFO)Building docker image...$(OFF)"
 
 	$(MAKE) _update_version
@@ -74,7 +74,7 @@ _reset_version:
 
 # Publish docker container to docker hub
 .PHONY: deploy
-deploy: docker
+deploy:
 	@echo "$(INFO)Starting deployment process$(OFF)"
 
 # We want to be sure to have nice and clean code before deploying.
@@ -96,4 +96,3 @@ deploy: docker
 	  docker tag $(APP_NAME) $${tag}; \
 	  docker push $${tag}; \
 	done
-
