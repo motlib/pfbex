@@ -103,7 +103,7 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
 
         return res
 
-    def _collect_pfbex_info(self):
+    def _collect_pfbex_info(self): # pylint: disable=no-self-use
         '''Provide pfbex version information to Prometheus.'''
 
         label_names = [
