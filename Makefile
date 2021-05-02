@@ -6,15 +6,16 @@
 APP_NAME=pfbex
 
 # Docker Hub repository name
-DOCKER_REPO=motlib
+DOCKER_USER=motlib
+DOCKER_REPO=pfbex
 
 # Architecture and version is determined automatically
 ARCH := $(shell uname -m)
 VERSION := $(shell git describe --always)
 
 # Image tag names, both version specific and 'latest'
-TAG_V=$(DOCKER_REPO)/$(APP_NAME)-$(ARCH):$(VERSION)
-TAG_L=$(DOCKER_REPO)/$(APP_NAME)-$(ARCH):latest
+TAG_V=$(DOCKER_USER)/$(DOCKER_REPO):$(ARCH)-$(VERSION)
+TAG_L=$(DOCKER_USER)/$(DOCKER_REPO):$(ARCH)-latest
 
 
 # Color definitions for colored log output
