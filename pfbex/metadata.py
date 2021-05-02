@@ -4,4 +4,4 @@
 APP_NAME = 'pfbex'
 
 # Application version
-APP_VERSION = '0.4.0-dev'
+APP_VERSION = 'develop'
