@@ -7,7 +7,7 @@ from prometheus_client import Summary
 from prometheus_client.core import CounterMetricFamily, GaugeMetricFamily
 
 from .logging import logger
-
+from .metadata import APP_VERSION
 
 MAX_FAILS = 3
 
@@ -102,6 +102,27 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
         self._data[key] = res
 
         return res
+
+    def _collect_pfbex_info(self): # pylint: disable=no-self-use
+        '''Provide pfbex version information to Prometheus.'''
+
+        label_names = [
+            'Version'
+        ]
+
+        label_values = [
+            APP_VERSION
+        ]
+
+        met = GaugeMetricFamily(
+            'pfbex_info',
+            'pfbex information',
+            labels=label_names)
+
+
+        met.add_metric(label_values, 1.0)
+
+        yield met
 
 
     def _collect_device_info(self):
@@ -256,6 +277,8 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
 
         # Clear the cache, so that no old data is reported.
         self._reset_request_cache()
+
+        yield from self._collect_pfbex_info()
 
         # Fetch device info about the FritzBox. This function has to be called first to
         # set the FritzBox serial number for the following metrics.

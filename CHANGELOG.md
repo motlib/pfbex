@@ -3,6 +3,12 @@
 For more information about fb_exporter, please refer to the [readme](README.md)
 file in the same directory.
 
+## Version 0.4.0
+
+* Provide pfbex version information in prometheus output (`pfbex_info` metric)
+
+* Improve makefile for easier deployment of docker images
+
 ## Version 0.3.0
 
 * Update and extend documentation (readme file)
