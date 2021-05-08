@@ -3,8 +3,8 @@
 # First we ignore everything
 *
 
-# No we let fbexp pass through
+# No we let fbexp source code, its config and the python dependencies pass
+# through
 !pfbex
 !conf
-!Pipfile
-!Pipfile.lock
+!requirements.txt
