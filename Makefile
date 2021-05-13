@@ -17,39 +17,80 @@ VERSION := $(shell git describe --always)
 TAG_V=$(DOCKER_USER)/$(DOCKER_REPO):$(ARCH)-$(VERSION)
 TAG_L=$(DOCKER_USER)/$(DOCKER_REPO):$(ARCH)-latest
 
-
 # Color definitions for colored log output
-INFO := $(shell tput setaf 2)
-ERROR := $(shell tput setaf 1)
-OFF := $(shell tput sgr0)
+C_INFO := $(shell tput setaf 2)
+C_ERROR := $(shell tput setaf 1)
+C_OFF := $(shell tput sgr0)
 
 # Metadata file to update with the current version. See _update_version and
 # _reset_version targets for details.
 METADATA_FILE=pfbex/metadata.py
 
 
+DOCKER_OPTS ?=
+#--quiet
+
+
 # Run linting
-pylint:
-	@echo "$(INFO)Running pylint$(OFF)"
-	pipenv run pylint \
+linting:
+	@echo "$(C_INFO)Running pylint$(C_OFF)"
+
+	./run.sh \
+	  pylint \
 	  --rcfile pylintrc \
 	  pfbex service_dumper.py
 
+# Run unit tests
+unittest:
+	@echo "$(C_INFO)Running unit tests$(C_OFF)"
+	./run.sh \
+	  pytest \
+	  pfbex
 
-# Build docker image
+
+# Build docker development image
+.PHONY: docker_dev
+docker_dev:
+	@echo "$(C_INFO)Building development docker image...$(C_OFF)"
+
+	$(MAKE) \
+	  TAG=$(APP_NAME):dev \
+	  PIPENV_OPTS=--dev \
+	  _docker
+
+
+# Build runtime docker image
 .PHONY: docker
-docker:
-	@echo "$(INFO)Building docker image...$(OFF)"
+docker: 
+	@echo "$(C_INFO)Building production docker image...$(C_OFF)"
 
+	$(MAKE) \
+	  TAG=$(APP_NAME) \
+	  PIPENV_OPTS= \
+	  _docker
+
+
+# Build a docker image. TAG and DOCKER_OPTS variables have to be passed in.
+.PHONY: _docker
+_docker:
 	$(MAKE) _update_version
 
+	pipenv lock \
+	  --keep-outdated \
+	  --requirements \
+	  $(PIPENV_OPTS) \
+	> requirements.txt
+
 	docker build \
-	  --tag $(APP_NAME) .
+	  --tag $(TAG) \
+	  $(DOCKER_OPTS) \
+	  .
 
 	$(MAKE) _reset_version
+	rm -f requirements.txt
 
 
-# Build and run docker container
+# Build and run docker container (runtime environment)
 docker_run: docker
 	docker run \
 	  --rm \
@@ -61,7 +102,7 @@ docker_run: docker
 # Update metadata file with version identifier from git
 .PHONY: _update_version
 _update_version:
-	@echo "$(INFO)Setting version in metadata file to '$(VERSION)'.$(OFF)"
+	@echo "$(C_INFO)Setting version in metadata file to '$(VERSION)'.$(C_OFF)"
 	sed -i -E "s/^(APP_VERSION ).*/\\1= '${VERSION}'/g" $(METADATA_FILE)
 
 
@@ -69,17 +110,18 @@ _update_version:
 # it.
 .PHONY: _reset_version
 _reset_version:
-	@echo "$(INFO)Reset version info in metadata file$(OFF)"
+	@echo "$(C_INFO)Reset version info in metadata file$(C_OFF)"
 	git checkout $(METADATA_FILE)
 
 
 # Publish docker container to docker hub
 .PHONY: deploy
 deploy:
-	@echo "$(INFO)Starting deployment process$(OFF)"
+	@echo "$(C_INFO)Starting deployment process$(C_OFF)"
 
 # We want to be sure to have nice and clean code before deploying.
-	$(MAKE) pylint
+	$(MAKE) linting
+	$(MAKE) unittest
 
 	$(MAKE) docker
 
@@ -87,13 +129,13 @@ deploy:
 # we do not deploy.
 	echo "$(VERSION)" | grep -Pq '^\d+\.\d+(\.\d+)?$$' \
 	|| ( \
-	  echo "$(ERROR)Not on a release version tag, so not publishing.$(OFF)"; \
+	  echo "$(C_ERROR)Not on a release version tag, so not publishing.$(C_OFF)"; \
 	  exit 1;\
 	)
 
 	for tag in $(TAG_L) $(TAG_V); \
 	do \
-	  echo "$(INFO)Tagging docker image with '$${tag}' and pushing ...$(OFF)"; \
+	  echo "$(C_INFO)Tagging docker image with '$${tag}' and pushing ...$(C_OFF)"; \
 	  docker tag $(APP_NAME) $${tag}; \
 	  docker push $${tag}; \
 	done
