@@ -1,33 +1,22 @@
 '''Application main function'''
 
+import os
 import signal
 import sys
 import time
 
 from prometheus_client import start_http_server
 from prometheus_client.core import REGISTRY
+import fritzconnection as fc
 
+
+from .dumper import dump_services
 from .exporter import FritzBoxExporter
 from .metrics_config import load_all_metrics_configs
 from .logging import setup_logging, logger
 from .metadata import APP_NAME, APP_VERSION
 from .settings import EnvSettingsResolver
-
-
-APP_SETTINGS_DESC = {
-    'HTTP_PORT': {
-        'default': 8765,
-        'help': 'Port for the integrated http web server'
-    },
-    'LOGLEVEL': {
-        'default': 'info',
-        'help': "Log level, one of 'debug', 'info', 'warning' or 'error'"
-    },
-    'METRICS_PATH': {
-        'default': './conf',
-        'help': 'Path to the metrics configuration files.'
-    }
-}
+from .settings_desc import SETTINGS_DESC
 
 
 def sig_term(signum, frame):
@@ -46,24 +35,37 @@ def sig_term(signum, frame):
 def main():
     '''Main method initializing the application and starting the exporter.'''
 
+    # Register the handler for the SIGTERM signal to exit app when container is
+    # shutting down.
     signal.signal(signal.SIGTERM, sig_term)
 
-    settings = EnvSettingsResolver(
-        FritzBoxExporter.config_desc,
-        APP_SETTINGS_DESC)
+    settings = EnvSettingsResolver(SETTINGS_DESC)
 
-    level = settings.LOGLEVEL
-    setup_logging(level)
+    setup_logging(level=settings.LOGLEVEL)
 
     logger.info(f'Starting {APP_NAME} version {APP_VERSION}.')
-    logger.info(f"Log level is set to '{level}'.")
 
     logger.debug(
         'Dumping effective application settings\n' + settings.to_table())
 
+    conn = fc.FritzConnection(
+        address=settings.FRITZ_HOST,
+        user=settings.FRITZ_USER,
+        password=settings.FRITZ_PASS)
+
+    if settings.DUMP_SERVICES:
+        output_file = os.path.join(
+            os.path.dirname(__file__), '..', 'output', 'dump.csv')
+
+        logger.info(f'Dumping FritzBox services to {output_file}')
+        dump_services(
+            output_file=output_file,
+            conn=conn,
+            dump_data=(settings.DUMP_DATA == '1'))
+
     # Create exporter instance and register it with the prometheus client lib
-    cfg = load_all_metrics_configs(settings.METRICS_PATH)
-    exporter = FritzBoxExporter(settings, cfg)
+    metrics = load_all_metrics_configs(settings.METRICS_PATH)
+    exporter = FritzBoxExporter(conn, metrics)
     REGISTRY.register(exporter)
 
     # Start up the server to expose the metrics.

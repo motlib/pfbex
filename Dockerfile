@@ -8,8 +8,9 @@ WORKDIR /home/pfbex/app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-USER pfbex
-
 ADD . /home/pfbex/app
+RUN chown pfbex.pfbex . -Rv
+
+USER pfbex
 
 CMD ["python3", "-m", "pfbex"]

@@ -2,7 +2,6 @@
 
 from datetime import datetime
 
-import fritzconnection as fc
 from prometheus_client import Summary
 from prometheus_client.core import CounterMetricFamily, GaugeMetricFamily
 
@@ -21,38 +20,15 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
     metrics.'''
 
     config_desc = {
-        'FRITZ_HOST': {
-            'default': 'fritz.box',
-            'help': 'Hostname of the FritzBox to query.'
-        },
-        'FRITZ_USER': {
-            'required': True,
-            'help': 'Username to log in to the FritzBox to retrieve metrics'
-        },
-        'FRITZ_PASS': {
-            'required': True,
-            'help': 'Password to log in to the FritzBox to retrieve metrics'
-        },
-        'CACHE_TIME': {
-            'default': 30,
-            'help': (
-                'Time in seconds to keep results in the internal cache before '
-                'querying the FritzBox again')
-        },
     }
 
 
-    def __init__(self, settings, metrics):
+    def __init__(self, conn, metrics):
         self.request_tm = Summary(
             'pfbex_tr64_requests',
             'Time and count for each TR-64 request to the FritzBox')
 
-        self.conn = fc.FritzConnection(
-            address=settings.FRITZ_HOST,
-            user=settings.FRITZ_USER,
-            password=settings.FRITZ_PASS)
-
-        self._settings = settings
+        self._conn = conn
         self._cfg = metrics
 
         for item in self._cfg.values():
@@ -92,7 +68,7 @@ class FritzBoxExporter(): # pylint: disable=too-few-public-methods
         # Retrieve service information
         try:
             with self.request_tm.time():
-                res = self.conn.call_action(service, action)
+                res = self._conn.call_action(service, action)
         except Exception as ex: # pylint: disable=broad-except
             res = None
 

@@ -38,7 +38,7 @@ linting:
 	./run.sh \
 	  pylint \
 	  --rcfile pylintrc \
-	  pfbex service_dumper.py
+	  pfbex
 
 # Run unit tests
 unittest:
@@ -61,7 +61,7 @@ docker_dev:
 
 # Build runtime docker image
 .PHONY: docker
-docker: 
+docker:
 	@echo "$(C_INFO)Building production docker image...$(C_OFF)"
 
 	$(MAKE) \
