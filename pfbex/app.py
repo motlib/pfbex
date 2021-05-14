@@ -1,5 +1,6 @@
 '''Application main function'''
 
+from datetime import datetime
 import os
 import signal
 import sys
@@ -54,18 +55,20 @@ def main():
         password=settings.FRITZ_PASS)
 
     if settings.DUMP_SERVICES:
+        dtm = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+        file_name = f'dump_{dtm}.csv'
         output_file = os.path.join(
-            os.path.dirname(__file__), '..', 'output', 'dump.csv')
+            os.path.dirname(__file__), '..', 'output', file_name)
 
-        logger.info(f'Dumping FritzBox services to {output_file}')
+        logger.info(f'Dumping FritzBox services to {file_name}')
         dump_services(
             output_file=output_file,
             conn=conn,
             dump_data=(settings.DUMP_DATA == '1'))
 
         logger.info(
-            'Terminating after dumping serices to file. If you want to use '
-            'normal exporter functionality, please unset DUMP_SERICES '
+            f"Terminating after dumping serices to '{file_name}'. If you want "
+            'to use normal exporter functionality, please unset DUMP_SERICES '
             'environment variable.')
 
         sys.exit(0)
