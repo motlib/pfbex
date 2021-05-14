@@ -63,6 +63,13 @@ def main():
             conn=conn,
             dump_data=(settings.DUMP_DATA == '1'))
 
+        logger.info(
+            'Terminating after dumping serices to file. If you want to use '
+            'normal exporter functionality, please unset DUMP_SERICES '
+            'environment variable.')
+
+        sys.exit(0)
+
     # Create exporter instance and register it with the prometheus client lib
     metrics = load_all_metrics_configs(settings.METRICS_PATH)
     exporter = FritzBoxExporter(conn, metrics)
